@@ -1,0 +1,2056 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>전투계통 · Battleclade · Kill Team Core</title>
+
+<style id="detail-common-inline">
+/* Kill Team Core — shared detail-page stylesheet
+   Consolidated 2026-09-10 from the latest 34-page design system. */
+
+:root {
+  --bg:#0d0f11; --panel:#15181c; --panel2:#1b1f24; --line:#2b3037;
+  --text:#f1f3f5; --muted:#9fa6ad; --accent:#c7a862;
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{
+  margin:0;color:var(--text);
+  font-family:Inter,Pretendard,"Noto Sans KR",system-ui,sans-serif;
+  background:radial-gradient(circle at 50% 0%,rgba(199,168,98,.08),transparent 26rem),
+             linear-gradient(180deg,#0b0d0f 0%,var(--bg) 100%);
+}
+a{color:inherit;text-decoration:none} button{font:inherit}
+header{
+  position:sticky;top:0;z-index:30;background:rgba(13,15,17,.86);
+  backdrop-filter:blur(16px);border-bottom:1px solid rgba(255,255,255,.06)
+}
+.header-inner{max-width:1240px;margin:auto;height:70px;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:.16em;text-transform:uppercase}
+.logo-mark{
+  width:34px;aspect-ratio:1;display:grid;place-items:center;color:var(--accent);
+  border:1px solid rgba(199,168,98,.5);background:rgba(199,168,98,.08);
+  clip-path:polygon(50% 0%,88% 18%,82% 76%,50% 100%,18% 76%,12% 18%)
+}
+.back{color:var(--muted);font-weight:800;font-size:14px}
+.hero{max-width:1240px;margin:auto;padding:68px 24px 32px}
+.breadcrumb{color:var(--muted);font-size:13px;margin-bottom:22px}
+.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:24px}
+.hero-copy,.hero-art{border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,var(--panel2),var(--panel))}
+.hero-copy{padding:42px;display:flex;flex-direction:column;justify-content:center}
+.tag{width:max-content;border:1px solid rgba(199,168,98,.35);border-radius:7px;padding:5px 9px;color:var(--accent);font-size:11px;font-weight:900}
+h1{font-size:clamp(40px,6vw,72px);margin:14px 0 0;line-height:.95;letter-spacing:-.04em}
+.hero-en{margin:12px 0 0;color:var(--muted);font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.hero-art{min-height:280px;display:grid;place-items:center;position:relative;overflow:hidden}
+.hero-art:before,.hero-art:after{content:"";position:absolute;width:55%;height:1px;background:rgba(199,168,98,.2);transform:rotate(35deg)}
+.hero-art:after{transform:rotate(-35deg)}
+.hero-mark{
+  position:relative;z-index:2;width:88px;aspect-ratio:1;display:grid;place-items:center;color:var(--accent);
+  border:1px solid rgba(199,168,98,.35);background:rgba(13,15,17,.55);
+  clip-path:polygon(50% 0%,88% 18%,82% 76%,50% 100%,18% 76%,12% 18%);font-weight:900
+}
+.nav-wrap{position:sticky;top:70px;z-index:25;background:rgba(13,15,17,.92);backdrop-filter:blur(14px);border-block:1px solid rgba(255,255,255,.05)}
+.section-nav{max-width:1240px;margin:auto;padding:12px 24px;display:flex;gap:9px;overflow:auto}
+.section-nav a{flex:0 0 auto;padding:8px 12px;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-size:12px;font-weight:800;background:var(--panel)}
+main{max-width:1240px;margin:auto;padding:18px 24px 80px}
+section{scroll-margin-top:145px;padding:34px 0 8px}
+.section-head{display:flex;align-items:end;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:13px;margin-bottom:18px}
+.section-no{color:var(--accent);font-size:18px;font-weight:900;letter-spacing:.08em;line-height:1}
+h2{margin:4px 0 0;font-size:38px;line-height:1.08;letter-spacing:-.03em}
+.placeholder,.panel{border:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,var(--panel2),var(--panel));padding:22px}
+.placeholder{color:var(--muted);min-height:118px;display:flex;flex-direction:column;justify-content:center}
+.placeholder strong{color:var(--text);margin-bottom:7px}
+.operative-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.operative-card{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:linear-gradient(180deg,var(--panel2),var(--panel))}
+.operative-summary{width:100%;border:0;background:transparent;color:var(--text);padding:18px;display:flex;align-items:center;justify-content:space-between;gap:16px;text-align:left;cursor:pointer}
+.operative-summary strong{display:block;font-size:17px;line-height:1.35}
+.toggle{flex:0 0 auto;color:var(--muted);font-size:12px;font-weight:900;border:1px solid var(--line);border-radius:999px;padding:7px 10px}
+.operative-detail{display:none;border-top:1px solid var(--line);padding:18px;color:var(--muted);background:rgba(13,15,17,.35)}
+.operative-card.open .operative-detail{display:block}
+.operative-card.open .toggle{background:var(--accent);border-color:var(--accent);color:#111315}
+.detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+.detail-grid div{border:1px dashed var(--line);border-radius:10px;padding:12px}
+.detail-grid b{display:block;color:var(--text);font-size:12px;margin-bottom:5px}
+.detail-grid span{font-size:13px}
+.guide-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.guide-grid div{border:1px solid var(--line);border-radius:12px;padding:15px}
+.guide-grid span{display:block;color:var(--muted);font-size:12px;margin-bottom:6px}
+
+
+.battleclade-buying-panel .buying-image-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:0;}
+.battleclade-buying-panel .buying-image-card{margin:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:rgba(255,255,255,.02);}
+.battleclade-buying-panel .buying-image-card img{display:block;width:100%;height:420px;object-fit:contain;background:#e7e7e7;}
+.battleclade-buying-panel .buying-image-card figcaption{padding:12px 14px;border-top:1px solid var(--line);color:#c8d2dc;font-size:14px;font-weight:700;background:rgba(11,13,15,.82);}
+.battleclade-buying-panel .guide-grid{margin-top:18px;}
+.battleclade-buying-panel .buying-guide-note{margin-top:18px;border:1px solid rgba(199,168,98,.28);border-radius:14px;padding:18px 18px 17px;background:linear-gradient(180deg,rgba(199,168,98,.07),rgba(255,255,255,.015));}
+.battleclade-buying-panel .buying-note-kicker{display:block;color:#f0bf62;font-size:13px;font-weight:900;letter-spacing:.04em;margin-bottom:10px;}
+.battleclade-buying-panel .buying-guide-note p{margin:0;color:var(--text);font-size:16px;line-height:1.8;}
+
+
+.operative-card.open{grid-column:1/-1}
+.captain-detail,.operative-full-detail{padding:20px}
+.stat-strip{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:18px
+}
+.stat-box{
+  border:1px solid var(--line);border-radius:12px;padding:13px 14px;
+  background:linear-gradient(180deg,rgba(199,168,98,.08),rgba(255,255,255,.015))
+}
+.stat-box span{
+  display:block;color:var(--muted);font-size:11px;font-weight:900;
+  letter-spacing:.08em;margin-bottom:4px
+}
+.stat-box strong{font-size:24px;line-height:1;color:var(--text)}
+.data-block{
+  border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:16px
+}
+.data-block-title{
+  padding:12px 14px;background:rgba(199,168,98,.08);border-bottom:1px solid var(--line);
+  color:var(--accent);font-weight:900;font-size:13px;letter-spacing:.04em
+}
+.weapon-table-wrap{overflow-x:auto}
+.weapon-table{width:100%;border-collapse:collapse;min-width:760px}
+.weapon-table th,.weapon-table td{
+  padding:12px 13px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top
+}
+.weapon-table th{
+  color:var(--muted);font-size:11px;font-weight:900;letter-spacing:.05em;background:rgba(255,255,255,.015)
+}
+.weapon-table td{color:var(--text);font-size:13px;line-height:1.55}
+.weapon-table tbody tr:last-child td{border-bottom:0}
+.weapon-table th:nth-child(2),.weapon-table th:nth-child(3),.weapon-table th:nth-child(4),
+.weapon-table td:nth-child(2),.weapon-table td:nth-child(3),.weapon-table td:nth-child(4){
+  width:72px;text-align:center;white-space:nowrap
+}
+.weapon-type{
+  display:inline-block;margin-right:8px;padding:3px 6px;border:1px solid rgba(199,168,98,.35);
+  border-radius:5px;color:var(--accent);font-size:10px;font-weight:900;vertical-align:1px
+}
+.weapon-type.melee{color:var(--text);border-color:var(--line)}
+.ability-grid{display:grid;grid-template-columns:1.55fr .85fr;gap:14px}
+.ability-card{
+  border:1px solid var(--line);border-radius:12px;padding:17px;background:rgba(255,255,255,.015)
+}
+.ability-card h4{margin:0 0 9px;color:var(--accent);font-size:16px}
+.ability-card p{margin:0;color:var(--text);font-size:14px;line-height:1.75}
+.ability-card ul{margin:10px 0 0;padding-left:20px;color:var(--text)}
+.ability-card li{margin:7px 0;line-height:1.7;font-size:14px}
+.keyword{color:var(--accent);font-weight:900}
+
+
+.ability-card.wide{grid-column:1/-1}
+.action-title-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:4px}
+.action-title-row h4{margin:0}
+.ap-badge{
+  flex:0 0 auto;padding:4px 8px;border-radius:6px;background:var(--accent);
+  color:#111315;font-size:11px;font-weight:1000;letter-spacing:.04em
+}
+.action-card ul{margin-top:10px}
+
+
+.composition-panel{
+  border:1px solid var(--line);border-radius:16px;padding:22px;
+  background:linear-gradient(180deg,var(--panel2),var(--panel))
+}
+.composition-topline{
+  display:flex;align-items:flex-start;justify-content:space-between;gap:20px;
+  padding-bottom:18px;border-bottom:1px solid var(--line)
+}
+.composition-label{
+  display:block;color:var(--accent);font-size:12px;font-weight:900;letter-spacing:.06em;margin-bottom:4px
+}
+.composition-topline h3{margin:0;font-size:24px}
+.archetype-wrap{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.archetype-title{color:var(--muted);font-size:11px;font-weight:900;letter-spacing:.06em}
+.archetype-chip{
+  border:1px solid rgba(199,168,98,.35);background:rgba(199,168,98,.08);
+  color:var(--accent);padding:6px 10px;border-radius:999px;font-size:12px;font-weight:900
+}
+.composition-summary{
+  display:flex;align-items:center;justify-content:center;gap:12px;padding:20px 0 4px
+}
+.summary-box{
+  min-width:130px;border:1px solid var(--line);border-radius:12px;padding:12px 16px;text-align:center;
+  background:rgba(255,255,255,.015)
+}
+.summary-box span{display:block;color:var(--muted);font-size:11px;font-weight:800;margin-bottom:4px}
+.summary-box strong{font-size:23px}
+.summary-box.total{border-color:rgba(199,168,98,.45);background:rgba(199,168,98,.07)}
+.summary-plus,.summary-equals{color:var(--accent);font-size:21px;font-weight:900}
+.composition-columns{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:18px
+}
+.composition-block{
+  border:1px solid var(--line);border-radius:14px;padding:16px;background:rgba(13,15,17,.28)
+}
+.composition-block-head{
+  display:flex;align-items:flex-start;gap:12px;padding-bottom:14px;margin-bottom:14px;border-bottom:1px solid var(--line)
+}
+.composition-number{
+  width:34px;height:34px;display:grid;place-items:center;flex:0 0 auto;border-radius:9px;
+  background:var(--accent);color:#111315;font-size:17px;font-weight:1000
+}
+.composition-block-head h4{margin:0 0 3px;font-size:17px}
+.composition-block-head p,.choice-card p,.operative-choice-item p,.composition-rule p,.bolt-note p{
+  margin:0;color:var(--muted);font-size:13px;line-height:1.65
+}
+.choice-card{
+  border:1px solid var(--line);border-radius:12px;padding:15px;margin-top:12px;background:rgba(255,255,255,.015)
+}
+.choice-card h5{margin:0 0 7px;font-size:16px;color:var(--text)}
+.option-group{margin-top:12px}
+.option-label{
+  display:block;color:var(--accent);font-size:11px;font-weight:900;letter-spacing:.05em;margin-bottom:7px
+}
+.option-group ul{
+  display:flex;flex-wrap:wrap;gap:7px;list-style:none;padding:0;margin:0
+}
+.option-group li,.fixed-loadout span,.loadout-row span{
+  border:1px solid var(--line);border-radius:7px;padding:6px 9px;background:rgba(255,255,255,.02);
+  color:var(--text);font-size:12px
+}
+.or-divider{display:flex;align-items:center;gap:8px;margin:12px 0}
+.or-divider:before,.or-divider:after{content:"";height:1px;background:var(--line);flex:1}
+.or-divider span{color:var(--muted);font-size:11px;font-weight:800}
+.fixed-loadout{display:flex;gap:7px;flex-wrap:wrap}
+.simple-choice{padding:16px}
+.simple-choice h5{margin:0}
+.operative-choice-list{display:grid;gap:10px}
+.operative-choice-item{
+  border:1px solid var(--line);border-radius:11px;padding:13px;background:rgba(255,255,255,.015)
+}
+.operative-choice-item strong{font-size:14px}
+.operative-choice-item.detailed p{margin-top:6px}
+.loadout-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:8px}
+.loadout-row span{
+  display:inline-flex;align-items:center;width:auto;flex:0 0 auto
+}
+.loadout-or{
+  display:flex;align-items:center;gap:9px;margin:9px 0 2px;
+  color:var(--muted);font-size:11px;font-weight:900
+}
+.loadout-or:before,.loadout-or:after{
+  content:"";height:1px;background:var(--line);flex:1
+}
+.loadout-or span{flex:0 0 auto}
+.composition-rule,.bolt-note{
+  border:1px solid var(--line);border-radius:12px;padding:15px;margin-top:16px
+}
+.composition-rule strong,.bolt-note strong{display:block;margin-bottom:5px;font-size:13px}
+.composition-rule{background:rgba(255,255,255,.015)}
+.bolt-note{border-color:rgba(199,168,98,.48);background:rgba(199,168,98,.06)}
+.bolt-note strong{color:var(--accent)}
+
+
+.faction-rules-wrap{display:grid;gap:18px}
+.faction-rule-block{
+  border:1px solid var(--line);border-radius:16px;overflow:hidden;
+  background:linear-gradient(180deg,var(--panel2),var(--panel))
+}
+.rule-block-head{
+  padding:18px 22px 20px;border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(255,255,255,.02),rgba(255,255,255,.01))
+}
+.rule-kicker{
+  display:block;color:var(--accent);font-size:12px;font-weight:900;
+  letter-spacing:.04em;margin-bottom:6px
+}
+.rule-block-head h3{margin:0;font-size:28px;letter-spacing:-.03em}
+.rule-intro{padding:18px 22px 0}
+.rule-intro p{
+  margin:0 0 14px;color:var(--text);font-size:15px;line-height:1.9
+}
+.tactic-selection-summary{
+  display:flex;align-items:center;justify-content:flex-start;gap:12px;
+  padding:2px 22px 18px
+}
+.tactic-select-box{
+  min-width:180px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+  text-align:center;background:rgba(255,255,255,.015)
+}
+.tactic-select-box span{
+  display:block;color:var(--muted);font-size:11px;font-weight:800;margin-bottom:5px
+}
+.tactic-select-box strong{font-size:18px}
+.tactic-select-plus{color:var(--accent);font-weight:1000;font-size:20px}
+.developer-note{
+  margin:0 22px 18px;padding:14px 16px;border:1px solid rgba(199,168,98,.35);
+  border-radius:10px;background:rgba(199,168,98,.04)
+}
+.developer-note strong{
+  display:block;color:var(--accent);font-size:13px;margin-bottom:6px
+}
+.developer-note p{margin:0;color:var(--text);font-size:13px;line-height:1.75}
+.tactics-grid{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:0 22px 22px
+}
+.tactic-card{
+  position:relative;border:1px solid var(--line);border-radius:12px;padding:16px 16px 16px 54px;
+  background:rgba(255,255,255,.015)
+}
+.tactic-number{
+  position:absolute;left:14px;top:14px;width:28px;height:28px;display:grid;place-items:center;
+  border-radius:8px;background:var(--accent);color:#111315;font-size:13px;font-weight:1000
+}
+.tactic-card h4{margin:0 0 8px;font-size:16px;color:var(--text)}
+.tactic-card p,.tactic-card li{
+  color:var(--muted);font-size:13px;line-height:1.72
+}
+.tactic-card p{margin:0}
+.tactic-card ul{margin:0;padding-left:18px}
+.tactic-card li+li{margin-top:7px}
+.tactic-card strong{color:var(--text)}
+.rules-source-note{
+  margin:0 22px 22px;padding:10px 12px;border-left:3px solid var(--accent);
+  color:var(--muted);font-size:12px;background:rgba(255,255,255,.015)
+}
+.astartes-quote{
+  margin:20px 22px 0;padding:16px 18px;border-left:3px solid var(--accent);
+  color:var(--muted);font-family:Georgia,"Times New Roman",serif;
+  font-size:16px;font-style:italic;line-height:1.75;background:rgba(255,255,255,.015)
+}
+.astartes-body{display:grid;gap:12px;padding:18px 22px 22px}
+.astartes-rule-item{
+  display:block;
+  border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:rgba(255,255,255,.015)
+}
+.rule-icon{display:none}
+.astartes-rule-item p{margin:0;color:var(--text);font-size:15px;line-height:1.85}
+
+
+.simple-intro{border-top:0}
+.simple-selection .tactic-select-plus{align-self:center}
+.simple-note{box-shadow:none}
+
+
+.lore-note{
+  margin:0 0 18px;
+  padding:15px 18px;
+  border-left:3px solid var(--accent);
+  background:rgba(255,255,255,.015);
+  color:var(--muted);
+  font-family:Georgia,"Times New Roman",serif;
+  font-size:15px;
+  font-style:italic;
+  line-height:1.8;
+}
+
+
+.ploy-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px
+}
+.ploy-card{
+  border:1px solid var(--line);
+  border-radius:16px;
+  overflow:hidden;
+  background:linear-gradient(180deg,var(--panel2),var(--panel))
+}
+.ploy-head{
+  padding:18px 20px 19px;
+  border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(255,255,255,.025),rgba(255,255,255,.01))
+}
+.ploy-faction{
+  display:block;
+  color:var(--accent);
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.07em;
+  margin-bottom:5px
+}
+.ploy-head h3{
+  margin:0;
+  font-size:23px;
+  letter-spacing:-.025em
+}
+.ploy-body{padding:18px 20px 20px}
+.ploy-body .lore-note{
+  margin:0 0 18px
+}
+.ploy-rule{
+  border-top:1px solid var(--line);
+  padding-top:15px
+}
+.ploy-rule p{
+  margin:0;
+  color:var(--text);
+  font-size:14px;
+  line-height:1.85
+}
+.ploy-rule strong{color:var(--text)}
+.doctrine-list{
+  list-style:none;
+  margin:15px 0 0;
+  padding:0;
+  display:grid;
+  gap:9px
+}
+.doctrine-list li{
+  display:grid;
+  grid-template-columns:135px 1fr;
+  gap:12px;
+  align-items:start;
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:11px 12px;
+  background:rgba(255,255,255,.015)
+}
+.doctrine-list strong{
+  color:var(--accent);
+  font-size:13px
+}
+.doctrine-list span{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.55
+}
+
+
+.firefight-grid .ploy-card .ploy-rule .plain-bullet-list{
+  margin:14px 0 0;
+  padding-left:20px;
+  color:var(--text)
+}
+.firefight-grid .ploy-card .ploy-rule .plain-bullet-list li{
+  margin:8px 0;
+  font-size:14px;
+  line-height:1.75;
+  color:var(--text)
+}
+
+
+.hero-toc{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.hero-toc a{
+  padding:8px 12px;border:1px solid var(--line);border-radius:999px;
+  color:var(--muted);font-size:12px;font-weight:800;background:rgba(255,255,255,.02)
+}
+.hero-toc a:hover{color:var(--text);border-color:rgba(199,168,98,.42)}
+
+.restriction{
+  margin-top:12px !important;
+  padding:10px 12px;
+  border-left:3px solid #a84d45;
+  background:rgba(168,77,69,.07);
+  color:var(--muted) !important
+}
+
+.network-rules{
+  padding-bottom:4px
+}
+.network-rules p{
+  margin:0 0 15px;
+  color:var(--text);
+  font-size:15px;
+  line-height:1.9
+}
+.network-rules strong{color:var(--text)}
+.rule-note{
+  margin-top:14px !important;
+  padding:11px 12px;
+  border-left:3px solid var(--accent);
+  background:rgba(199,168,98,.05);
+  color:var(--muted) !important
+}
+.plain-bullet-list{
+  margin:14px 0 0;
+  padding-left:20px;
+  color:var(--text)
+}
+.plain-bullet-list li{
+  margin:8px 0;
+  font-size:14px;
+  line-height:1.75;
+  color:var(--text)
+}
+
+footer{border-top:1px solid var(--line);color:var(--muted);text-align:center;padding:28px 20px 38px;font-size:13px}
+@media(max-width:980px){
+  .hero-grid{grid-template-columns:1fr}
+  .operative-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .guide-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:900px){
+  .composition-columns{grid-template-columns:1fr}
+}
+@media(max-width:760px){
+  .tactics-grid{grid-template-columns:1fr}
+  .tactic-selection-summary{flex-wrap:wrap}
+  .tactic-select-box{min-width:130px;flex:1}
+}
+@media(max-width:840px){
+  .ploy-grid{grid-template-columns:1fr}
+}
+@media(max-width:820px){
+  .ability-grid{grid-template-columns:1fr}
+}
+@media(max-width:680px){
+  .section-no{font-size:16px}
+  h2{font-size:30px}
+  .header-inner{height:62px;padding:0 16px} .nav-wrap{top:62px}
+  .hero{padding:44px 16px 24px} .hero-copy{padding:28px 22px}
+  main{padding-left:16px;padding-right:16px}
+  .operative-grid,.detail-grid{grid-template-columns:1fr}
+  .doctrine-list li{grid-template-columns:1fr;gap:4px}
+  .composition-topline{flex-direction:column}
+  .archetype-wrap{justify-content:flex-start}
+  .composition-summary{flex-wrap:wrap}
+  .summary-box{min-width:110px;flex:1}
+  .summary-plus,.summary-equals{font-size:17px}
+  .stat-strip{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .back{font-size:0} .back:after{content:"← 메인";font-size:13px}
+}
+
+.aspect-groups{display:grid;gap:28px}
+.aspect-group{padding:22px;background:var(--panel2);border:1px solid var(--line);border-radius:24px;box-shadow:0 14px 34px rgba(0,0,0,.28)}
+.aspect-group-heading{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.aspect-badge{display:inline-flex;align-items:center;padding:6px 12px;border-radius:999px;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.35);color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.aspect-group-heading h3{margin:0;font-size:26px}
+.aspect-card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.aspect-card{background:linear-gradient(180deg,rgba(15,23,42,.88),rgba(10,16,28,.88));border:1px solid var(--line);border-radius:22px;padding:18px 18px 20px}
+.aspect-card-head{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+.aspect-family{display:inline-flex;align-items:center;padding:5px 10px;border-radius:999px;background:rgba(248,113,113,.10);border:1px solid rgba(248,113,113,.25);color:#ffb4b4;font-size:12px;font-weight:800}
+.aspect-type{display:inline-flex;align-items:center;padding:5px 10px;border-radius:999px;background:rgba(245,158,11,.10);border:1px solid rgba(245,158,11,.25);color:#ffd28b;font-size:12px;font-weight:800}
+.aspect-card h4{margin:0 0 12px;font-size:24px;line-height:1.2;color:#fff}
+.aspect-card p{margin:10px 0;font-size:14px;line-height:1.85;color:var(--text)}
+.aspect-card ul{margin:10px 0 0;padding-left:20px}
+.aspect-card li{margin:8px 0;font-size:14px;line-height:1.75;color:var(--text)}
+.aspect-note{margin-top:14px;padding:12px 14px;border-left:4px solid var(--accent);background:rgba(255,255,255,.03);border-radius:12px;color:var(--muted);font-size:13px;line-height:1.75}
+.aspect-weapon{margin-top:14px;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.aspect-weapon table{width:100%;border-collapse:collapse}
+.aspect-weapon th,.aspect-weapon td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.06);font-size:13px;text-align:left}
+.aspect-weapon tr:last-child td{border-bottom:none}
+.aspect-weapon thead th{background:rgba(255,255,255,.03);color:#fff;font-weight:800}
+
+
+.token-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:10px;
+  padding:20px 22px 22px
+}
+.token-grid span{
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:11px 12px;
+  background:rgba(255,255,255,.015);
+  color:var(--text);
+  font-size:13px;
+  font-weight:800
+}
+.network-rules p{
+  margin:0 0 15px;
+  color:var(--text);
+  font-size:15px;
+  line-height:1.9
+}
+.restriction{
+  margin-top:12px !important;
+  padding:10px 12px;
+  border-left:3px solid #a84d45;
+  background:rgba(168,77,69,.07);
+  color:var(--muted) !important
+}
+
+
+.aspect-card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:18px}
+.aspect-card{background:linear-gradient(180deg,rgba(15,23,42,.88),rgba(10,16,28,.88));border:1px solid var(--line);border-radius:22px;padding:18px 18px 20px}
+.aspect-card h4{margin:0 0 12px;font-size:23px;color:#fff}
+.aspect-card p{margin:10px 0;font-size:14px;line-height:1.8;color:var(--text)}
+.network-rules p{margin:0 0 15px;color:var(--text);font-size:15px;line-height:1.9}
+.restriction{margin-top:12px !important;padding:10px 12px;border-left:3px solid #a84d45;background:rgba(168,77,69,.07);color:var(--muted) !important}
+.source-gap{border-left:4px solid var(--accent);padding-left:16px}
+
+/* Specialized reusable layouts (currently used by Inquisitorial Agents). */
+.subsection-heading{margin:28px 0 14px;padding:16px 18px;border:1px solid var(--line);border-radius:18px;background:rgba(255,255,255,.02)}
+.subsection-heading h3{margin:0 0 6px;font-size:24px;color:#fff}
+.subsection-heading p{margin:0;color:var(--muted);font-size:14px;line-height:1.7}
+.requisition-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;margin-top:22px}
+.requisition-card{background:linear-gradient(180deg,rgba(15,23,42,.9),rgba(10,16,28,.9));border:1px solid var(--line);border-radius:20px;padding:18px}
+.requisition-card h4{margin:0 0 10px;font-size:22px;color:#fff}
+.requisition-card p{margin:8px 0;font-size:14px;line-height:1.75;color:var(--text)}
+.requisition-card ul{margin:10px 0;padding-left:20px}
+.requisition-card li{margin:7px 0;font-size:14px;line-height:1.65;color:var(--text)}
+.aspect-weapon{margin-top:14px;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.aspect-weapon table{width:100%;border-collapse:collapse}
+.aspect-weapon th,.aspect-weapon td{padding:10px 12px;border-bottom:1px solid rgba(255,255,255,.06);font-size:13px;text-align:left}
+.aspect-weapon tr:last-child td{border-bottom:none}
+.aspect-weapon thead th{background:rgba(255,255,255,.03);color:#fff;font-weight:800}
+.network-rules p{margin:0 0 15px;color:var(--text);font-size:15px;line-height:1.9}
+.restriction{margin-top:12px !important;padding:10px 12px;border-left:3px solid #a84d45;background:rgba(168,77,69,.07);color:var(--muted) !important}
+
+
+.operative-group-title{
+  grid-column:1/-1;
+  margin:26px 0 6px;
+  padding:0 2px 12px;
+  border-bottom:1px solid var(--line)
+}
+.operative-group-title h3{
+  margin:0;
+  color:#fff;
+  font-size:24px;
+  font-weight:900;
+  letter-spacing:-.02em
+}
+
+/* ============================================================
+   Q2 visual polish — 2026-09-13
+   Purpose: elevate hierarchy and finish without changing content.
+   ============================================================ */
+:root{
+  --bg:#090b0d;
+  --panel:#12161a;
+  --panel2:#181d22;
+  --line:#2a3037;
+  --line-soft:rgba(255,255,255,.055);
+  --text:#f3f4f5;
+  --muted:#9aa2aa;
+  --accent:#d1b36a;
+  --accent-soft:rgba(209,179,106,.10);
+  --shadow:0 18px 46px rgba(0,0,0,.24);
+}
+html{background:var(--bg)}
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 16% -6%,rgba(209,179,106,.10),transparent 28rem),
+    radial-gradient(circle at 88% 5%,rgba(124,141,151,.055),transparent 30rem),
+    linear-gradient(180deg,#090b0d 0%,#0b0e11 42%,#090b0d 100%);
+}
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  opacity:.16;
+  background-image:
+    linear-gradient(rgba(255,255,255,.022) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(255,255,255,.018) 1px,transparent 1px);
+  background-size:56px 56px;
+  mask-image:linear-gradient(to bottom,rgba(0,0,0,.68),transparent 70%);
+}
+header{
+  background:rgba(9,11,13,.82);
+  border-bottom:1px solid rgba(209,179,106,.10);
+  box-shadow:0 7px 24px rgba(0,0,0,.13);
+}
+.header-inner{height:72px}
+.logo{gap:13px;font-size:14px;letter-spacing:.18em}
+.logo-mark{
+  width:36px;
+  border-color:rgba(209,179,106,.58);
+  background:linear-gradient(180deg,rgba(209,179,106,.15),rgba(209,179,106,.045));
+  text-shadow:0 0 18px rgba(209,179,106,.34);
+  box-shadow:inset 0 0 0 1px rgba(255,255,255,.025);
+}
+.back{transition:color .18s ease,transform .18s ease}
+.back:hover{color:var(--text);transform:translateX(-2px)}
+
+.hero{padding-top:58px;padding-bottom:42px}
+.breadcrumb{
+  margin-bottom:18px;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.055em;
+  text-transform:uppercase;
+}
+.hero-grid{grid-template-columns:minmax(0,1.28fr) minmax(320px,.72fr);gap:18px}
+.hero-copy,.hero-art{
+  border-radius:22px;
+  border-color:rgba(255,255,255,.075);
+  box-shadow:var(--shadow),inset 0 1px 0 rgba(255,255,255,.025);
+}
+.hero-copy{
+  position:relative;
+  overflow:hidden;
+  min-height:330px;
+  padding:44px 46px 40px;
+  background:
+    radial-gradient(circle at 8% 10%,rgba(209,179,106,.10),transparent 18rem),
+    linear-gradient(145deg,#1a1f24 0%,#13171b 72%);
+}
+.hero-copy:before{
+  content:"";
+  position:absolute;
+  inset:0 auto auto 0;
+  width:54%;
+  height:2px;
+  background:linear-gradient(90deg,var(--accent),rgba(209,179,106,0));
+}
+.hero-copy:after{
+  content:"";
+  position:absolute;
+  right:20px;
+  top:20px;
+  width:26px;
+  height:26px;
+  border-top:1px solid rgba(209,179,106,.22);
+  border-right:1px solid rgba(209,179,106,.22);
+  pointer-events:none;
+}
+.tag{
+  position:relative;
+  padding:6px 11px 6px 24px;
+  border-color:rgba(209,179,106,.38);
+  background:rgba(209,179,106,.055);
+  letter-spacing:.08em;
+}
+.tag:before{
+  content:"";
+  position:absolute;
+  left:10px;
+  top:50%;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  transform:translateY(-50%);
+  background:var(--accent);
+  box-shadow:0 0 10px rgba(209,179,106,.45);
+}
+h1{
+  margin-top:17px;
+  font-size:clamp(42px,5.7vw,76px);
+  letter-spacing:-.055em;
+  text-wrap:balance;
+}
+.hero-en{
+  margin-top:14px;
+  font-size:13px;
+  letter-spacing:.13em;
+  color:#aeb4ba;
+}
+.hero-toc{gap:8px;margin-top:27px;max-width:760px}
+.hero-toc a{
+  position:relative;
+  padding:8px 12px;
+  border-color:rgba(255,255,255,.075);
+  background:rgba(5,7,9,.22);
+  transition:color .18s ease,border-color .18s ease,background .18s ease,transform .18s ease;
+}
+.hero-toc a:hover{
+  color:var(--text);
+  border-color:rgba(209,179,106,.48);
+  background:rgba(209,179,106,.06);
+  transform:translateY(-1px);
+}
+.hero-art{
+  min-height:330px;
+  background:
+    radial-gradient(circle at 50% 48%,rgba(209,179,106,.11),transparent 8.5rem),
+    radial-gradient(circle at 50% 50%,rgba(255,255,255,.024),transparent 17rem),
+    linear-gradient(155deg,#171c20,#101417);
+}
+.hero-art:before,.hero-art:after{
+  width:76%;
+  background:linear-gradient(90deg,transparent,rgba(209,179,106,.32),transparent);
+}
+.hero-art:before{transform:rotate(42deg)}
+.hero-art:after{transform:rotate(-42deg)}
+.hero-mark{
+  width:104px;
+  background:linear-gradient(180deg,rgba(14,17,20,.94),rgba(8,10,12,.80));
+  border-color:rgba(209,179,106,.52);
+  box-shadow:0 0 0 18px rgba(209,179,106,.025),0 0 60px rgba(209,179,106,.08);
+  letter-spacing:.06em;
+}
+
+main{padding-top:10px;padding-bottom:96px}
+section{padding-top:42px}
+.section-head{
+  position:relative;
+  align-items:flex-end;
+  border-bottom:0;
+  padding:0 0 18px 18px;
+  margin-bottom:20px;
+}
+.section-head:before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:2px;
+  bottom:19px;
+  width:3px;
+  border-radius:3px;
+  background:linear-gradient(180deg,var(--accent),rgba(209,179,106,.20));
+  box-shadow:0 0 18px rgba(209,179,106,.15);
+}
+.section-head:after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:1px;
+  background:linear-gradient(90deg,rgba(209,179,106,.34),var(--line) 28%,rgba(42,48,55,.44));
+}
+.section-no{
+  display:inline-block;
+  margin-bottom:5px;
+  color:var(--accent);
+  font-size:21px;
+  letter-spacing:.10em;
+  text-shadow:0 0 20px rgba(209,179,106,.13);
+}
+h2{font-size:40px;letter-spacing:-.042em}
+
+.placeholder,.panel,.operative-card,.composition-panel,.faction-rule-block,.ploy-card,.equipment-card,
+.aspect-group,.aspect-card,.requisition-card,.subsection-heading{
+  box-shadow:0 12px 34px rgba(0,0,0,.13),inset 0 1px 0 rgba(255,255,255,.018);
+}
+.placeholder,.panel,.composition-panel,.faction-rule-block{
+  border-color:rgba(255,255,255,.073);
+  background:linear-gradient(155deg,rgba(25,30,35,.98),rgba(16,20,24,.98));
+}
+.placeholder{min-height:122px;padding:24px 26px}
+.placeholder strong{font-size:15px}
+
+.operative-grid{gap:15px}
+.operative-card{
+  position:relative;
+  border-color:rgba(255,255,255,.072);
+  border-radius:16px;
+  background:linear-gradient(155deg,#181d22,#12161a);
+  transition:border-color .18s ease,transform .18s ease,box-shadow .18s ease;
+}
+.operative-card:before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  width:0;
+  height:2px;
+  z-index:3;
+  background:linear-gradient(90deg,var(--accent),rgba(209,179,106,.1));
+  transition:width .22s ease;
+}
+.operative-summary{min-height:66px;padding:19px 19px}
+.operative-summary strong{font-size:17px;letter-spacing:-.015em}
+.toggle{
+  color:#a7adb3;
+  border-color:rgba(255,255,255,.08);
+  background:rgba(255,255,255,.015);
+  transition:all .18s ease;
+}
+.operative-card.open{
+  border-color:rgba(209,179,106,.32);
+  box-shadow:0 20px 54px rgba(0,0,0,.24),0 0 0 1px rgba(209,179,106,.035) inset;
+}
+.operative-card.open:before{width:100%}
+.operative-card.open .operative-detail{background:rgba(6,8,10,.24)}
+.operative-card.open .toggle{box-shadow:0 5px 16px rgba(209,179,106,.12)}
+.stat-box{
+  border-color:rgba(255,255,255,.075);
+  background:linear-gradient(180deg,rgba(209,179,106,.085),rgba(255,255,255,.012));
+}
+.stat-box strong{font-size:25px}
+.data-block{border-color:rgba(255,255,255,.075)}
+.data-block-title{background:linear-gradient(90deg,rgba(209,179,106,.105),rgba(209,179,106,.025))}
+.weapon-table th{background:rgba(255,255,255,.022)}
+.weapon-table tbody tr{transition:background .15s ease}
+.weapon-table tbody tr:hover{background:rgba(255,255,255,.018)}
+.ability-card,.choice-card,.operative-choice-item,.composition-block,.tactic-select-box{
+  border-color:rgba(255,255,255,.072);
+  background:rgba(255,255,255,.013);
+}
+.ability-card h4{letter-spacing:-.015em}
+
+.rule-block-head{
+  position:relative;
+  background:linear-gradient(90deg,rgba(209,179,106,.07),rgba(255,255,255,.012) 35%,rgba(255,255,255,.008));
+}
+.rule-block-head:after{
+  content:"";
+  position:absolute;
+  left:22px;
+  bottom:-1px;
+  width:78px;
+  height:1px;
+  background:var(--accent);
+}
+.rule-block-head h3{font-size:29px}
+.ploy-card,.equipment-card{border-color:rgba(255,255,255,.072)}
+
+.guide-grid{gap:14px}
+.guide-grid div{
+  position:relative;
+  min-height:112px;
+  padding:18px 18px 17px;
+  overflow:hidden;
+  border-color:rgba(255,255,255,.075);
+  background:linear-gradient(155deg,rgba(255,255,255,.025),rgba(255,255,255,.006));
+}
+.guide-grid div:after{
+  content:"";
+  position:absolute;
+  right:-22px;
+  bottom:-30px;
+  width:82px;
+  height:82px;
+  border:1px solid rgba(209,179,106,.09);
+  transform:rotate(45deg);
+}
+.guide-grid span{
+  margin-bottom:10px;
+  color:#8f979f;
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.045em;
+}
+.guide-grid strong{
+  position:relative;
+  z-index:1;
+  font-size:22px;
+  letter-spacing:-.025em;
+}
+footer{
+  border-top-color:rgba(209,179,106,.10);
+  background:rgba(7,9,11,.58);
+  letter-spacing:.04em;
+}
+
+@media (hover:hover){
+  .operative-card:not(.open):hover{
+    transform:translateY(-2px);
+    border-color:rgba(209,179,106,.21);
+    box-shadow:0 18px 42px rgba(0,0,0,.20);
+  }
+  .operative-card:not(.open):hover:before{width:42%}
+  .operative-card:hover .toggle{color:var(--text);border-color:rgba(209,179,106,.32)}
+  .guide-grid div{transition:transform .18s ease,border-color .18s ease,background .18s ease}
+  .guide-grid div:hover{transform:translateY(-2px);border-color:rgba(209,179,106,.23);background:rgba(209,179,106,.03)}
+}
+
+@media(max-width:980px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-art{min-height:220px}
+}
+@media(max-width:680px){
+  body:before{background-size:42px 42px}
+  .header-inner{height:62px}
+  .hero{padding-top:38px;padding-bottom:28px}
+  .hero-grid{display:flex;flex-direction:column}
+  .hero-art{order:1;min-height:190px}
+  .hero-copy{order:2;min-height:0;padding:30px 24px 28px}
+  .hero-copy:after{display:none}
+  .hero-mark{width:86px}
+  h1{font-size:clamp(40px,13.2vw,58px)}
+  .hero-toc{margin-top:22px}
+  .hero-toc a{padding:7px 10px;font-size:11px}
+  section{padding-top:36px}
+  .section-head{padding-left:14px}
+  .section-no{font-size:18px}
+  h2{font-size:31px}
+  .placeholder,.panel{padding:19px}
+  .guide-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .guide-grid div{min-height:96px;padding:15px}
+  .guide-grid strong{font-size:19px}
+}
+@media(max-width:430px){
+  .guide-grid{grid-template-columns:1fr}
+  .guide-grid div{min-height:84px}
+}
+
+
+
+@media (max-width: 860px){
+  .battleclade-buying-panel .buying-image-grid{grid-template-columns:1fr;}
+  .battleclade-buying-panel .buying-image-card img{height:auto;max-height:none;}
+}
+
+
+
+/* Section 01 개요: 한 줄 요약 · 태그 · 특징 / 추천 대상 */
+.overview-panel{
+  border:1px solid var(--line);border-radius:16px;padding:24px;
+  background:linear-gradient(180deg,var(--panel2),var(--panel))
+}
+.overview-lead{
+  margin:0;color:var(--text);font-size:19px;font-weight:700;line-height:1.7;
+  letter-spacing:-.01em;word-break:keep-all
+}
+.overview-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.overview-tag{
+  border:1px solid rgba(199,168,98,.35);background:rgba(199,168,98,.08);color:var(--accent);
+  padding:6px 11px;border-radius:999px;font-size:12px;font-weight:900
+}
+.overview-grid{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:20px
+}
+.overview-block{
+  border:1px solid var(--line);border-radius:14px;padding:18px 20px;background:rgba(13,15,17,.28)
+}
+.overview-block h4{
+  margin:0 0 12px;padding-bottom:10px;border-bottom:1px solid var(--line);
+  color:var(--accent);font-size:13px;font-weight:900;letter-spacing:.06em
+}
+.overview-block ul{margin:0;padding-left:18px;color:var(--text)}
+.overview-block li{margin:0 0 9px;font-size:14px;line-height:1.75;word-break:keep-all}
+.overview-block li:last-child{margin-bottom:0}
+.overview-caveat{
+  margin:14px 0 0;padding:12px 14px;border:1px dashed rgba(224,90,79,.55);border-radius:10px;
+  background:rgba(224,90,79,.07);color:#f1c9c4;font-size:13px;line-height:1.7;word-break:keep-all
+}
+.overview-caveat strong{
+  display:block;color:#ef6b60;font-size:12px;margin-bottom:4px;letter-spacing:.04em
+}
+@media(max-width:760px){
+  .overview-grid{grid-template-columns:1fr}
+  .overview-panel{padding:18px}
+  .overview-lead{font-size:17px}
+  .overview-block{padding:16px}
+}
+</style>
+<style id="battleclade-emblem-style">
+/* Battleclade hero emblem: same size and position as Angel of Death; remove temporary icon card, X lines and glow. */
+.hero-grid.battleclade-hero-grid{display:block;}
+.hero-copy.battleclade-hero-copy{position:relative;min-height:300px;padding-right:clamp(220px,30vw,360px);}
+.battleclade-inline-emblem{position:absolute;right:46px;top:50%;transform:translateY(-50%);width:clamp(140px,20vw,230px);height:auto;filter:none;pointer-events:none;}
+.hero-art,.hero-art.battleclade-hero-art{display:none !important;}
+@media(max-width:980px){.hero-copy.battleclade-hero-copy{padding-right:220px;min-height:280px;}.battleclade-inline-emblem{right:32px;width:clamp(120px,22vw,180px);}}
+@media(max-width:680px){.hero-copy.battleclade-hero-copy{padding-right:24px;min-height:0;}.battleclade-inline-emblem{position:static;display:block;margin:24px 0 4px auto;transform:none;width:min(42vw,150px);}}
+
+
+@media (max-width: 860px){
+  .battleclade-buying-panel .buying-image-grid{grid-template-columns:1fr;}
+  .battleclade-buying-panel .buying-image-card img{height:auto;max-height:none;}
+}
+
+</style>
+<style id="fixed-section-shortcuts-v15">
+/* Kill Team Core — persistent section shortcuts
+   Desktop: fixed vertical rail on the left.
+   Tablet/mobile: fixed horizontal bar below the header. */
+@media (min-width:1101px){
+  .hero-toc{
+    position:fixed !important;
+    left:16px !important;
+    top:50% !important;
+    right:auto !important;
+    transform:translateY(-50%) !important;
+    z-index:60 !important;
+    width:174px !important;
+    max-width:none !important;
+    margin:0 !important;
+    padding:12px !important;
+    display:flex !important;
+    flex-direction:column !important;
+    flex-wrap:nowrap !important;
+    gap:7px !important;
+    overflow:visible !important;
+    border:1px solid rgba(255,255,255,.08) !important;
+    border-radius:16px !important;
+    background:rgba(13,15,17,.92) !important;
+    backdrop-filter:blur(16px) !important;
+    box-shadow:0 14px 36px rgba(0,0,0,.28) !important;
+  }
+  .hero-toc a{
+    width:100% !important;
+    padding:9px 11px !important;
+    border-radius:10px !important;
+    text-align:left !important;
+    white-space:nowrap !important;
+    flex:0 0 auto !important;
+    transition:color .18s ease,border-color .18s ease,background .18s ease,transform .18s ease !important;
+  }
+  .hero-toc a:hover{
+    color:var(--text) !important;
+    border-color:rgba(199,168,98,.42) !important;
+    background:rgba(199,168,98,.08) !important;
+    transform:translateX(2px) !important;
+  }
+  .hero,main{
+    width:calc(100% - 220px) !important;
+    max-width:1240px !important;
+    margin-left:max(200px,calc((100vw - 1060px)/2)) !important;
+    margin-right:20px !important;
+  }
+  section{scroll-margin-top:92px !important;}
+}
+@media (min-width:681px) and (max-width:1100px){
+  .hero-toc{
+    position:fixed !important;
+    left:0 !important;
+    right:0 !important;
+    top:70px !important;
+    transform:none !important;
+    z-index:60 !important;
+    width:100% !important;
+    max-width:none !important;
+    margin:0 !important;
+    padding:8px 12px !important;
+    display:flex !important;
+    flex-direction:row !important;
+    flex-wrap:nowrap !important;
+    gap:7px !important;
+    overflow-x:auto !important;
+    overflow-y:hidden !important;
+    background:rgba(13,15,17,.94) !important;
+    border-top:1px solid rgba(255,255,255,.05) !important;
+    border-bottom:1px solid rgba(255,255,255,.07) !important;
+    border-radius:0 !important;
+    backdrop-filter:blur(14px) !important;
+    scrollbar-width:none !important;
+  }
+  .hero-toc::-webkit-scrollbar{display:none !important;}
+  .hero-toc a{
+    flex:0 0 auto !important;
+    width:auto !important;
+    padding:8px 11px !important;
+    border-radius:999px !important;
+    white-space:nowrap !important;
+  }
+  .hero{padding-top:124px !important;}
+  section{scroll-margin-top:132px !important;}
+}
+@media (max-width:680px){
+  .hero-toc{
+    position:fixed !important;
+    left:0 !important;
+    right:0 !important;
+    top:62px !important;
+    transform:none !important;
+    z-index:60 !important;
+    width:100% !important;
+    max-width:none !important;
+    margin:0 !important;
+    padding:8px 12px !important;
+    display:flex !important;
+    flex-direction:row !important;
+    flex-wrap:nowrap !important;
+    gap:7px !important;
+    overflow-x:auto !important;
+    overflow-y:hidden !important;
+    background:rgba(13,15,17,.94) !important;
+    border-top:1px solid rgba(255,255,255,.05) !important;
+    border-bottom:1px solid rgba(255,255,255,.07) !important;
+    border-radius:0 !important;
+    backdrop-filter:blur(14px) !important;
+    scrollbar-width:none !important;
+  }
+  .hero-toc::-webkit-scrollbar{display:none !important;}
+  .hero-toc a{
+    flex:0 0 auto !important;
+    width:auto !important;
+    padding:8px 11px !important;
+    border-radius:999px !important;
+    white-space:nowrap !important;
+  }
+  .hero{padding-top:112px !important;}
+  section{scroll-margin-top:124px !important;}
+}
+</style>
+<style id="section-spy-v16">
+/* Kill Team Core — section spy: highlight the shortcut of the section currently in view */
+.hero-toc a.is-current{
+  color:#111315 !important;
+  background:var(--accent) !important;
+  border-color:var(--accent) !important;
+  box-shadow:0 0 0 1px rgba(199,168,98,.35),0 0 18px rgba(199,168,98,.45) !important;
+}
+.hero-toc a.is-current:hover{
+  color:#111315 !important;
+  background:var(--accent) !important;
+  transform:none !important;
+}
+</style>
+
+</head>
+<body>
+<header>
+<div class="header-inner">
+<a class="logo" href="../index.html"><span class="logo-mark">K</span><span>Kill Team Core</span></a>
+<a class="back" href="../index.html">← 팩션 목록으로</a>
+</div>
+</header>
+<div class="hero">
+<div class="breadcrumb">Kill Team Core / <span style="color:var(--accent)">전투계통</span></div>
+<div class="hero-grid battleclade-hero-grid">
+<div class="hero-copy battleclade-hero-copy">
+<span class="tag">제국</span>
+<h1>전투계통</h1>
+<p class="hero-en">Battleclade</p>
+<img alt="전투계통 엠블럼" class="battleclade-inline-emblem" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAeIAAAHECAYAAADlHCmIAABSt0lEQVR4nO3dd2AUZfoH8Oed2STUbEtoohIEpIiAVEVU7J71ztPTQ5COiIAoitKrooCAUgVB0Jx63u/07tQrduwCCigogsZeINsCUrI78/7+iChls9nyzE7Z7+ePO0l2n3kyOzPPvLNvIQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAyF3C7ASCswfK6n4nqdpfVe/QW8Sh/xNH/PuY1x0S92Wi+hcmkYD45aVSHvmXJLfTU/loDotf3S6L96cku/lEu+CXv00cne9R25NSkq7rVZke9hkdep8Q4oh/H+7Xv+6weIdef+zPqwIf2o4kWRUz0d+TiqP3Y5wcqvvdEX/7L78//O+N93cS/fK3xnt/nBgJ844TO9E5FjduqsfRYe8Thz6XVLaXpITXihSP+0R5xNtOTX9XJo7OpbrtJJVzgmPv19cle2wbKcOqlGifxb2+1KpD/lsXmVoLXWZunIhI3fYGCS1mdhoAAJCDCkvLTG+QKmYnEO11ndkpAABADtJ9TcxOgYgs8GiaiCh8U2ep7AmanQYAAOQQK7SGiSzQIiYi8izbaImdAQAAuUFr2cXsFH5liUJMRKQ1bW12CgAAkAOkUMg79WnLNAAtU4i99/3bMjsFAACcK9bjKrNTOIJlCjERUbTjBWanAAAADiZr1yf/LfMs1fCzVDJERJH+raWIHjQ7DQAAcCCrdNA6nKVaxERElb37mZ0CAAA4kN6wmdkpxGW5OwMiovCIHlIJ/2R2GpDDpCufRKzS7DQAgJEVW8NEFmwRExF5Fr9ryZ0FuSHa9kxyr9kuCkvLhKxVz+x0HEcKQdJVQLKgDsna9av+35VPUuC0B+PE2vY0O4VqWfbID068SrrKNpudBuQQqajkfmznMedE4N7+Mu/j181IybZkQR2KndCOtIbNqcHw2WlfZ3YvHivVH78g9euteEIBaZOqi9xrd1i23lk2MSKiyA3NpZDZnnEccpHuLibPkvcTng/hYZ2lshczwMWjuxtQrKQjFd2x3PBrSuCeG6VatpmUfRGjNwUOUXn2n6lo6CzL1jvLJkZEVL5gpMxf/5zZaYDDRVt1J/+UJ5M6F3BM/kav66HoqedSsYlDQcrnDZd5W9eROLjPrBTA4vR6XvIs/8DStc7SyRERRQa2kzjJwAhSKOR+/PO0zoHwyJ5SCX7PnZLlSdVF0fa9qeiOhy137QjM6CNd298hPEWDw1m1g9bhLJ8gEVFFnxJbn1nSlU9Up/DYn8d5bTIfiOk7Q1atQGzpoyfRThJV32F6F7ye0V+we/l4mbfpxWq2m+mix9XHkUf+z2FvE0e9O/6CsjVlFnenqC6qPPVcajDsHit/6kREVL5wlHR9+i5Z4EyxNlntP6rEKknZvydb2RhCa9KKvHP+a/lj1vIJEhGFR/eSSvm3ZqeRNjvckcGRQndeLPXCIvJPfByfHYPdc2+S6k9fkLrrq2o7XUlFJVnPS3phEcnCYtJ9Tag4g45ekLnwkI7Szt/F2+Xaa4skiezbKtZKTiXvzH/YZj8DUWRQeykO7CWiqpaze9VWfH4pCN51qVR//IJE9ABbTFlQh2JN25B/+t/wWWSZXa+90VPPI/+4lbY4XmyRJBFRcNp10vXZe2ankRJJRG6b3JEBUfmyu2X+G0/G/V2spCP5Zj6Dz7IawXGXSNe3n2Zte1qDEoqechY1GDQVn4nBQrefJ9UfvzA7jZRIVwG513xqm2PDNokSEUX6tpBC18xOI2nRrpeS/9ZFttrHuSo0/nKpfvVxwtdIVz6512zH5/mL4MSrpPrlFlM7R0khKHZyD/JP+gs+FwPZrVV88PwBVDxgsm2OCdskSkRUvuROmf/W02ankRQ80rSP8JAOUtlXkfTr7dIBxCihUWdKNfCd2WkcQy86njwL1+Xs52KkwKx+Mm/bG2ankZRk5gSwGlslS0QUGdJBihQummaxSyeBXLZ75WSZ/+pjaZ0EUlGp8qzrqXjIjJz5nIN3Xixd3203O40aaY1bkHfuiznzuWRLpF8rKbSo2WnUyI7XXtslTGT9xyS6/zjyPPimLfdtrghO+oN0ffFhxnE4WmE/rZ4p1cC3pJR/Q0pFOYmfw9X3LM6rRe5HP6l2e7sfHCML3nv2lx7IPtILi0hr0IyKb1+Sdo6BqdfKvB3r0327aWItu5Fv6lM4D5nsXjFZFrz2mNlpJBQ7sT357vmn7T5z2yVMRBS6/Xyp/vi52WlUy453ZLkkPOw0qewNscWTRBTtcRUVjZxf4+e+e/ZA6frmE1LCP6bXEq+hEO9aOFrWev+f1b9fCNKLjietSSsqunNFwhR2rZwiC157zNYTZMj82uRevQ3nI5PwTV2ksidgdhpx2blzrC2TJrJuq1hr2YW8U5+27X51sl2PzpIFLz1iWGHRC4vJs/S376Z2L71Lql9tIfX7HSS0GMs2airEP84fJets+FdqMRWVtOadyDftt+M2ePdl0vX11gwytRa0jvlY9dob7fI78o9ZbMvP2JZJExEF77lRurauMzuNI2QyZSIYKzjtT9L12fuGb0fm1ybSNcNWCqqpEP/wwEhZd2Nmc2FLRSU7jU5Ill7PR57lG3F+Zig07ndS/fYTs9M4gt07x1pyPeJk+MavEVLNMzuNI8TO+L3ZKUAc4eFds1KEiYhE5X7bL9fnxCJMRKTsDVKkXytLtubsxHvfC8JqO9HORZjIxoWYiCh61vVmp/ArWbs++W+ea+uDwYkifVtIpaLc7DSyRggcgokILUoVfUpk+copVqslthLrdJHZKfxK9x9ndgoZs3UhLho8Tej1/WanQURE7pVbcAW0kODMG2RFnxJbTQDDQVFwGCYj/9W1VL78bhTjNPnHLhMyr5bZaRAROWKEiq0LMRGRZ9kG0z8EvWEzs1OAw4RvOV26PnnL7DRMgRZx8vLXPUnly8ejGKcpUV+FbIm16GJ2CixsX4iJiLTj25i6fc8Dr5p+QEKVSL+WUgn9aHYakIAsqEO6pxFpxSeQ1qg5aUXHk+5uQLJW3aznkr/uCSpfMQnFOE26t5Fp25ZCOaKnv525zE6Ag3f2C8KsLvWxtj2JqMyMTcNhgvcNlK4trxIxDRMCHrq3EWlN25DeuAUV3zg+6Yvm7hWTpPrtp6R++wmJAz8bmSLlv/a4ofGdzLPoHdOuvdEeVxE9Ps+MTbNzRCEmIop2upDyPvxfVrcpVRf5JmC9WrOFR50plS2vmp1GVtR0xbPK3BvRHleRf+R8UXWT+k7K7z966tDyB0fLvA/+SyJ6kCvFI0T6tpDux3biXE6D1rwTqQyz1KVC1q5PRbfMc8zn5YhH00RE/rHLhczPbueB6JnXZnV7cKzIjSdLxYILEOQ69ePXWeMVjVoo3I9+KgpLy4Tua8Iam6hqyFZkaCeL3MbYi3fG34UU2S0lTusc65hCTERU2btv1ral1/NS0dBZphwMwQdHy+DcoTKwcGTOXjjK5wyr6hVt8zG73KzSV0vZG6KKPiUyOO069mPU89BbVQWZ+ftJ8XOYQhOutN05Vb50nAzMGSoDc2+S5Y/OMOcruu5XZG1bWoNmWdtWtljktOUTvuX0rHTWyfZ80uE7LpTK9zuq/b3e+CTyzH3JcZ9nPKEx50h111dmp2EKPa8WeRIu+nCrLHjvH9lMqUayTiG5V2w25Ngsf/BWmc/899phrvjA7IHS9fHrJKQe9/eydn2Kdr+SirK4OlhkUHspDuw1fDt2+HxS5agWMVFV5wGjt6E1aWX0Jn4VvLe/rOhTkrAIExEpP3xe1QKZ1dd2d/SpiPRvnbNFmMied85iXwVF+pTI8ocnsh+bRaMWVLWO3cVsMSM3nmzpcyjSr5XM++jVaoswEZHYv4fyX3ucwiNOz9rf4n7kI8MPz2ibnkZvwhSOK8RERFrzjobGz9ai8KG7LpWuFL9rc217k0J3XmzpC0k6dj8woupRtEGddcBYgojyXy+l0PgrDDk2PUveF9EO57HEErFKCt19meXOod2rZ1SdAymsCayEf6TIja2z9rfoxScYFluqLvJPdGbnWEcWYu+MZ4Q06MsyrpO9JsGZfaT6zba03qt+t52C0/m/mzNL8PbzZcHGF8xOAxioX31EkSEdDDk2/XeuFNEul7LEUi248lTBS6vSep+IHaTIwHZZuR54FrxuWKF0cudYRxZiIqJYN/7OA9JVQP47V2bljsz1yduZvX/7e0yZmCsyoJ10WXjtaeuxfoPh0KNqI2L7xyxiK8bhUWda5mY2Mqh9RrmIg/soOOWarPw9sdans8fU6/lM6xybDY4txP5RCwT3TD3Rc/qwxqtOePRZLCdMeGRPy1xIUlW+6Paqx3CV+8xOBQwgqGpd290GzGrlH7NIRLtmXoytMiyufPUMlk5Qrp0bGLKpmW/SX4RUVNaYTl++0rGFmIjI/cjHbB+erFWPigZMysrBoJR/wxMn+D1LnGwLTvq9zH/n72anYVP2uvcqeO1xCsy/hb8Y37pIxE7LfIWgyLDOpu9Q13vPssUqX5CdIY+xrpexxdKOO5ktllU5uhATEelFx7PEyUa3fCKi3WvuYT1Ryh+dafqFJFWyTqHZKdiY/RoOeRuep+BM/t7+vtuXCd3fNKMYYm+QKZv0KXv4clDLNrPFSridnRvZYnnv/4/9DuoUOb4QexauY/sQQ7efb3hRU77/zNLxssF/9xrHn3hGKR41XxSWlokDPa+x1cQHrk/epKABk2l4Hnwj446bobsutd3NbHVUpqdtNVEC37LEiXY4nyWO1Tm+EBMRxU7uwRJHzUKnIXGQ+TtR7nhZku0p85ymwc33C+/8V0VhaZkoLC0TBzucT3pdj9lpJeT6coshRS961vUZvT/d0Qu5iquHdlXn2BU5cVOeE1c73+Qn2DoPGDX04lfci23nFfDGy5LYiaeYnYKjFN+5Qnge/vDXwlx5UmeSrnyz0zqG+s02Ck6/nvUcKxo6S+jFJ2YUI/DgaMe0io0UWDBScjUmor2z0znWCnKiEBMRxXr+kSWO2FdBgaXjDDsp9UbNmeOdxBovW/yz/pETd8JmKZr+N+Fes10UlpaJ/Wf+iWKNmlumm5dr+7sUeGA4azqeBa9ldDy5tr7BlYqpdE9DQ+O7NjzPEkd3N6Ci/tnpHGsFOVOI/TfNFrKumyWW6+3/Y4kTT9GgqawHX9Hg6TlzMEN6Gg6fLXzzXhbuQ4+xO11EsqCOqTnlbfwPlT88gbUYa8e3Sfu9Ym+IMZPUcH4W2gnt2GIdLTThSimY1uH0LHkvp65bOVOIiYjcD29i+XCFrlHIwJmr9Po+njj1vCxxzKJl+DgR0lM8dpmIndje7DQo//W/sMbzzn4ho/O/fAX/XNnJiHa+hC2Wf9wjhhU49cstLHG0ZqeyxLGTnCrERER64xYscVQDZ67yLOMZvO5Z/oGt7yqj7XqZnQKYjHsGLr1u+jenrm1vMWaSvKIRc1n6uGgGfk0VHtGDp4MWEXlz8GupnCvEnrkvsn3IXDNgxaM3bZ3R+7UmLZkyMU+DLC7hBtYkiK8XLhFRtEf6U9+KXV9ypZEy92M7MzoXpKKSd54xy6SWr5kplfBPLLE4JwKxk5wrxEREWvtzWOJwzYAVj+e+fwvd0yCt9+qFxeSd8z9HFLFMWjDgDOLgPgrdcSFLMS4eOFWkOzTO7BOq8tRz03qfpMwLeSJ5rzzOEkcW1CH/rQ+ZvZtNkZOF2HvXaiHVPJZYkYGnGNYq9ix+T6Tai1pv2Iw8S993zMFc2eYMs1MAC1C/30GBxWNZzjW9YQlHmKwrGveIONj18pTeI/MKyF1aZtj1IDhnqBQxnqVJ3au2Oua6laqcLMRERLFz/swSRxz8mYIGjjH0zHtZVF4wkGpawEIW1KXo+f3J88CrjjqYG4xZ5Ki/B9KXxzRaQc+g93TwvoGmjvIqvvVBUVhaJmqaNU0SUaxNT3I/+qmh549r04sscTKditTucvoiFx7eVSoV5RnHkUKQ+/EvsrIvg4tuk8r3O4gq9xPl1SK9SUvyjZzv6M8x0r+1FFGeu267k3m1yP3oJ4Z/3oFp18m8z6y3lKYsqMPScqpIsxOY1rgFeRn7mWRq98opUv32k6rhVUIhWXQc+catykp+oTsvlup321liFRrYarcDl9kJmMmzdL1I94Q8nJCSQhOvkt6Zzxp+MPlueSDnDthYy26Ut80ZEypAZsTBfRS6+zLpvfc5U84DZU/AjM1Wq3jwNNOuB1xFONayKxGVscSyq5x9NH2IfkJbljjZWtUkF/knrM25mw+onvr11oxjSDXNNoiJE3tYSZhpeUgpFPJN/WvOn985X4g99z4vuL704RpLB8eS+cxzcENCVr8yZjrnu94wvalkrb5fsqF8xUSpMC0PGT399yxx7C7nCzERkcY0c40S/onK185CMTaAqDxgdgpgIWJfBQUWpt9JUtapz5lOTsl74ymWOLJ2IRWNmIt7G0IhJiIi321LBFeLK++Vx1jiwG/Cw7vi5ibLRPB7s1Ookev9f6b/ZpuuSma24D39pNBiLLHcKzejCP8ChfgX7tU8PVFF9CAF5w5D4WDE0bMdahac+HsZ6ddSVvQpkdlaQD4TgohCd1yU3rnmQiFOB9cqVJpNx3IbJad7TR9N9zYiJfRjxnFcH/6PIRsgIooMPlXS/j1mp+FIgfsHS3XHBlL2Rap+ULbJ1HzSoX7/WXpv1HladbkkfNt5kn76giWW94FX0Bo+DFrEh/Eseoft4AiNuwStYgYCRZjN7qXjZGjMObKiT4ms6FMi8za//FsRtrHwzd1TP9diUQMycTaFqQjH2pzJEsdJ0CI+Sqx5R3J9sSnjOOq3n2aeTI4Ljb9c0lcfm52GrQUnXS3Vr7aQ0GJEb/7V7HQMoUR2pfwesa/CgEycKzKkgySGfSZVF/kmPobW8FHQIj6Kb8YzQgqe4yTCNNYuV6kowmkJD+30a6vX9cUHxNW5xsrCo3qldK4pJq6kZDeBJXdIrhuX6Jl/YonjNCjEcUS7pb9U2uHE3iCVr5yEYpyG8iV3Yr+lofyhMVL5OWx2GlmnBL5N6fXi4L60tiML6qT1Pjtzvf13ljh6PR8VDZ2J1nAcKMRxFI1aIGpaZCFZeeueZImTa/I++I/ZKYDNhG471/CbN93X2OhNWEpo6rVSSJ0llmf5RhThaqAQV8P9yMc8w5m0GAXv6YfWXYrQSQtSpf5k/HzFuq+J4duwEnXHepY42nEns8RxKhTiBPTiE1jicI29yxWh8VfgxgXSEpx4VY3HTnBW+jfG0ps7hTg86ky289B7/3/QGk4AhTgBz4LX2Q6e8O3nobgkSf3qI7NTsC2Z40dZMouvqNvfSTt+0fDZOVNQlMB3LHGiHc5nieNkKMQ1iLbqzhJH+ZFnDJ7TlT8yNcdLSaZye/cJItq99p6EOyEXepFnKjKwHc/qSq4C8t+5ImduXtKFQlwD/5QnhVRUlliZrhiTC9Tt75qdAthc3sbqO/qFpl6b9jmoexqm+1ZbCS4cKdPtVX602Ll9WeI4HQpxEg6e/geWOGJfBQWWYlhOIgrTYuOQu5QE82QrOzemHVdr0Tnt99qJ+v5zLHF0TwPy3zgBreEkoBAnocHN9wu9jpslFteYPKfCWQscAovHHnPDG1hyR0ZDcfxjFjv+8AxNuFJy/ZGexe85fn9xQSFOkmfFJp7hTLqW0eMxJws8MAL7BVi4Nr147M/eeSbteLlyYKpfbmGJo5V0YImTK1CIU6A1bsESh2tsnpME5gyV8S6eAOk4ekrG4JyhUuha2vG0Vt0yTcnywiN68HTQIiLvzGfRGk4BCnEKvHNf5BvOlOLcuE4UWHaXDA/rXLUS0KYXSWhYEQf4BJbd9es5pmZ4k+eb8pSjC0tgzSyphH9iiaV1u4wlTi5BIU5R9JSzWeKkOjeuk4RuP6+q+L7xFCl7g2anAw6lbn+PiIhCd1yY0feeej0vT0IW5nr1MZY4sqAO+UY/5OibFiOgEKfIf/ejQrryWWJxjdWzg+DUa2Xkhuayok+JVDGmGrJA2fUlBecMker3OzKKE+t8CVNG1hScM0SK6EGWWO5VW1GE04BCnIbKs65niSMO7qPA/FscW4wDDwyXkQFtqpbj27GeRK5P+5QFEvv4CK5NL2X0fikEFQ2d5ejikuk+OkQvasoSJxehEKeheNBUoRcWscRybXieJY5VlK+9R4aHd6t69LzxPyQqD5idUk5BIebl9NZweNzFbAeMZ+Ebjr5hMRIKcZo8S9fzDGcioqCDFjlwvfssKRW7zU4jZ6EO85GufMePHVa+5ZlAJxd6lRsJhTgDsePbssRxYZEDYCIcXTayK3rmNWanYKjIsM48w5WEQl6H9yo3GgpxBnyznxdcDZDwzd3RloGMCYFTmoOsXZ+Khsx0bHEJrJwkBdOIhdgZPFMA5zKctRmKdrqIJY4S2UU/rZrugGLs2GuXLaBFzMO9couj96Rr3ZMscWTtQvLfPMfR+yobUIgzVDR2mZB5tVhi1Xq9lCUO5C6BSpyxmMO/7wzO6iu5loJ0r9yMA44BCjGDg715lvoSsUoqv2+QA1rFAPYk67odP4uWa9ubLHH0hiUscQCFmEWDG8cL3duIJVb+lldY4kBuwvClzLgf5lncxapCY3rzDVd64BVH76tsQiFm4ln0DttBGbzjIlxNIS0oxOmL9rjK7BQMp+76kiWO1q4XSxyogkLMKNa8E0sc1/efscSB3INCnB6tVTfyj5zv6BZeZPCpPMOVVBd5x6919L7KNhRiRr4ZfxeSqbNMeNhpuKICZIHWtLXjx8EGFo+VYv8ellixs65jiQO/QSFmFu12BUscZW+Idi0fj2IMKUGv6dToRceT975/O36nud55hiWOrOcj/+AZjt9f2YZCzKxo1AIha9VliVXw1tMsccBBargEYkKP5OnuYvIsXOf4ohKY/EcppM4Sy718o+P3lxlw1hrA/cjHPPNQazEqn9HHZq1im6XrMMWj5gvpKjA7DcvTG59EniXv50RRyft8I0scvWlrljhwLBRig+jFJ7DEyf/0bZY4kDvcaz4VhaVlInZuX9KbtMSt0VG0Vt3IM/elnCjCoVt68g1XyoFH+GZBITaIZ8HrbAct59g/yB2+QdOFZ87/hLu0TBSWlolo50tIr+83Oy1Txbpd5viOWYdTQ9+zxIl1uoAlDsTnMjsBJ4u1Pp1cn76TcRyusX+Q2/y3LTmiAAWmXSddZZtIRA+alVLWSDWP3Gs/E1T6kNmpZE1kQDtJlfsyjiPzCsg39uGcuXkxA1rEBvJN+ouQisoSK8w0BhDgEP+UJ4X70arH2PvPup5ijZ35GFsvPr6qCOeQwPwRUjAUYSKi2Lk8U/hC9VCIDRbt+UeWOMr+PVS+aKwTr5NgAQ2H3SN8c397jK15G5udEhvPAuf3jD6aa8MLLHF0TwPy95uQc/sv21CIDVZ002yh13GzxMp7l2csIEBNtKLjzU4B0hQaf4Xkqpyexe+hCGcBCnEWeFbwTCQvpE6ByX9EqxgAqqV+9RFLHK2kA0scqBkKcZZojVuwxOEaEwiQCGbosqfwzd155pMWgrwzn8VBkCUoxFninfsi33CmkXxjAwHiQR22n/LVM6QS2cUSS+t6GUscSA4KcRZVnnI2Sxw1yDM2EKA6TmkRy/xaZqeQNXmvlbLEkQV1yDf6QWccADaBQpxFRXc/KqQrnyVWZEBbtIrBQM64Dkt3sdkpZEXw/sFSxHjGg7tXbXXGh28jKMRZdrDXn1jiiMr9FFgwEsUYIAHpbmB2Clnh2vwySxzd35QlDqQGhTjLGgyeLvT6RSyxXOufY4kD4FR6DrSIw3dexDef9INvoDVsAhRiE3iWrecZzkREoQlXoFUMUA1Z6PwWsfLdZyxxtFbdWOJA6lCITRI7vi1LHPVLnjGDAE5UNHiao1t4kWGn8QxXUtScWgzDalCITeKb/bzgasqGR/CMHQQA+wg8PEGKvSGWWNoZf2CJA+lBITZRtNNFLHGU8C4KrJmJYgwsgsvGSeXrrWanATVwvfEUSxxZx02+4fejNWwiFGITFY1dJmQezzhH16uPs8SB3BSaeJWM9G0hK/qUSNcbfyWxr8LslCCB0KwbpNA1llhupil4IX0oxCY70JtniTERPUjBOUPQKoakBO8bKCODT5UVfUpkRZ8SqZZtJq4Lu1VI1bnLravb3mKJozdqzhIHMuPcI9UmGt44XoRuOUOqoR8yjuXa9BJDRuBEwcVjpbL9XVIC31X9YMur5iaUBdLbiIh2mJ0Gu/CY3pJ2fckSyzPvZbSGLQAtYgvwLnqb7WQIj7sYrWKgwNpZMjT+chm54aSqx81v/99vRThH6L7jzE7BEApTEY6168USBzKHQmwR0ZKOLHGUb7ezxAF7Ci69Q1b0KZF5/11J6lcfk5C62SmZxomzREUGn8ozXEl1kW/8WrSGLQKPpi3CP/MZEbnhJMlx4YwM6yzdyzfiJEuTrFWP9BPakta0NRUNqn4camD1NCm+3kbqN5+Q2L8nmylWT8/dwnu0olvmOuocCC4eK8Xb/8cSK9rrOqK1M1hiQeZQiC2ksuvlVPD+PzKOI/YGKbByovQPnumoC5HRtBNPIe89//pln9U8UYp/wJQj9m9owpVS/XKLIbkBqO88wxJHr++joiEzcG2wEDyatpDi0QuErFWPJZZrHc8Yw1ygndydCkvLxG9FOD3eWf8QhaVlItb6DK7UAIiIKDTlGpanZUREnmV4WmY1KMQW437kI555qLUYBWf1RcetBGRBnaoCPPlJ1guTb1KpKCwtE7KgDmdYyGHqzg0scbSmrVniAC8UYgvSik9kiePa9iZLHCfSmrU3fN1V96qtQivpYOQmoBqy0G92CmzCI3uy3VB77/s3WsMWhEJsQd4Fr/ENZ7qtN1rFR9GadyLvrH9m5YLknfms0Fp2ycam4DBO6jGtBL9niRPteAFLHOCHQmxR0ZN7sMRRfvqSJY5TaM07kXfG37PaKvBOfVpoLbtmc5M5T/c1MTsFFpEBbXmGK+UVkP+Oh9EatigUYovyT35CSEVlicU19tDu9MYtsl6ED/FO/avQs/D9nCBca4mIpN/+hTi04BYpKvezxIqe248lDhgDhdjCKnv+kSWO2L+HAovH5nQxlopKnrkvmlqlPPf9W0g1z9BtSMrpj/lXRTdOtP0dibL+eZY4uqchFfUbb/v94WQoxBZWfNNsodf1sMRyMY1BtCv3YzstcSFyr/3MEnmAtYXHXy65DhTP4ndxzFkcCrHFeR7+kGc4k9QpOOWanGwuaY1bmJ3CEfTj2xgWW8qc/IiPEZgz1NY7QvnqY5Y4GtPUuWAsFGIb4CokLqaxiHbjNfmR9NE8s1+wVD5O5Nps35XIIjd35+mgJQR5Zz6DY80GUIhtgLOQhEedaeuWQqr0ej6zU4hLuovNTsHRhJQUvLe/7Y71wKMzpIjsYomldbucJQ4YD4XYJqKnnMMSJ9eWwov1uNLsFOJyL3kfLRWDuT5+3ewUUuZ69XGWOLKgLvlGLcQxZhMoxDbhv3u1kK58lliRge1s11JIV9GAybgY5bDQjD/b5lgP3T9IilglSyz3qo9x3NsICrGNHDzrepY44uA+Kn9ghG0uUOniWkDDKJKpR7xd6A1LKNr1Mop1OI+0Zu1JCuMvP+qn7xi+DS7q5ldY4uhFx7PEgezBMog20mDQVBG+qatU9pRnHCtv4wsMGVlb1QQaNS9naBb9hLakfvI2a0wrdZqWRCRPaEeee5/7pXVWRkRHFpvg/BFS3fhvEgYmHpryR+md9jdLtxDDd14k6bvPWGJ5Fq6z9N8Kx0KL2GY8y9bzDGciouD4Kyx02eZn5DAhDtLi+aVDCoW0Fp2psLRMuEvLxG9FOD7fmMXC/fgXQju5u2E5qTs3Ghabi8JUhDWmqXEhu1CIbSh2QjuWOK6vrNta5OAfPN3SLQOfA2Z/IiKSah5pbc+sKr6Pfy7SaX16Jz8pCkvLhN6kpREpUnjClZa96YwM7cQzXElRyTv5CUccU7kGhdiGfPc+J7iuKuGbuzFfoHAdMJPI0u6X+bUp1uG8quK79jPhnfAYy5Y9c/5XVZA9DTnC/Ur5cgtrPC6hFROl+DnMEivW82qWOJB9KMQ2Fet8CUscJbKbdq+ewVeMC+qwhQJrkXUKKdrld1XFd/U24btzpWFl37P4XVFYWiY4O9yFx11suVaxsu4pljiyTiH5b7oPd8E2hUJsU/7blgiZX5slVv5rpSxxiIg8818VhaVlIta+Nxm9wAEYTy8spmjPq6uK74rNwj9mcVYv9u5HPhLa8W1ZYinfbmeJwyU0s48UeowllnvFZhRhG0MhtjH36m08HbdiByl4/2DW1oLvrlXCvfYzUVhaJrSSDlgTyEb0oqYU7X0DFZaWCc/S94X/5rmmXuS9s58Xsk4hS6zw7edZ5lDk6jGvNTqJJQ6YB4XY5rgWQHdtfpklTjzemc8Kd2mZOHjRkKyOcQw+MNwyF914gg+Otkx+euMWFL1oSFXxXfiG8A+eYakWFleLT/nxC44wGQvfeg7bZ++d95KlPitIHQqxzXkeeotvHuo7jf0OrbjfeOFZuE4UlpaJaM+riauVUx3lm08MjZ8p5ettpm5fb9CMCkvLRGFpmfDMfVH4c2TN2vDos0y/AVJ2f8USJ9ruLJY4YC5M6OEAWovOLGMlle+y9x3a4Y87K/qUGHJhFLu/NiIsG/FTmWnb1hs1J8+8l21VeKXqIqFl/p2qUv4NQzbpiwxqL+nA3ozjSDWP/OPX2OozhPjQInYA77S/Ca7pAiPDTst6a6HynD6GxDVytiYOQtdM27bdijARsRThQ8K3nG7KwVH+0BgpGIowEVH0bJ4pb8F8KMQOoZ1+FUscsTdEwZWTsnqRKhoyU2jNOxoSOzT9OktW4+CsG0zLy+pzcGeDqMh8mth05L33T5Y4sr6figZNs93NFMSHQuwQvhHz2MZcquueZImTCu+MZ4Ren3/tYGX7e+wxOXDPMZ0K/bhWpm07XaEpV7PeuLjX7sh6EQtOvloKqbPEci/bgCLsICjEDuJ+5COe4UxajEKz+ma9xeZZtpHtEfshgoiCS++0VKs4sGKCNPOxuQh+b9q206Xu/IAtVpRpMpxUuT7n+RusPoc6pA6F2GH0Bs1Y4qjb3mSJkyr345+z3+mr7zzDHTIjrjf/Zur2ldCPpm4/VZHhfNOwao1PIv9tS7LemgyPPINnPmki8sx+Aa1hh0EhdhjP/Ff5hjPd1tuUZlusbS/WeEKLGT40K1mhu37Htvh7PMk2tANr77HE/qhJ8OHxUlTsZokla9Ul71xzxtwqwR9Y4minXcQSB6wFhdiBtDY9WeIoP33JEidVvglrBddEJYco322n4NpZphcf1SJjm13/W2l2CklRueZiJiL3Ix+bUoQjA9rytIbza5Hv9mVoDTsQCrEDeSc+LqSissSKDD7VlOLleegtIfMKWGOqL65mjZeqSN8Wpt8IHCKkpEi/ltIKNyfVCU24gq1zk3bejSxxUhWaP0KKyv0ssdyrP0ERdigUYoeK9bqWJY7Yv4cCS8aacrF2P/op64VH6JppxTDSt4U0c9xwPEKLkeu/KynSr5UMz7jecgVZ/ZJnvWytVTfyDZxqziPpDS+wxNG9jVjigDWhEDuUf+g9QtbzssRyvW1eZyeuG4pDzCjG2SzC6axHLLQoKZ++SxV9SmRFnxIZvv08GVw11dTCHBnakWX7urcxeac8ZUoRDo+/XHJt2LPoHbSGHQyF2MHcyz/gGc4kdQpNucaUC7PvpvvYJ/sQukYVfUpkcPFthv5NoaV3ykifEsu1hGui/PgFuV5eQxV9SmRkSEcZyvLiGaHFt0vxcyTjODKvgDyL3jatgClffcwSx6jJbsA6UIgdjmvyBnXnBpY46fDOeEbIwiL2uK63n6HwyJ6GFJnIqF5SffNpYq8CWb4dEvsipG78T1VR7ttChifzTqwRj8I03Iz7q41UcA25kkKQd8YzaA07HD7gHMC1qILua8K62lOqIgPaSFF5gD2uJCK9VVfyTvlrxn9baPr1Utn+LtuJJfNrk1bSgXyTn0g5ZGD+CKnu3EhK+CembI6kFzUlve2Z5Bt2L9+QuXGXSOXbTzOOU3l2HyoaOrPGvMrnDZdFty9lPaYDq6fLvJd4OgbGelxFvpHzcZ12OHzAOSA0Z7BUN/GsN1xYWsZ+zESGdJTuFZuSihu54SS2nrTx6N7GaT3ODI/sKRWmGatkPS/FOl9C/qGzWPd1aNwlUmUocvHIgjqkn9ydvONWZZQzx01jtOMF5L/j4RrzCNzbXyoV5eS99znW/Ry58WSWseKyVl3ThlxBduFDzhFsF4f82uRevY31uKnoUyL1xieRJ8nJFoxaNvFokohk0fEkm7QkKqhN0pVPIlZJdHAfiR92ktj9DV/LV1FJb3MGecevNfycDC6/W6ob/00c38PGI4UgeUI78tzzr5T+lsiAthkP9dGadyLvjL/X3BJePU3mv/QoaSe0Yy3EwfsGSteWV1liGXHTC9aEDzpHBB6dIfNeXMUSK9rld+Qfs5jt2DlUWGNtziDfxNKaWzKrpsq8l9dwbd5UUs0jrde15BtS82NUI4RHnSmVwHeGbkO6G5DWtif5bnmg2r+R42sHvWEz8jyQ3Mxyh4457cRTyJviDUMycTOlF59AngWv4/qcI/BB55Dwzd2lEtmVcRxJRG7Gu/XDL17RXn8i/02za4wdfGC4dG38D1cKWSeFIK3rpeQb/ZAlzsHIsNOk2BsyfDsyr4D0ZqeS9DQgceBnUr7YROLncOZx6/uTXpEo0q+VFFqUiIj0E09JueVenfAdF0rl+x0codAazjHoNZ1DPEve4xnORESh8Zcb8ng4743kpjT03bZUaC27GJGC4bR2vcj9+BfCKkWYqGqoW/TiISQL6hi6HRE9SOqO9eRa/zypH73GU4TzaydfhId2+rUIc+Mqwnrr01nigH2gEOcY7cRTWOKoTGMk40l2wg3v1KeF3ugkw/LgpvsaU2FpmcjG98Dp8PcdL9yrtgqtw3lmp5I0qahJ91kI33au5Cj88XBNQCIVlTyT/mLJ4wOMgw88B0X6lLDM+CPdDcjN0MqO972arFUv6fWVIzd3kyLCs0KPUWLdLiff6AdZzrfdK6dI9bvtJCrKSVQeIOlyEdWuT1qjk6ho1AK2czoyqL0UB/ZyhTNEso9wg9Ovk67t7x3zc45H07uXjpMFb/41kxC/ip11HetwMLAHfOA5KDh/hHQxzYEbvWAg+ftPMmTIiu4/jjwPvplcMR54ihQHf84kDUPIet6MZzgrX3SbdO3YQEr5N8lvt1Y90lp2Jt9dj2a07dDUa6W6Y30mIQxTeeEgKrpxYs2d+5bcIfPeir8GNEch5prCVNZ1k/vh5IbxgbPgQ89RkYHtpDi4L+M4Mq8g4xmMEvU01UpOJe/MfyRXjPu3kSLKP+FHurT255D3rtVp75vwrWdLZffXGechC+pQrMvvyH/znLRz4Rr+xiV6xh/IP2JexsPdMi3EgWnXy7zP3k337UdAB63che+Ic5R71VaejlvRgxS8f7Bh43rVsi0Uun9QUvHdj34iZF4to1JJmqxdv+q74DSKcGDpnTIysJ2s6FPCUoSJiMTBfZT31t8o0qdEBqf9Ka3Pyr1mu9CatWfJJ1OVZ1yddBGO3NDc0DHnXEVYb9yCJQ7YEwpxDtN9TVjiuDbzzNpVHXXzKxR8eHzyxTjfvGIc63QBuVduSbkAly+/W0b6tpB5bz5NHE8q4hFE5PrsfaroUyJDE69KuUB5Z/1TFJaWCVlQ14DskhM98xoqGjE3uSJ8Y2spZOI/U9bw+0TCt57NVuQ9c19EaziHoRDnMM55o8N3XmRoy8P1+hNJv9a9OvvFWPc1ocLSMuEbW/PUikeLDO0k89c9SdlcpUkt21zVQl5wS8qfm3vVxyJ2ytlGpJVQtNefyD/8/uR6SA/pKEXsoKH5cD2x0NqfwxIH7AuFOMdpLbuyxFG++4wlTiKpzFpUVYxrG5kOEVUNN4n27pvWTU1owhWyok+JYUNqaiKIyLX+eYoMap9yMfbd/agoLC0TuqeBAZkdK9mJXoiIwjd1kco+Y6bvPCQyOPV9Fo9U8zLqRwDOgEKc47xT/yqk4DkMIsNOM3wO6EhKxXibMHKCCq1Ze3I/tlP4B09PvRU8oK1Uv/zIiLRSJg7srVqfOY3v+j2L3xPRs64jrmMonujZ1ydfhEf0kMqegGG5EBEFF42RYj/PsK7o2dezxAF7QyEGip1+FUscsTdEgRUTDC3GgqpWYEr29e5VW9mLsazjruqMNeufKRfg4Ky+Va3gDBc3MIJr88sUTmMdXf+we4X78c+Fdnwb9pwqz/4z+Yfek1wRHt1Lprzko0i9Maq++4+U3xOPXlhERYOmoTUMKMRA5B8xT8ja9VliudYlN0VlJoTUk559i+iXYly7XsbblUSkdb+Skl2y8WiRwadK17Y3M87DSErFbqroUyIDC0am3plr9gtVnbnqelhyOXB2HypKcinI8O3nSaX829Q3kmJnrdDkq2vsAJYsz9L1KMJARCjE8It0evrGI3SNQjNvMPwRtdA1itx4cvLFeOVHQhafkPb29CYtyV1aJrxpzFwVnHZdVSt4/560t59teeufo/BNXdIb6vTwh6LyzGtJKmpa25aKSoWlZaLB0ORWpAqNu0QqP36R1rZSpX7+AUsc7YR2LHHAGVCI4Vdag2YscdRP3mKJUxMRq6TIgDbJF+MFr4tUJ9SXBXWosLRMeOb8L71WcP820vXZsVMr2oGyJ1D13fF9yY3jPlzR8PuE+7GdItaic0rv0+t6yP3YzqT3dWjiVVL99tNU00tLeOQZPB20iFjXQAb7QyGGX3nnJ7eWazLCY3ob3iomIhKVBygysF3S2/JM+ovQzulT4+uqlim8LO2JT0J3XVrVCrbQTF/pcm15hSKDO6T1efqm/a2qd7W3UY2v1Rq3IM/DH6ZWhMs2p5PWb1L4jlgJ/pDZtn4RO+1iljjgHCjEcIRY254scZRdX7LESYY4uC+lx9TeITMTTkyhn3I2uR//QnhvTX2ZwvKVU2SkbwupfrMt1bdamthfUTURyITUJwIhIvIsekdUXjCQpCs/7u+jp11M3hQmtQjdcWHmRZiSn+M3lScvici8WuS/fSlaw3AEHBBwjEi/llJosYzjJLuCUirjgxNuT1FTeqxJRBSePUAqH71GRER6i87kmfa39OeGHtFdKuFd6b79CJKItNZnkG9SacbnaPlDY6Rryyuk7KtgyIxICoUqz/gDFac5d3XgoTHS9f6/SOga6Z5G5Fn8TkpxQqN6STWQRsesOJKZazo4b7h0ffAflu1hPmmIBwcFHCOwYqLMe62UJVYyk/NzFWKiqgLmzvLFLjTtT1L97H22eLJOIblXbGb/G4LTr5eu7TxzIxMR6fV85Fm+Mav7Ojy8q1QqytniaSe0q/H7Wq5lQ3VvY/IsehvXXDgGHk3DMfxDZgpZz8sSy/XOsyxxkiWoqrCHlt1l+HfUwVVTZaRfS9YiTESGFGEiIt/kJ4TuP54tnrI3WNWZa+Lvs9IfIDKwHWsRTkbwrktZijARoQhDtVCIIa5M19A9REidQlOuycqF+nDqG09ReOq1hm03cnN36Xp5DXE8wj+c0cNaPA+uYy8GrrJNFOnbQu5entzCHOmI3HASy7KdqXIxfdcfO+k0ljjgTCjEUC3tuJNZ4qg7N7DESZWyYz1FRvRgLQ7hqddW9YaO8HwXfDStVTdD4hpN6BoVrHsirZm5EgnMHli1v6XOGTYpXH+LFIJ80/8PrWGoFgoxVMt7/3/4hjON7Jn1VjERkQj/RJF+rTLedvCRyTLSt6VUdqznSKt6qsvY+AY7NDNXkOFpRGhMb5n30ascaaVs9yNTpVKxmyVWrPuVLHHAuVCIIaFYh/NY4ijB71nipENoUaroUyLDaX6XGRnaSbpeeYyEzvsYOh51uz0n/ziaa8d6itzQXAYeGJ7yPt+9YlLVELAsDoE7Wv665JfdTETWqkf+kfPRGoaEUIghId+dK4XMK2CJlc78xZyUsk0U6dtSBldPSyqPyIgeWV+mUP1yi6HxQ7edn7XPQEhJeRv/Q5F+LWVg6Z1JbTd8y+my4LXHs7o2czwiVskSJ5nhewAoxFCjWO8bzE6BjdBj5HrpUYr0by1D8+K31sKje1UV4FRX8mESGdLRkGIZmP5nqf70uRGhExJajPLefJoi/VvLwJI7jvnbytfMlOFbTpcVfUqkEvox6/kZRc9gbnPILbhbg6RwTFYR7XIp+ccsOuaY4xxHnA5JRJRfm6hyv2VOCOnKp1jHC+Lur3SERpwu1bB1ipx0FRDpMdNbvtWNI+Y4JjF5ByTL3j1DIGs8i98TmV6cTK22CQgiIoutDyxilZS34Xm+mxQLFWEiIhE7aHYKhoq1Pp2IysxOA2wCj6YhaVrJqRm9X1HQQADnk4pKvkl/wcEOSUMhhqR5Z/5DZNY8w7UJnC965jVmpwA2g0IMKYl1uTSDd1v14TQAD1nXQ0XD7sUdJ6QEhRhS4h+zSMiCOmanAcAjhfWIk+FOYT1lgENQiCFl7lVbcbEBOIrWuIXZKYBNoRBDWnT/cam/SeLRNFgMY4vYO/dF3KBCWlCIIS2eB99M/aLDNFsRABsXz6xxsVN7s8SB3IRxxJC2WMuu5EplEYTKA8YlY0NSzSOtdQ+S9f3VvybOzxLdAR3+enHUz+K+L3qQ1J0bSTFoNSnLy8vPOIR05ZNv3Cq0hiFtKMSQNt/Uv4rIDSclvUSdsNikGWaKdr+C/KMWCqLPzE7lV5EBbWWufUbSXZxxDK13H6I1kxmygVyFR9OQkejpv0/6tcoPX8T9uRS5dRhGO1/ySxG2FvfqbZbLyWi+kQuO+ZsDKyYm3ZlBFhaRr//knNtvwCu3roDArmjEXCFrFyb1WrE3GPfnsmEzxoysTSoq+W9bYtkLt9aqu9kpmE75emvSr3UvXW/ZzxLsA4UYMuZeuTmji5F2QluuVCxPz3CaUKN5pzyZM4WluuU9lW8/Ter92gntONOBHIZCDCz0hiVJva58+fhjHvv5Rz+UOxf/WvXNTgF+oR93ctyfiyQ6FUqiuKs2AaQDhRhYeB54JamLkvLNtrg/l8wzHFmV8r11OmfFs3vV1JwZ7O2d9Y+0D7pY50s4U4Ech0IMbGLtetX4GvXb7XF/rrU9kzsdS7L6wvd56583O4WskGpe3J8HH7q1xhsRmV/b0t/zg/2gEAMb3/i1QqqJR8SJaPzHfr7xa3PmwhYZdpolW5275wyVSkW52WlkhXbahXF/rm5+ucb35mLvcjAWCjGwip11XY2vCd31u7iFSG/Skj0fKxJ7QxQZdIqlinFw3O9kwaYXzU4ja3y3LopbTMX+vQnfp/uaGJIP5Dbc2QG7yLDOsrqhSocUlpbFPfYq+pRYqkBlg8yvTaSqSb44xdiH/XfcHX7wZxI5Nge4dtJp5J3+f8fsjvDos6RS/k3C91Z33AJkAjNrATv38o2ipoIavG+gjDctoHbiKaR+9bFxyVmQkbNZoWocSaquuEWYiKimIqy16ExEZUakBTkOj6bBEHrT1gl/r370etyfe+/5F9Y7BsO41+6IW4RDU69NeOMohULeaX/DfQ0YAoUYDOG5798JL1pC6hRYdFvcix/WOwYjaC27Vvs7tYbFS7TTr2LOBuA3KMRgGK1T/J6ph7jeeaba38U6XsCdDuQwWaeQvFP/GvcGLzyqV+LWcK165BsxDzeHYBgcXGCoSP/WUkQPVvt7Wd9H7mUb4z8uvOtSqVYzAQhAsqSrgNxrPo17jAUWjJR5659L+H500AKjoUUMhoqd1y/h78WeIAVn9Y3bIvHOfl7EMJ8vZEDmVV+EiYhqKsJ6g2bcKQEcA3d6YLjIiB5ShH9K+JpErY7ApKtl3hcfsOcFziZr1SX3Ix9Xe1xFBp8qxf49CWOgNQzZgIMMsqKm4UyJHh8SEZXP6ifzt73Bn1gWyLoeku4iogTrLstfxvIKEseelfK3/5BH/JuOeK2I98PD3/fLe2WCwcji8CiV+0kJfFvta61Mr+8jTzVfeRARBSf9Xrq+2JQwhta2J3knPI5rJBgOBxlkRWjiVVIt25zwNXrt+uRZuaXaY3L3/FtkwQb7zIWsNyxJejEMKwvOHyFdG14wO42k6d7G5Fn0dvVFeNqfpOuz9xPGkIpK7sd22v6zA3vAd8SQFd6Zz4qaVlhS9u+h8KD21TbXiscsEgfP+jN7bkbQGzZzRBEmIvKNWSyivfuanUZStEYnJS7CU6+tsQgTEcV6XcuaF0AijrhQgD0EF46Srvf/VePrZH7tGifWt/pUmE78bjEyrIsUewNmp1Et7cT25L3nn9UX4fFXSNdXH9UYR9bzknv5B477/MC60CKGrPGNflDIgro1vk5U7qdIv1YJC21haZmQCb5zNZMs9JudgiFiXS82O4VqxU7ukbgI33ZeUkWYiFCEIeuseSUDx3Kvqr4X6+GEFqXIDSclLMbuxz8X1a0rayZZWGx2CobwD55pyQIV7XQh+SY/UW1uoVvOkK6fvkgqlpYjK4CBtaAQQ9bp/qZJvU5IvcZH0O61n1lubmoR2W12CoYoXznJcl8HVJ5xNfnHLq+2CIeHdZFq6Iek43nn/M+SNxvgbCjEkHWeB99I6WJX0adE7lo2vtoi4F61Vci67swTYyL2WPd71Ey4PnzJ7BSOcPCCQVQ0Ym71RXhQe6mk8J127NRzWfICSBUKMZgi1qpbSq+v9cYTFFgwsvpi/PAmIT0NM86LS3hED8u1HjMRWHSbVMI/mp0GEVUNoy4sLRPF/SdWP1nHja2lcmBv8jFd+eQb9whaw2AKFGIwhW/KU0IqakrvyVv/HAXvvbH6Yrz4XaE3ODHj3Dgo4Z8cU4wD9/aXeQkW6MgmqajkrqFHeqRvCyli1c9vHk/l2fYYFgfOhDtAME1g6Z0y782nU36f1qJzwrVhQ+Mukeq3n2aUGydZp5D0xicRKa5ff3Yo+d8qtTzqN0f+9ujfVffHHx1Pyqr/kYfeIwQJUfXzX2fzije+W0oSewKk7vqymi1ln8wrIPej1c++RkQU6VMiU72o6e5i8ix5H9dCMA0OPjBVZEgHKfZVpPw+vWnrhGseh6ZcI9WdGzLKDaxD1q5P7gSzru16ZJqs9cqjacV24phvsBc8mgZTuVdsTusiqHz7KYVvPbvaR7/eaU+LWPuz008MLEOv709YhHc/dFvaRTh2winppgXABoUYTKc1ap7W+5TdX1Pk5u7VFmPfXY+KWPcr0s4LzKf7jyPPsg3VLwZy/2BZ8G56319LIvLd+y+0hsF0KMRgOu+8l9O+GIrILooM6VB9MR61UFT2viHd8GAivXEL8jz4ZsLFG/I3v5x2/Fjn36X9XgBOuBsESwje00+6tqa/zKET5qeG32glHcg789nq+wCMv1yqX32cdnxZUIfcq7bi+geWgAMRLCPSr5UUWjTt90vVRe61OxL3qr3hJCmknvY2wHixNmeQb2Jp9UX49vOk+mNyU1ZWBx20wErwaBosI3rWdRm9X2gxitzQ3JbzU0OV6GkXJyzC4VvOyLgI6/4mGb0fgBvuCsFSwjd1kQrDFJE1tXgiA9pJUbkv4+0An2iva8l/033Vz5Y17DQp9oYy3g5aw2A1OCDBcri+yz3Y6zoqvune6ltXQzpKZV+EY1Mpk3U95H74Q8ucf6HxV0g1yWUCjVDjjdOgU6Q48HPG29FadiHv1Kcts98BiPBoGixIa9qaJU7BG08m/L1nxSahu7M/P7XubWSpIkxE5L3nnyLa9bKsb1cKUXMRHtaFpQhLoaAIgyWhEIPleBPMmJWq8C1nJGxde5a8K7Ti7M5P7Vn0jiWLgf/Wh4Revyhr25OKi9yPf5FwXwQfmSxFCisoJRI7/SqWOADcUIjBkmKdLmSJo4R+oJ/W3JOwGHsXvCa0pm1YtlcTvSi5tZjNUtnjqqxsR+bXIvdjiXu4ExGprz/Bs73a9ck/Yp4lb4AAUIjBknxjlwuZV8ASq9arj9X4Gu99LwitZReW7SUiGzYzfBuZaNB/guHFStYpJPfqT2rcTujeG6XQYizbTDRFJoDZUIjBsip792WJI6IHqHzuTTV2APNOfVpop/Zm2Wa1DuR2T21ZWJT0/OLqx+tYtqk3aMYSB8AoKMRgWcU3ThC6txFLrLwP/5vU67zjVhk6P7XyxYeGxeYQmny1YbOP6UVNyb10fVJFOHz7eWx5eOa/itYwWBoKMVgaV8cmQUTBuy5N6uJeNT81T2v8mDykpOD9gy071ab6+QeGxNWPa0WehW8k/VkqGU7acUisbU+WOABGQiEGy9Oad2SJ4/pmW9KvLRo8XRg18YNr88sUnDPEcsU40reFITnpJ3Uiz/3/TXpfJlrEIxVSdZFvwuNoDYPl4SAFW4jc0FwKmfn1Wa/vT7isXvxtGzM/tVRdpLc/m6S/KZGq/vbzI/7MY//mqt9Lqm53yF9+IUT1f+ah34n9FaR+tI6Uit0pZp8crd2Z5B3/WNL7O7T0Tqm++TTLtqPn/Jn8Q2bhGgeWh4MUbCHw4GiZ994/WWIdPPdGKh40NbVinOGCFLko2vkS8t+2xJSbHlnPS+7lH+D6BraAAxVsg2uaQ+nKJ/ea7Skf+5GB7aQ4mNu9npMVPes68g+rfnrReELTrpXqZ+tZto/5pMFO8B0x2Ib7kY95Om7FKik4e2DKz7ndq7YKWdfDkYKjFZaWiVSLMBERVxHWjzuZJQ5AtqAQg63oxcezxHF99Gpa73M//KGQnuzPT20HycwbXZ3wqDP5hivd/x+0hsFWUIjBVjwL1vHNQ33HhWld/N2L3xW6xWfIyjap1jxvdCJK4DuWPLSO57PEAcgmFGKwHa11D5Y4yvc70n6v54FXhX58O5Y87E7mFZB7bc3zRlcnMrAdz3ClvALy3rECrWGwHRRisB3vpCeEVNSaX5iEyNBOaRcBz+znhH5SJ5Y87ErWqkvuRz9Nu/gFF45k6wCnnWvMJCwARkMhBluK9byaJY74OUzBh8enX4yn/13Eul7Kkovd6A2aZdyBTn3/OZZcpLsB+foZv2AFgBFw4IJtRYZ2lOLnSMZxpKKS+7GdGZ8L4ZE9pRL8PuN8rE6qLtLO759x4QtNuFKqX25hyQnDlcDO0CIG23I/vIlnOJOuUWhmn4y/p/Q89JaIntOHpHDuaaU3a0/utTsER+uTqwhrJaeyxAEwC+4iwdbCY8+Xyg+fs8TibFUFHxgu1c2vkIhVcoU0lX5CO/Lc+xxfj/UR3aUS3pVxHElEbrSGweZwAIPtVfRpLuPNyZwqvcGJ5Jn/Gvs5EZp4pVTKttjuZJOehqR1vIB8Q2awph5YO0vm/XclS6xY10vJd+siu+1agCPgAAbbC80eINWPXmOJZfR3jcG5w6T62XvE8d02N6m4SJacSp7p/2foPoj0by1F9GDGcWRBHXKv2oprGNgeDmJwBK5FGWSteuR+5KOsnReh2QOk8u2nJEI/ZmuTv5IFdUk2PZn0pq3JNzQ7qxSF5g6V6ocvssRCBy1wChzI4AiBVVNl3strWGJFT/89+W95wLRzIzR3mBTB70lEyokqyknosbRjSSKium6ShcUkPQ1INmlJvoGprTzFqaJPCcvkHbr/OPI8+CauX+AIOJDBMSLDu0hREcg4jhQKuR//HOcGs/C4S6Ty7acssdAaBidx7jgLyDnupRt4hjNJnUJT/si2CAFU4SrCWsuuLHEArAKFGBxFO6EtSxx150aWOFAlMqwLz3zSQiHv1L+iNQyOgkIMjuK993nB1ZQNj+yJVjGD4MpJUuzN/CsDIiKt5x9Y4gBYCQoxOI7W+WKWOLkwXWU2qOueZIkj6xSSb/gctIbBcVCIwXF8ty0VMr8WS6zIgLZoFWcgdE8/KbT0e30fzr1iM4owOBIKMTiSe/UnPB23KvdT4IGbUYzTpG59gyWO3qg5SxwAK0IhBsfSvY1Y4rg2/pslTq4J33Yu2w2MZ97LaA2DY6EQg2N5Fr3D0yomotDdl6FVnCLlpzKWOFq7XixxAKwKhRgcLVbSkSWO+vVWlji5IjL4VJ7hSqqLvOPXojUMjoZCDI7mm/mMkILnOh4e3g2t4iQEFo+VYv8ellja2dezxAGwMhRicLxYt8tZ4igVu2n3qqkoxjVwvfMMSxxZz0e+QdPRGgbHw0EOOSEy6BQpDvyccRzpyif3mu2WOG+CDwyXYt8eki4XyQbNyG/iYg6/5jTlGunauYElFuaThlyBAx1yBtfKP5WnnENFd6825dwJ3/U7qXzzSbW/l3U9FD3zj1TUb4Ip+bGtrtS0NXnu+zeuT5ATcKBDzgiPPksq5d+wxMp2ay344Gjpeu+fSb9eb1hCngdeyWqO4VFnSiXwHUsstIYhl+A7YsgZnoXr2C7uobEXZO274tCsG1IqwkRVQ4ciQztm9ftsriKsdbqAJQ6AXaAQQ06JndyDJY76w06WODUJLr9LqtveSuu94ucIRW45PSvFODKwHc9wpbwC8o59GK1hyCkoxJBTfJOfEFJRWWKFh3YyvMi51j2V0ftF6EcKLhlraJ6hhSOlOLiPJZZ2bj+WOAB2gkIMOSfW848scZSfwxRYfrdhRS40qy9LbPXdf3CEqZby/nMscaSnIfn6jUdrGHIOCjHkHP9Ns4Ws62aJ5XrzaZY48Sjb3mSJw7X6UTzhCVdKrsrpXvwuijDkJBRiyEnuhzfxzEOtaxSa8WdDWsWcVSl0b39DclS+3MISRyvpwBIHwI5QiCFn6Y1PYomjfvoOS5zDBdfMZC2c4vsdnOGIiChyc3eeDlpCkHfms2gNQ85CIYac5Zn7kuBqd4ZvPYe3xcnU+ekQrs5UhwTWzJQisoslltb1MpY4AHaFQgw5Ldb+LJY4yu6vWOL8Kr8WaziZX5s1nuvVx1niyII65Bv9IFrDkNNQiCGn+e56VEg1jyVWZFB7tlaxr/9k1uIkm7RgixWcM0SK6EGWWO5VW1GEIeehEEPOizEttScO7KXAQ2MsuToT55q+rk0vscTRi5qyxAGwOxRiyHn+QdOErO9nieV6j2/MrtaqG0scKfhO8/CdF7PdaHgWvoHWMAChEAMQEZF72Qae4UxSUnDy1SzFyjvlKZac9C6XcIQhIiLlu+0scbhuMgCcAIUY4Bfa8W1Y4rg+/4AlDhFRrNvlGb1f1veT99ZFLAU9Mqwzz3AlRWW7yQBwAhRigF94Z78guJ67hm85gyWUb/SDQmveMa33yoK6bC394IqJUuwNcoSi2Om/Z4kD4BQoxACHiXW6kCWOEvqBJQ4RkXfGMyJ2ytkpvUd6GpJ71cdsrU41w8UnDpG1C8l/8xy0hgEOgxMC4CiR/m2kiB7IOI7Mr0Xu1Z+wnmPh0b2kUv5twm1q3a8k302z+dZentVXqkzzXheWluGaA3AUnBQAR9n16CxZ68WVLLG0zpeQ97Yl7OdZcM0MKb75lMT+PURqHukNm5FvxDxDzueKPiUsj9n1Rs3JM+9lXHMAjoKTAiCO8IgeUgn/lHEcSURuG7cCw7f1lspPX7LEQmsYID58RwwQh4dpST5BROG7L7XkJB/J4CrCsXa9WOIAOBEKMUA1YiUdWeIoX29jiZNtkcGn8gxXUl3kY5zZC8BpUIgBquGb+YyQgqd+RIZ3sVWrOLhkrBT797DEip3FM4UogFOhEAMkEOua2YQah4iKAAVXT7NNMVbffoYljqznI//g6WgNAySAEwSgBpGB7STHer5SzSP32s8sf86Fpl4j1R0bWGKhgxZAzdAiBqgB11J9QotSaPYAy7eKuYqwzjRlKIDToRADJEEvPp4ljvrRayxxjBIedSbf6kqzX0BrGCAJKMQASfAsWMdWVMJjz7dsq1gJfMcSR2OaKhQgF6AQAyQpdnJ3ljjKD5+zxOEWGdCWZ7hSXi3yjl2O1jBAklCIAZLkm/ykkIrKEisytKOlWsXBBbdIUbmfJVbsvL4scQByBQoxQApiZ1zNEkf8HKHAsnGWKcbq+udZ4uiehuTvOx6tYYAU4IQBSFFkSAcp9lVkHEcqKrkf22n6ORi6+zKpfr2VJRaGKwGkDi1igBS5V2zmGc6kaxSafp3prWKuIqyXdGCJA5BrUIgB0qA3Ookljrr9PZY46QoP78bTQUsI8sx8Fq1hgDTgxAFIU0Wf5rJqocPM6O5i0pudGv+XQiQ8SRNtPd77Dn+9iOwitWxLzQkmQet+BXlHLcT1BCANOHEA0hS8t790ffy62WmYThbUJfeqj3EtAUgTTh6ADET6tZJCi5qdhqnQQQsgM/iOGCAD0bNze4k/3d/U7BQAbA93sgAZCt/URSp7AmanYQq0hgEyhxYxQIY8yzbkZDGKtepmdgoAjoBCDMAg15b8k4pKvilP5eQNCAA3FGIABp7ZLwjTZ+bIotgZfzA7BQDHQCEGYKJ1vtjsFLJC1ikk//D70RoGYIKTCYBRZEAbKSoPmJ2GodBBC4AXWsQAjNyrP3F0kdIbNTc7BQDHQSEGYKZ7G5mdgmE881529I0GgBlQiAGYeRa948hiFWt3ltkpADgSCjGAAbTmHc1OgZVU88g3fo0jbzAAzIZCDGAA74xnhBTOqVuxHJ/KE8BIKMQABol1u8LsFFjI+n7yD5rmnLsKAIvByQVgoMigU6Q48LPZaWQEw5UAjIUWMYCB3I/Ye53eXJu6E8AMKMQABtOLjjc7hbR5Zr9g6xsJADtAIQYwmGfhOlsWM+20C81OASAnoBADZEGs9elmp5ASmVdA3tuX2/IGAsBucKIBZEmkbwspdM3sNJKCDloA2YMWMUCWxHr+0ewUkiI9zp2iE8CKcNcLkEWRIR2l2BcxO42E0BoGyC60iAGyyL1ik6WLnO6wqTkB7ACFGCDLtMYtzE4hLikEeWY8Y+kbBQAnQiEGyDLv3BeFFb8V0rpdbnYKADkJhRjABLH2Z5udwhFkQV3yjVpovbsDgByAEw/AJJEbT5YiVml2GkSEDloAZkKLGMAk0bOssbSgnafgBHAC3AUDmCg8vKtUKspNzQGtYQBzoUUMYCLP0vWmFsFYq+5mbh4ACIUYwHTaCe1M2a5UVPJNeRKtYQCToRADmMx773NCmrDd6Ol/MGGrAHA0FGIAC9C6XJLV7ck6hVR08/1oDQNYAE5EAIuIDGgrReX+rGwLHbQArAMtYgCLcK/elpXiqDVqno3NAECSUIgBLET3NTF8G955L6M1DGAhKMQAFuJ56C1Di2S03VlGhgeANKAQA1iM1qKzIXGlmkf+8WvQGgawGBRiAIvxTvubkIL/1LTKlJoAcCQUYgALivW4kjWeXt9PRYOnoTUMYEE4MQEsKjKovRQH9rLEwnAlAOtCixjAotyPfMRSPLXj23CEAQCDoBADWJjeoFnGMbyzX0BrGMDCUIgBLMwz/9WMimjstIu4UgEAg6AQA1ic1uaMtN4n82uR7/ZlaA0DWBxOUgAbiPRtIYWupfQedNACsAe0iAFsINbrTym9Xvc2MigTAOCGO2YAm4gMO02KvaGkXovWMIB9oEUMYBPu5R8kVVy15p2MTgUAGKEQA9iI3qRVwt9LIcg74+9oDQPYCAoxgI145vxXJPpGSet+RRazAQAOKMQANhPr0Dvuz2WtuuQbuQCtYQCbwUkLYEORG1tLETt4xM/QQQvAntAiBrChynP+fMS/9aLjTcoEADKFO2gAmwrf3E0qkd1EhNYwgJ2hRQxgU54l7wsiolir7manAgAAkJtCk/4gzc4BAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAGzo/wF0H4Q4e4bJtgAAAABJRU5ErkJggg=="/>
+<div class="hero-toc">
+<a href="#overview">개요</a>
+<a href="#operatives">요원 데이터카드</a>
+<a href="#composition">요원 편성</a>
+<a href="#rules">팩션 규칙</a>
+<a href="#equipment">팩션 장비</a>
+<a href="#strategic">전략 플로이</a>
+<a href="#firefight">화력전 플로이</a>
+<a href="#buying">구매 가이드</a>
+</div>
+</div>
+</div>
+</div>
+<main>
+<section id="overview">
+<div class="section-head"><div><span class="section-no">01</span><h2>개요</h2></div></div>
+<div class="overview-panel">
+<p class="overview-lead">기술사제가 서비터 무리를 네트워크로 엮어 운용 사이에 추가 행동을 끼워 넣는, 임무 수행형 기계 팀입니다.</p>
+<div class="overview-tags"><span class="overview-tag">요원 10명 · 중형</span><span class="overview-tag">사격 · 임무 수행</span><span class="overview-tag">입문 난이도 어려움</span></div>
+<div class="overview-grid">
+<div class="overview-block">
+<h4>특징</h4>
+<ul>
+<li>서비터들은 행동력 하나를 다른 서비터에게 양도해 여러 요원을 한 턴에 연계해 활용할 수 있습니다.</li>
+</ul>
+</div>
+<div class="overview-block">
+<h4>추천 대상</h4>
+<ul>
+<li>요원 하나하나의 전투력보다 운용 순서와 지원 규칙을 조합하는 두뇌 플레이를 즐기는 분.</li>
+<li>아데프투스 메카니쿠스의 서비터와 기술사제 미니어처를 좋아하는 분.</li>
+</ul>
+<p class="overview-caveat"><strong>이런 분에게는 비추천</strong>서비터는 이동 5″에 방호 4+라 단순한 화력전이나 빠른 기동전을 원하는 분에게는 답답할 수 있습니다.</p>
+</div>
+</div>
+</div>
+</section>
+<section id="operatives">
+<div class="section-head">
+<div><span class="section-no">02</span><h2>요원 데이터카드</h2></div>
+</div>
+<div class="operative-grid">
+<article class="operative-card">
+<button aria-expanded="false" class="operative-summary" type="button">
+<span><strong>전투계통 기술고고학자</strong></span>
+<span class="toggle">상세 보기</span>
+</button>
+<div class="operative-detail operative-full-detail">
+<div aria-label="전투계통 기술고고학자 능력치" class="stat-strip" role="group">
+<div class="stat-box"><span>APL</span><strong>3</strong></div>
+<div class="stat-box"><span>이동</span><strong>6″</strong></div>
+<div class="stat-box"><span>방호</span><strong>3+</strong></div>
+<div class="stat-box"><span>체력</span><strong>9</strong></div>
+</div>
+<div class="data-block">
+<div class="data-block-title">무기</div>
+<div class="weapon-table-wrap">
+<table class="weapon-table">
+<thead>
+<tr>
+<th>무기 명칭</th>
+<th>공격</th>
+<th>명중</th>
+<th>피해</th>
+<th>무기 규칙</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="weapon-type">사격</span>박멸 권총</td>
+<td>4</td>
+<td>3+</td>
+<td>4/2</td>
+<td>사거리 8″, 1″ 궤멸 3, 살상 5+</td>
+</tr>
+<tr>
+<td><span class="weapon-type melee">근접</span>서보아크 클로</td>
+<td>4</td>
+<td>3+</td>
+<td>3/4</td>
+<td>중상, 충격</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="ability-grid">
+<section class="ability-card">
+<h4>신성한 비밀의 탐색자: 전력 포식</h4>
+<p>이 요원의 명령을 즉시 변경하고 추가로 <strong>옴니스캐너</strong>, <strong>후퇴</strong>, <strong>마커 배치</strong>, <strong>마커 회수</strong>, <strong>기동</strong> 또는 <strong>임무</strong> 행동 중 하나를 무상으로 수행할 수 있습니다. 이 요원이 마커를 운반 중이 아닐 경우 수행하는 후퇴 또는 기동 행동은 반드시 플레이어 투입 구역 내에 완전히 들어가거나(불가능할 시 최대한 가까운 위치), 요원의 장악 범위 내에 목표물 마커 또는 임무 마커가 들어온 상태에서 이동을 마쳐야 합니다.</p>
+</section>
+<section class="ability-card action-card">
+<div class="action-title-row">
+<h4>옴니스캐너</h4>
+<span class="ap-badge">1AP</span>
+</div>
+<p>이 요원의 8″ 내에 있거나 시야에 들어온 적 요원 하나를 지정하여 옴니스캐너 토큰을 하나 부여합니다. 아군 <span class="keyword">전투계통</span> 요원이 옴니스캐너 토큰을 보유한 적 요원을 대상으로 사격, 근접전, 반격을 수행할 때마다 그 아군 요원의 무기에 <strong>집요</strong> 무기 규칙이 부여됩니다.</p>
+<p class="restriction">이 요원은 적 요원의 장악 범위 내에 있는 동안 이 행동을 수행할 수 없습니다.</p>
+</section>
+</div>
+</div>
+</article>
+<article class="operative-card">
+<button aria-expanded="false" class="operative-summary" type="button">
+<span><strong>전투계통 자동중계형 서비터</strong></span>
+<span class="toggle">상세 보기</span>
+</button>
+<div class="operative-detail operative-full-detail">
+<div aria-label="전투계통 자동중계형 서비터 능력치" class="stat-strip" role="group">
+<div class="stat-box"><span>APL</span><strong>2</strong></div>
+<div class="stat-box"><span>이동</span><strong>5″</strong></div>
+<div class="stat-box"><span>방호</span><strong>4+</strong></div>
+<div class="stat-box"><span>체력</span><strong>8</strong></div>
+</div>
+<div class="data-block">
+<div class="data-block-title">무기</div>
+<div class="weapon-table-wrap">
+<table class="weapon-table">
+<thead>
+<tr>
+<th>무기 명칭</th>
+<th>공격</th>
+<th>명중</th>
+<th>피해</th>
+<th>무기 규칙</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="weapon-type melee">근접</span>테이저 충격봉</td>
+<td>4</td>
+<td>4+</td>
+<td>3/4</td>
+<td>살상 5+, 충격</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="ability-grid">
+<section class="ability-card">
+<h4>아킬란 안구</h4>
+<p>이 유닛의 시야에 들어온 적 요원을 대상으로 아군 <span class="keyword">전투계통</span> 요원이 사격할 때마다 그 아군 요원의 원거리 무기에 <strong>포화</strong> 무기 규칙이 부여됩니다. 이 요원이 적 요원의 장악 범위 내에 있으면 이 규칙의 효과가 발생하지 않습니다.</p>
+</section>
+<section class="ability-card action-card">
+<div class="action-title-row">
+<h4>옴니시아의 응시</h4>
+<span class="ap-badge">1AP</span>
+</div>
+<p>이 요원의 시야에 들어온 적 요원을 하나 지정합니다. 전환점이 종료될 때까지, 아군 <span class="keyword">전투계통</span> 요원이 지정된 적 요원을 대상으로 사격할 때마다 이 효과를 사용할 수 있습니다. 그렇게 할 경우, 다음을 적용합니다.</p>
+<ul>
+<li>사격하는 아군 요원의 원거리 무기에 <strong>저밀도 색적</strong> 무기 규칙이 부여됩니다.</li>
+<li>지정된 적 요원은 차폐 효과를 받을 수 없습니다.</li>
+</ul>
+<p class="restriction">이 요원은 적 요원의 장악 범위 내에 있는 동안 이 행동을 수행할 수 없습니다.</p>
+</section>
+</div>
+</div>
+</article>
+<article class="operative-card">
+<button aria-expanded="false" class="operative-summary" type="button">
+<span><strong>전투계통 돌파형 서비터</strong></span>
+<span class="toggle">상세 보기</span>
+</button>
+<div class="operative-detail operative-full-detail">
+<div aria-label="전투계통 돌파형 서비터 능력치" class="stat-strip" role="group">
+<div class="stat-box"><span>APL</span><strong>2</strong></div>
+<div class="stat-box"><span>이동</span><strong>5″</strong></div>
+<div class="stat-box"><span>방호</span><strong>4+</strong></div>
+<div class="stat-box"><span>체력</span><strong>8</strong></div>
+</div>
+<div class="data-block">
+<div class="data-block-title">무기</div>
+<div class="weapon-table-wrap">
+<table class="weapon-table">
+<thead>
+<tr>
+<th>무기 명칭</th>
+<th>공격</th>
+<th>명중</th>
+<th>피해</th>
+<th>무기 규칙</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="weapon-type">사격</span>라스커터(근거리)</td>
+<td>4</td>
+<td>3+</td>
+<td>4/5</td>
+<td>사거리 2″, 살상 5+, 관통 2</td>
+</tr>
+<tr>
+<td><span class="weapon-type">사격</span>라스커터(단거리)</td>
+<td>4</td>
+<td>3+</td>
+<td>4/5</td>
+<td>사거리 6″, 살상 5+</td>
+</tr>
+<tr>
+<td><span class="weapon-type melee">근접</span>유압식 집게와 라스커터</td>
+<td>4</td>
+<td>4+</td>
+<td>4/6</td>
+<td>살상 5+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="ability-grid">
+<section class="ability-card action-card">
+<div class="action-title-row">
+<h4>돌파</h4>
+<span class="ap-badge">1AP</span>
+</div>
+<p>이 요원의 장악 범위 내에 있으며 동시에 이 요원의 장악 범위 내에 있는 지형지물과 최대한 가까운 위치에 돌파 마커 하나를 둡니다. 그 마커로부터 1″ 내에 있는 요원은 그 지형지물 중 두께가 1″ 미만인 부위를 통과 가능 지형으로 간주합니다.</p>
+<p class="restriction">이 요원은 적 요원의 장악 범위 내에 있는 동안 이 행동을 수행할 수 없습니다.</p>
+</section>
+</div>
+</div>
+</article>
+<article class="operative-card">
+<button aria-expanded="false" class="operative-summary" type="button">
+<span><strong>전투계통 교전형 서비터</strong></span>
+<span class="toggle">상세 보기</span>
+</button>
+<div class="operative-detail operative-full-detail">
+<div aria-label="전투계통 교전형 서비터 능력치" class="stat-strip" role="group">
+<div class="stat-box"><span>APL</span><strong>2</strong></div>
+<div class="stat-box"><span>이동</span><strong>5″</strong></div>
+<div class="stat-box"><span>방호</span><strong>4+</strong></div>
+<div class="stat-box"><span>체력</span><strong>8</strong></div>
+</div>
+<div class="data-block">
+<div class="data-block-title">무기</div>
+<div class="weapon-table-wrap">
+<table class="weapon-table">
+<thead>
+<tr>
+<th>무기 명칭</th>
+<th>공격</th>
+<th>명중</th>
+<th>피해</th>
+<th>무기 규칙</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="weapon-type">사격</span>소각성 점화기</td>
+<td>4</td>
+<td>2+</td>
+<td>4/4</td>
+<td>사거리 6″, 포화, 격류 1″</td>
+</tr>
+<tr>
+<td><span class="weapon-type">사격</span>멜타건</td>
+<td>4</td>
+<td>4+</td>
+<td>6/3</td>
+<td>사거리 6″, 궤멸 4, 관통 2</td>
+</tr>
+<tr>
+<td><span class="weapon-type">사격</span>포스퍼 블라스터</td>
+<td>4</td>
+<td>4+</td>
+<td>3/4</td>
+<td>중상, 폭발 1″</td>
+</tr>
+<tr>
+<td><span class="weapon-type melee">근접</span>서보클로</td>
+<td>3</td>
+<td>4+</td>
+<td>3/4</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</article>
+<article class="operative-card">
+<button aria-expanded="false" class="operative-summary" type="button">
+<span><strong>전투계통 총기형 서비터</strong></span>
+<span class="toggle">상세 보기</span>
+</button>
+<div class="operative-detail operative-full-detail">
+<div aria-label="전투계통 총기형 서비터 능력치" class="stat-strip" role="group">
+<div class="stat-box"><span>APL</span><strong>2</strong></div>
+<div class="stat-box"><span>이동</span><strong>5″</strong></div>
+<div class="stat-box"><span>방호</span><strong>4+</strong></div>
+<div class="stat-box"><span>체력</span><strong>11</strong></div>
+</div>
+<div class="data-block">
+<div class="data-block-title">무기</div>
+<div class="weapon-table-wrap">
+<table class="weapon-table">
+<thead>
+<tr>
+<th>무기 명칭</th>
+<th>공격</th>
+<th>명중</th>
+<th>피해</th>
+<th>무기 규칙</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="weapon-type">사격</span>중형 아크 소총</td>
+<td>5</td>
+<td>4+</td>
+<td>4/6</td>
+<td>중화기(질주 한정), 관통 1, 혼미</td>
+</tr>
+<tr>
+<td><span class="weapon-type">사격</span>중형 볼터(집중)</td>
+<td>5</td>
+<td>4+</td>
+<td>4/5</td>
+<td>중화기(질주 한정), 결정적 관통 1</td>
+</tr>
+<tr>
+<td><span class="weapon-type">사격</span>중형 볼터(소사)</td>
+<td>4</td>
+<td>4+</td>
+<td>4/5</td>
+<td>중화기(질주 한정), 결정적 관통 1, 격류 1″</td>
+</tr>
+<tr>
+<td><span class="weapon-type melee">근접</span>중강 클로</td>
+<td>3</td>
+<td>4+</td>
+<td>4/5</td>
+<td>무자비</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</article>
+<article class="operative-card">
+<button aria-expanded="false" class="operative-summary" type="button">
+<span><strong>전투계통 서비터 하위감독</strong></span>
+<span class="toggle">상세 보기</span>
+</button>
+<div class="operative-detail operative-full-detail">
+<div aria-label="전투계통 서비터 하위감독 능력치" class="stat-strip" role="group">
+<div class="stat-box"><span>APL</span><strong>3</strong></div>
+<div class="stat-box"><span>이동</span><strong>6″</strong></div>
+<div class="stat-box"><span>방호</span><strong>3+</strong></div>
+<div class="stat-box"><span>체력</span><strong>9</strong></div>
+</div>
+<div class="data-block">
+<div class="data-block-title">무기</div>
+<div class="weapon-table-wrap">
+<table class="weapon-table">
+<thead>
+<tr>
+<th>무기 명칭</th>
+<th>공격</th>
+<th>명중</th>
+<th>피해</th>
+<th>무기 규칙</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="weapon-type">사격</span>명장제조 라듐 권총</td>
+<td>4</td>
+<td>3+</td>
+<td>2/4</td>
+<td>사거리 8″, 균형, 파쇄</td>
+</tr>
+<tr>
+<td><span class="weapon-type melee">근접</span>데이터스파이크</td>
+<td>3</td>
+<td>5+</td>
+<td>2/3</td>
+<td>-</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="ability-grid">
+<section class="ability-card action-card">
+<div class="action-title-row">
+<h4>데이터관환식 추적기</h4>
+<span class="ap-badge">1AP</span>
+</div>
+<p><strong>보조.</strong> 이 요원 및 아군 <span class="keyword">전투계통</span> 자동중계형 요원의 6″ 내에 있는 아군 <span class="keyword">전투계통</span> 요원의 수를 파악 후, D3를 하나 굴립니다. 굴림 값이 그 아군 요원들이 경쟁 중인 목표물 마커의 수 이하라면, 플레이어가 1CP를 획득합니다. 통신 장비 공용 장비의 규칙을 적용받으려면, 거리 측정의 기준점이 되는 요원이 그 마커를 장악하고 있어야 이 규칙의 거리 요건을 +3″만큼 변경할 수 있습니다.</p>
+<p class="restriction">이 요원은 적 요원의 장악 범위 내에 있는 동안 이 행동을 수행할 수 없습니다.</p>
+</section>
+<section class="ability-card action-card">
+<div class="action-title-row">
+<h4>네트워크 덮어쓰기</h4>
+<span class="ap-badge">1AP</span>
+</div>
+<p><strong>보조.</strong> 이 요원 또는 아군 <span class="keyword">전투계통</span> 자동중계형 요원으로부터 6″ 내에 있는 아군 <span class="keyword">전투계통</span> 서비터 요원을 하나 지정하여 즉시 <strong>네트워크 대응</strong>을 수행하거나 무상 <strong>질주</strong> 행동을 수행할 수 있으며, 이는 <strong>동력 전달</strong>을 수행하지 않더라도 가능합니다. 이후 계속해서 이 요원의 운용을 진행합니다. 통신 장비 공용 장비의 규칙을 적용받으려면, 거리 측정의 기준점이 되는 요원이 그 마커를 장악하고 있어야 합니다.</p>
+<p class="restriction">이 요원은 운용 도중 이 행동을 두 번 수행할 수 있으나, 매번 다른 아군 요원을 지정해야 하며, 적 요원의 장악 범위 내에 있는 동안에는 이 행동을 수행할 수 없습니다.</p>
+</section>
+</div>
+</div>
+</article>
+<article class="operative-card">
+<button aria-expanded="false" class="operative-summary" type="button">
+<span><strong>전투계통 기술의료형 서비터</strong></span>
+<span class="toggle">상세 보기</span>
+</button>
+<div class="operative-detail operative-full-detail">
+<div aria-label="전투계통 기술의료형 서비터 능력치" class="stat-strip" role="group">
+<div class="stat-box"><span>APL</span><strong>2</strong></div>
+<div class="stat-box"><span>이동</span><strong>5″</strong></div>
+<div class="stat-box"><span>방호</span><strong>4+</strong></div>
+<div class="stat-box"><span>체력</span><strong>8</strong></div>
+</div>
+<div class="data-block">
+<div class="data-block-title">무기</div>
+<div class="weapon-table-wrap">
+<table class="weapon-table">
+<thead>
+<tr>
+<th>무기 명칭</th>
+<th>공격</th>
+<th>명중</th>
+<th>피해</th>
+<th>무기 규칙</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><span class="weapon-type melee">근접</span>서보수술 클로</td>
+<td>4</td>
+<td>4+</td>
+<td>3/4</td>
+<td>파쇄</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="ability-grid">
+<section class="ability-card">
+<h4>기계 봉합기</h4>
+<p>전환점당 한 번, 이 요원의 3″ 내에 있으며 시야에 들어온 다른 아군 <span class="keyword">전투계통</span> 요원이 무력화됐을 때, 이 요원과 그 아군 요원 모두 적 요원의 장악 범위 내에 있지 않다면 이 규칙을 사용할 수 있습니다. 그렇게 할 경우, 그 아군 요원은 1 체력이 남은 상태가 되며 그 행동이 끝날 때까지 무력화되지 않습니다. 그 행동 이후, 그 아군 요원은 즉시 무상으로 <strong>질주</strong> 행동을 수행할 수 있으나 반드시 이 요원의 장악 범위 내에서 이동을 종료해야 합니다. 이 규칙을 그 아군 요원의 운용 도중 사용했다면, 그 운용은 종료됩니다. 이 요원이 무력화되었을 때, 또는 사격 행동의 주 대상이나 부가 대상이 되었을 때는 이 규칙을 사용할 수 없습니다.</p>
+</section>
+<section class="ability-card action-card">
+<div class="action-title-row">
+<h4>임시 수리</h4>
+<span class="ap-badge">1AP</span>
+</div>
+<p>이 요원의 장악 범위 내에 있는 아군 <span class="keyword">전투계통</span> 요원을 하나 지정해 손실한 체력을 D3+3만큼 회복합니다.</p>
+<p>이번 전환점 중 <strong>기계 봉합기</strong> 규칙의 효과를 받은 요원은 지정할 수 없습니다.</p>
+<p class="restriction">이 요원은 적 요원의 장악 범위 내에 있는 동안 이 행동을 수행할 수 없습니다.</p>
+</section>
+</div>
+</div>
+</article>
+</div>
+</section>
+<section id="composition">
+<div class="section-head">
+<div><span class="section-no">03</span><h2>요원 편성</h2></div>
+</div>
+<div class="composition-panel">
+<div class="composition-topline">
+<div>
+<span class="composition-label">전투계통 킬 팀</span>
+<h3>요원 목록</h3>
+</div>
+<div class="archetype-wrap">
+<span class="archetype-title">아키타입</span>
+<span class="archetype-chip">침투</span>
+<span class="archetype-chip">정찰</span>
+</div>
+</div>
+<div class="composition-summary">
+<div class="summary-box">
+<span>리더</span>
+<strong>1명</strong>
+</div>
+<div class="summary-plus">+</div>
+<div class="summary-box">
+<span>하위감독</span>
+<strong>1명</strong>
+</div>
+<div class="summary-plus">+</div>
+<div class="summary-box">
+<span>요원 선택</span>
+<strong>8명</strong>
+</div>
+<div class="summary-equals">=</div>
+<div class="summary-box total">
+<span>총 편성</span>
+<strong>10명</strong>
+</div>
+</div>
+<div class="composition-columns">
+<article class="composition-block">
+<div class="composition-block-head">
+<span class="composition-number">2</span>
+<div>
+<h4>고정 요원</h4>
+<p>다음 두 요원을 편성합니다.</p>
+</div>
+</div>
+<div class="operative-choice-list">
+<div class="operative-choice-item"><strong>전투계통 기술고고학자</strong></div>
+<div class="operative-choice-item"><strong>전투계통 서비터 하위감독</strong></div>
+</div>
+</article>
+<article class="composition-block">
+<div class="composition-block-head">
+<span class="composition-number">8</span>
+<div>
+<h4>전투계통 요원</h4>
+<p>다음 목록에서 선택해 편성합니다.</p>
+</div>
+</div>
+<div class="operative-choice-list">
+<div class="operative-choice-item"><strong>자동중계형 서비터</strong></div>
+<div class="operative-choice-item"><strong>돌파형 서비터</strong></div>
+<div class="operative-choice-item detailed">
+<strong>교전형 서비터</strong>
+<p>다음 선택지 중 하나를 골라 장비합니다.</p>
+<div class="loadout-row">
+<span>서보클로</span><span>소각성 점화기</span>
+</div>
+<div class="loadout-or"><span>또는</span></div>
+<div class="loadout-row">
+<span>서보클로</span><span>멜타건</span>
+</div>
+<div class="loadout-or"><span>또는</span></div>
+<div class="loadout-row">
+<span>서보클로</span><span>포스퍼 블라스터</span>
+</div>
+</div>
+<div class="operative-choice-item detailed">
+<strong>총기형 서비터</strong>
+<p>다음 무장 조합 중 하나를 선택합니다.</p>
+<div class="loadout-row">
+<span>중형 아크 소총</span><span>중강 클로</span>
+</div>
+<div class="loadout-or"><span>또는</span></div>
+<div class="loadout-row">
+<span>중형 볼터</span><span>중강 클로</span>
+</div>
+</div>
+<div class="operative-choice-item"><strong>기술의료형 서비터</strong></div>
+</div>
+</article>
+</div>
+<div class="composition-rule">
+<strong>편성 제한</strong>
+<p>교전형 서비터 요원을 제외하면, 이 목록의 각 요원은 킬 팀에 한 번씩만 편성할 수 있습니다. 킬 팀에 멜타건을 장비한 교전형 서비터 요원은 하나만 편성할 수 있으며, 소각성 점화기를 장비한 교전형 서비터 요원은 셋까지 편성할 수 있습니다.</p>
+</div>
+</div>
+</section>
+<section id="rules">
+<div class="section-head">
+<div><span class="section-no">04</span><h2>팩션 규칙</h2></div>
+</div>
+<div class="faction-rules-wrap">
+<article class="faction-rule-block">
+<div class="rule-block-head">
+<div>
+<span class="rule-kicker">전투계통</span>
+<h3>노어스피어 네트워크</h3>
+</div>
+</div>
+<div class="rule-intro simple-intro">
+<div class="lore-note">
+            서비터들은 보이지 않는 통제 망으로 기술사제 주위에 복속되어 있다. 노어스피어 네트워크를 통해 서비터들은 빠르게 재편성되어 기술사제의 즉각적인 명령을 더 잘 섬길 수 있는 다른 종복에 처리 동력을 전달할 수 있다. 일부는 기본적인 프로그래밍에 순응할 수 밖에 없는 반면, 기계신의 영광을 위해 달성해야 하는 주요 과업을 지시받은 종복도 있다.
+          </div>
+<div class="network-rules">
+<p>각 아군 <span class="keyword">전투계통</span> 서비터 요원의 운용 중 한 번, 행동을 수행하기 전 또는 후에 1AP를 소모하여 <strong>동력 전달</strong>을 수행할 수 있습니다.</p>
+<p>그 운용이 종료된 후, 상대의 운용 전 다른 아군 <span class="keyword">전투계통</span> 서비터 요원 하나로 <strong>네트워크 대응</strong>을 수행할 수 있습니다. 아군 요원이 네트워크 대응을 수행할 때마다, 먼저 요원의 명령을 지정합니다. 이후 그 요원은 1AP 행동을 무상으로 수행할 수 있으나, 그 행동 중 2″ 넘게 이동할 수는 없습니다. 무상 행동을 수행한 후에는 상대가 원래대로 운용합니다.</p>
+<p>요원은 APL 수치가 2 미만이라면(다른 규칙에 의해 수치가 2 미만으로 변경될 경우) <strong>동력 전달</strong> 또는 <strong>네트워크 대응</strong>을 수행할 수 없습니다. 네트워크 대응은 대응이지만, 수행하는 요원이 교전 명령을 받고 소진 상태일 필요는 없습니다. 즉, 네트워크 대응을 수행할 때 준비 상태였다면, 전환점 중 그 이후 원래대로 운용할 수 있습니다. 네트워크 대응을 수행한 요원은 같은 전환점 중에는 이를 다시 수행하거나 대응할 수 없습니다.</p>
+</div>
+</div>
+</article>
+</div>
+</section>
+<section id="equipment">
+<div class="section-head">
+<div><span class="section-no">05</span><h2>팩션 장비</h2></div>
+</div>
+<div class="ploy-grid equipment-grid">
+<article class="ploy-card">
+<div class="ploy-head">
+<span class="ploy-faction">전투계통</span>
+<h3>은밀한 위장</h3>
+</div>
+<div class="ploy-body">
+<div class="lore-note">
+            이 전투계통 요원은 임모지의 양식으로 제작된 역겨운 전신복, 위조된 휘장, 생체 감각을 속이기 위한 스태틱 소음 장막 방출기 등을 통해 제한된 구역에 감지되지 않고 침투할 수 있다.
+          </div>
+<div class="ploy-rule">
+<p>전투당 한 번, <strong>교전형 서비터</strong> 또는 <strong>총기형 서비터</strong> 요원 하나가 자신의 데이터카드에 있으나 이 전투에서 선택하지 않은 다른 무기 선택지를 사용할 수 있습니다.</p>
+</div>
+</div>
+</article>
+<article class="ploy-card">
+<div class="ploy-head">
+<span class="ploy-faction">전투계통</span>
+<h3>전기조점성 축전기</h3>
+</div>
+<div class="ploy-body">
+<div class="lore-note">
+            요원의 수많은 기계 부품에 연결된 이 장치는 은밀한 팀에 소속된 요원의 육체를 성스러운 원동력이 번쩍이는 아크로 충전한다.
+          </div>
+<div class="ploy-rule">
+<p>아군 <span class="keyword">전투계통</span> 요원이 장비한 근접 무기에 <strong>충격</strong> 무기 규칙이 부여됩니다. 아군 <span class="keyword">전투계통</span> 요원이 반격 시, 그 요원이 장비한 근접 무기에 추가로 <strong>중상</strong> 무기 규칙이 부여됩니다.</p>
+</div>
+</div>
+</article>
+<article class="ploy-card">
+<div class="ploy-head">
+<span class="ploy-faction">전투계통</span>
+<h3>은폐된 장치</h3>
+</div>
+<div class="ploy-body">
+<div class="lore-note">
+            주인의 명령 한 마디면, 장비를 가볍게 갖춘 것으로 보이는 서비터도 신체의 빈 공간에 숨겨져 있거나 전혀 다른 메커니즘으로 숨겨져 있던 부품을 사용해 훨씬 치명적인 장치를 순식간에 조립할 수 있다.
+          </div>
+<div class="ploy-rule">
+<p>전투당 한 번, <strong>교전형 서비터</strong> 또는 <strong>총기형 서비터</strong> 요원 하나가 자신의 데이터카드에 있으나 이 전투에서 선택하지 않은 다른 무기 선택지를 사용할 수 있습니다.</p>
+</div>
+</div>
+</article>
+<article class="ploy-card">
+<div class="ploy-head">
+<span class="ploy-faction">전투계통</span>
+<h3>신경주기성 예비 셀</h3>
+</div>
+<div class="ploy-body">
+<div class="lore-note">
+            전투계통 요원은 서비터 역량 가속화를 위해 이 장치를 승인받는다.
+          </div>
+<div class="ploy-rule">
+<p>전환점당 한 번, <strong>동력 전달</strong>을 수행 시 이 규칙을 사용할 수 있습니다. 그렇게 할 경우, 0AP로 <strong>동력 전달</strong>을 수행할 수 있습니다(일반적인 노어스피어 네트워크 규칙에 우선함).</p>
+</div>
+</div>
+</article>
+</div>
+</section>
+<section id="strategic">
+<div class="section-head">
+<div><span class="section-no">06</span><h2>전략 플로이</h2></div>
+</div>
+<div class="ploy-grid">
+<article class="ploy-card">
+<div class="ploy-head">
+<span class="ploy-faction">전투계통</span>
+<h3>노어스피어 빙의</h3>
+</div>
+<div class="ploy-body">
+<div class="lore-note">
+            조종에 능한 서비터 하위감독은 신경 구조의 일부를 종복에 전파하거나, 적절한 위치의 중계를 통해 그 도구를 효과적으로 통제하여 옴니시아의 분노가 향하는 방향을 조절한다.
+          </div>
+<div class="ploy-rule">
+<p><strong>보조.</strong> 아군 <span class="keyword">전투계통</span> 서비터 요원이 아군 <span class="keyword">전투계통</span> 자동중계형 또는 <span class="keyword">전투계통</span> 서비터 하위감독 요원으로부터 6″ 내에 있다면, 그 아군 서비터 요원의 무기에 <strong>정확 1</strong> 무기 규칙이 부여됩니다.</p>
+<p class="rule-note">통신 장비 공용 장비의 규칙을 적용받으려면, 거리 측정의 기준점이 되는 요원이 그 마커를 장악하고 있어야 이 규칙의 거리 요건을 +3″만큼 변경할 수 있습니다.</p>
+</div>
+</div>
+</article>
+<article class="ploy-card">
+<div class="ploy-head">
+<span class="ploy-faction">전투계통</span>
+<h3>환원의 의무</h3>
+</div>
+<div class="ploy-body">
+<div class="lore-note">
+            향상된 바이너리 교리의 은밀한 문자열이 전투계통 요원들에 내장되어 있다. 이 명령은 기술사제가 지정한 전리품과 인접했을 때 활성화되어 작동한다.
+          </div>
+<div class="ploy-rule">
+<p>행동당 한 번, 목표물 마커나 플레이어의 임무 마커 중 하나를 경쟁 중인 아군 <span class="keyword">전투계통</span> 요원에 대해 공격 또는 방어 주사위를 굴린 경우, <strong>지휘 재굴림</strong> 화력전 플로이를 0CP에 사용할 수 있습니다.</p>
+</div>
+</div>
+</article>
+<article class="ploy-card">
+<div class="ploy-head">
+<span class="ploy-faction">전투계통</span>
+<h3>철혈의 낭송문</h3>
+</div>
+<div class="ploy-body">
+<div class="lore-note">
+            기술사제의 바이너리 찬송이나 성스러운 서보루틴에 의해 마이크로구동기가 지정 위치에 고정되고 예비 동력 셀이 활성화된다. 육신은 나약하나, 기계신께서 하사하신 중갑의 축복이 주는 성스러운 방호는 모두에게 증거가 되리라.
+          </div>
+<div class="ploy-rule">
+<p>공격 주사위가 아군 <span class="keyword">전투계통</span> 요원에게 3 이상의 피해를 가할 때마다 D6 하나를 굴립니다. 값이 4+이면, 그 공격의 피해를 -1만큼 변경합니다.</p>
+</div>
+</div>
+</article>
+<article class="ploy-card">
+<div class="ploy-head">
+<span class="ploy-faction">전투계통</span>
+<h3>우선적 취득</h3>
+</div>
+<div class="ploy-body">
+<div class="lore-note">
+            기술고고학자에게 취득은 성스러운 기업이며, 그 열성적인 광신은 그들의 바이너리 지시에 묻어난다. 도둑들의 신성모독에 대해 공격 프로토콜이 개시되며 종복들에게 성화학적 자극제가 투입된다. 이들은 주인이 혐오스러워하는 모든 대상에 조치를 취한다.
+          </div>
+<div class="ploy-rule">
+<p>목표물 마커 또는 플레이어의 임무 마커 중 하나를 지정합니다.</p>
+<ul class="plain-bullet-list">
+<li>그 마커의 장악 여부를 결정할 때마다, 아군 <span class="keyword">전투계통</span> 요원이 하나라도 그 마커를 경쟁한다면 마커를 경쟁하는 아군 <span class="keyword">전투계통</span> 요원의 APL 총합이 +1만큼 변경된 것으로 간주합니다. 실제로 APL 수치가 변경된 것은 아니므로 다른 APL 변경 사항과 누적된다는 점을 유의하십시오.</li>
+<li>아군 <span class="keyword">전투계통</span> 요원이 그 마커의 3″ 내에 있을 때마다, 보유한 근접 무기의 공격 수치를 +1만큼 변경합니다(최대 4까지).</li>
+</ul>
+</div>
+</div>
+</article>
+</div>
+</section>
+<section id="firefight">
+<div class="section-head">
+<div><span class="section-no">07</span><h2>화력전 플로이</h2></div>
+</div>
+<div class="ploy-grid firefight-grid">
+<article class="ploy-card">
+<div class="ploy-head">
+<span class="ploy-faction">전투계통</span>
+<h3>시스템 퇴마</h3>
+</div>
+<div class="ploy-body">
+<div class="lore-note">
+            전투계통의 경계 요원은 센서 경로를 재설정하거나, 오염 물질을 제거하거나, 야생 기계령을 풀어 오염된 논리 루프를 처리하는 방법으로 위험한 고난을 퇴마할 수 있다.
+          </div>
+<div class="ploy-rule">
+<p>이 화력전 플로이는 아군 <span class="keyword">전투계통</span> 요원이 운용됐을 때 사용할 수 있습니다. 상대가 그 아군 요원에 적용한 규칙 효과 또는 수치 변경을(예: 중독 토큰, -1APL, 운용 불가, 행동 수행 불가 등) 하나 제거한 뒤 운용합니다. 이 플로이는 손실한 체력을 회복하거나, 부상 상태의 효과를 무시하거나, 임무 팩 규칙을 제거하기 위해 쓸 수 없습니다.</p>
+</div>
+</div>
+</article>
+<article class="ploy-card">
+<div class="ploy-head">
+<span class="ploy-faction">전투계통</span>
+<h3>원격 접속</h3>
+</div>
+<div class="ploy-body">
+<div class="lore-note">
+            가장 존귀한 기술사제는 헥사메식 권위의 찬송가를 투사하여 물리적인 접촉 없이 완고한 기계령과 교신할 수 있다.
+          </div>
+<div class="ploy-rule">
+<p>이 화력전 플로이는 아군 <span class="keyword">전투계통</span> 기술사제 요원의 운용 도중 사용할 수 있습니다. 그 운용 중 한 번, 다음 규칙 중 하나를 사용할 수 있습니다.</p>
+<ul class="plain-bullet-list">
+<li>그 요원은 원래라면 장악 범위 내에 마커가 있어야 수행할 수 있는 임무 행동을 장악 범위 내에 마커가 있지 않더라도 수행할 수 있습니다(그 행동의 요건에 우선함). 대신, 마커가 그 요원으로부터 4″ 내에 있어야 하며 적 요원과 경쟁 중이 아니어야 합니다. 단, 이를 판단할 때 다른 아군 <span class="keyword">전투계통</span> 요원의 장악 범위 내에 있는 적 요원은 무시할 수 있습니다.</li>
+<li>그 요원은 해치 통로의 출입구가 장악 범위 내에 있지 않더라도 <strong>해치 조작</strong> 행동을 수행할 수 있습니다. 단, 그 요원으로부터 출입구가 4″ 내에 있어야 합니다.</li>
+</ul>
+</div>
+</div>
+</article>
+<article class="ploy-card">
+<div class="ploy-head">
+<span class="ploy-faction">전투계통</span>
+<h3>철화전개 간섭</h3>
+</div>
+<div class="ploy-body">
+<div class="lore-note">
+            옴니시아의 신도는 극한의 상황에서 보호막 에너지 투사기와 생체공학적 신체의 골절 정렬을 위해 자신의 열성을 전송할 수 있다.
+          </div>
+<div class="ploy-rule">
+<p>이 화력전 플로이는 아군 <span class="keyword">전투계통</span> 기술사제 요원이 사격당할 때, 공격 주사위 굴림 단계 시작 시 사용할 수 있습니다. 그 절차가 종료될 때까지, <strong>관통</strong> 무기 규칙을 무시합니다.</p>
+</div>
+</div>
+</article>
+<article class="ploy-card">
+<div class="ploy-head">
+<span class="ploy-faction">전투계통</span>
+<h3>종복 대행자</h3>
+</div>
+<div class="ploy-body">
+<div class="lore-note">
+            각 종복은 그 주인이 위험할 때 몸을 던져 주인을 지키는 본능이 사이버네틱 프로그래밍으로 각인되어 있다.
+          </div>
+<div class="ploy-rule">
+<p>이 화력전 플로이는 아군 <span class="keyword">전투계통</span> 기술사제 요원이 사격 행동의 유효 대상으로 지정되거나 근접전 행동 도중 근접전의 대상이 되었을 때 사용할 수 있습니다. 앞서 언급한 아군 요원으로부터 3″ 내에 있으며 시야에 들어온 아군 <span class="keyword">전투계통</span> 서비터 요원을 하나 지정하여 대신 사격의 유효 대상이 되거나 근접전 대상이 되도록 합니다(일반적인 상황에서는 대상이 될 수 없더라도 적용 가능). 만약 근접전 행동이라면, 그 서비터 요원이 근접전을 수행하는 요원의 장악 범위 내에 들어간 것으로 간주합니다. 만약 사격 행동이라면, 원래 대상이었던 요원이 엄폐 상태거나 차폐 상태일 때만 그 서비터 요원에게 그 상태가 적용됩니다.</p>
+<p>사격 행동에 사용된 원거리 무기에 <strong>폭발</strong>이나 <strong>격류</strong> 무기 규칙이 있으면 이 플로이의 효과가 발생하지 않습니다.</p>
+</div>
+</div>
+</article>
+</div>
+</section>
+<section id="buying">
+<div class="section-head"><div><span class="section-no">08</span><h2>구매 가이드</h2></div></div>
+<div class="panel battleclade-buying-panel">
+<div class="buying-image-grid" aria-label="전투계통 구매 참고 이미지" role="group">
+<figure class="buying-image-card">
+<img src="../assets/battleclade-buying-box.png" alt="Kill Team Battleclade 전투계통 제품 박스" loading="lazy"/>
+<figcaption>Kill Team: Battleclade 박스</figcaption>
+</figure>
+<figure class="buying-image-card">
+<img src="../assets/battleclade-buying-miniatures.png" alt="Battleclade 전투계통 구성 미니어처" loading="lazy"/>
+<figcaption>전투계통 구성 미니어처</figcaption>
+</figure>
+</div>
+<div class="guide-grid">
+<div><span>한 박스 게임</span><strong>가능</strong></div>
+<div><span>권장 박스 수</span><strong>1박스</strong></div>
+<div><span>구매 가격</span><strong>9만 5천원</strong></div>
+<div><span>자석질</span><strong>부분 필요</strong></div>
+</div>
+<div class="buying-guide-note">
+<span class="buying-note-kicker">구매 안내</span>
+<p><strong>Kill Team: Battleclade 1박스(정가 9만 5천원)</strong>로 게임이 가능하며, <strong>1박스만으로 풀 로스터까지 구성</strong>할 수 있습니다. 대부분의 요원은 자석질 없이도 충분히 구성할 수 있지만, <strong>교전형 서비터</strong>는 무장 선택지를 폭넓게 활용하려면 자석질이 유용합니다. 또한 일부 <strong>특수병 요원을 자석질로 일반병인 교전형 서비터로 전환</strong>할 수 있어, 한 박스에서도 상황에 따라 다양한 로스터 운용이 가능합니다.</p>
+</div>
+</div>
+</section>
+</main>
+<footer>Kill Team Core · Battleclade</footer>
+
+<script id="detail-common-script-inline">
+document.querySelectorAll(".operative-summary").forEach(button => {
+  button.addEventListener("click", () => {
+    const card = button.closest(".operative-card");
+    const open = card.classList.toggle("open");
+    button.setAttribute("aria-expanded", String(open));
+    const toggle = button.querySelector(".toggle");
+    if (toggle) toggle.textContent = open ? "접기" : "상세 보기";
+  });
+});
+
+</script><script id="section-spy-v16">
+// 고정 바로가기 메뉴: 현재 화면에 보이는 섹션의 링크를 강조합니다.
+(function () {
+  var toc = document.querySelector(".hero-toc");
+  if (!toc) return;
+  var pairs = [];
+  Array.prototype.forEach.call(toc.querySelectorAll('a[href^="#"]'), function (a) {
+    var sec = document.getElementById(a.getAttribute("href").slice(1));
+    if (sec) pairs.push({ a: a, sec: sec });
+  });
+  if (!pairs.length) return;
+  var current = null;
+
+  function referenceLine() {
+    var w = window.innerWidth;
+    var base = w > 1100 ? 92 : (w > 680 ? 132 : 124);
+    return base + Math.min(120, window.innerHeight * 0.15);
+  }
+
+  function update() {
+    var line = window.scrollY + referenceLine();
+    var active = pairs[0];
+    for (var i = 0; i < pairs.length; i++) {
+      var top = pairs[i].sec.getBoundingClientRect().top + window.scrollY;
+      if (top <= line + 1) active = pairs[i]; else break;
+    }
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
+      active = pairs[pairs.length - 1];
+    }
+    if (active === current) return;
+    current = active;
+    pairs.forEach(function (p) {
+      var on = p === active;
+      p.a.classList.toggle("is-current", on);
+      if (on) p.a.setAttribute("aria-current", "location"); else p.a.removeAttribute("aria-current");
+    });
+    if (toc.scrollWidth > toc.clientWidth + 4) {
+      var left = active.a.offsetLeft - (toc.clientWidth - active.a.offsetWidth) / 2;
+      toc.scrollTo({ left: Math.max(0, left), behavior: "smooth" });
+    }
+  }
+
+  var pending = false;
+  function onScroll() {
+    if (pending) return;
+    pending = true;
+    window.setTimeout(function () { pending = false; update(); }, 40);
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+  window.addEventListener("hashchange", onScroll);
+  window.addEventListener("load", update);
+  update();
+})();
+</script>
+</body>
+</html>

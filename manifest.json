@@ -1,0 +1,257 @@
+{
+  "site": "Kill Team Core",
+  "version": "final-34-factions-all-buying-guides-fixed-persistent-shortcuts-cumulative-v15",
+  "updated": "2026-09-16",
+  "main": "index.html",
+  "completed_count": 34,
+  "pending_count": 0,
+  "completed": [
+    {
+      "name": "죽음의 천사",
+      "nameEn": "Angel of Death",
+      "group": "제국",
+      "slug": "angelofdeath",
+      "path": "angelofdeath/index.html"
+    },
+    {
+      "name": "전투계통",
+      "nameEn": "Battleclade",
+      "group": "제국",
+      "slug": "battleclade",
+      "path": "battleclade/index.html"
+    },
+    {
+      "name": "케인의 칼날",
+      "nameEn": "Blades of Khaine",
+      "group": "제노",
+      "slug": "bladesofkhaine",
+      "path": "bladesofkhaine/index.html"
+    },
+    {
+      "name": "무리 형제단",
+      "nameEn": "Brood Brothers",
+      "group": "제노",
+      "slug": "broodbrothers",
+      "path": "broodbrothers/index.html"
+    },
+    {
+      "name": "카놉텍 회합",
+      "nameEn": "Canoptek Circle",
+      "group": "제노",
+      "slug": "canoptekcircle",
+      "path": "canoptekcircle/index.html"
+    },
+    {
+      "name": "셀레스티안 항마단",
+      "nameEn": "Celestian Insidants",
+      "group": "제국",
+      "slug": "celestianinsidants",
+      "path": "celestianinsidants/index.html"
+    },
+    {
+      "name": "카오스 사교도",
+      "nameEn": "Chaos Cult",
+      "group": "카오스",
+      "slug": "chaoscult",
+      "path": "chaoscult/index.html"
+    },
+    {
+      "name": "데스워치",
+      "nameEn": "Deathwatch",
+      "group": "제국",
+      "slug": "deathwatch",
+      "path": "deathwatch/index.html"
+    },
+    {
+      "name": "집행 분대",
+      "nameEn": "Exaction Squad",
+      "group": "제국",
+      "slug": "exactionsquad",
+      "path": "exactionsquad/index.html"
+    },
+    {
+      "name": "엑소다이트 용의 달인",
+      "nameEn": "Exodite dragon master",
+      "group": "제노",
+      "slug": "exoditedragonmaster",
+      "path": "exoditedragonmaster/index.html"
+    },
+    {
+      "name": "먼길밟이 혈족단",
+      "nameEn": "Farstalker Kinband",
+      "group": "제노",
+      "slug": "farstalkerkinband",
+      "path": "farstalkerkinband/index.html"
+    },
+    {
+      "name": "펠고어 약탈자",
+      "nameEn": "Fellgor Ravagers",
+      "group": "카오스",
+      "slug": "fellgorravagers",
+      "path": "fellgorravagers/index.html"
+    },
+    {
+      "name": "유혈광",
+      "nameEn": "Goremongers",
+      "group": "카오스",
+      "slug": "goremongers",
+      "path": "goremongers/index.html"
+    },
+    {
+      "name": "집정관의 손",
+      "nameEn": "Hand of the Archon",
+      "group": "제노",
+      "slug": "handofthearchon",
+      "path": "handofthearchon/index.html"
+    },
+    {
+      "name": "하스킨 인양단",
+      "nameEn": "Hearthkyn Salvagers",
+      "group": "제노",
+      "slug": "hearthkynsalvagers",
+      "path": "hearthkynsalvagers/index.html"
+    },
+    {
+      "name": "헤른킨 예이기르",
+      "nameEn": "Hemkyn Yaegirs",
+      "group": "제노",
+      "slug": "hemkynyaegirs",
+      "path": "hemkynyaegirs/index.html"
+    },
+    {
+      "name": "히에로텍 회합",
+      "nameEn": "Hierotek Circle",
+      "group": "제노",
+      "slug": "hierotekcircle",
+      "path": "hierotekcircle/index.html"
+    },
+    {
+      "name": "제국 해군 돌파조",
+      "nameEn": "Imperial Navy Breachers",
+      "group": "제국",
+      "slug": "imperialnavybreachers",
+      "path": "imperialnavybreachers/index.html"
+    },
+    {
+      "name": "이단심문관 심복요원",
+      "nameEn": "Inquisitorial Agents",
+      "group": "제국",
+      "slug": "inquisitorialagents",
+      "path": "inquisitorialagents/index.html"
+    },
+    {
+      "name": "카스르킨",
+      "nameEn": "Kasrkin",
+      "group": "제국",
+      "slug": "kasrkin",
+      "path": "kasrkin/index.html"
+    },
+    {
+      "name": "맨드레이크",
+      "nameEn": "Mandrakes",
+      "group": "제노",
+      "slug": "mandrakes",
+      "path": "mandrakes/index.html"
+    },
+    {
+      "name": "살육날개",
+      "nameEn": "Murderwing",
+      "group": "카오스",
+      "slug": "murderwing",
+      "path": "murderwing/index.html"
+    },
+    {
+      "name": "천벌갈퀴",
+      "nameEn": "Nemesis Claw",
+      "group": "카오스",
+      "slug": "nemesisclaw",
+      "path": "nemesisclaw/index.html"
+    },
+    {
+      "name": "플레이그 마린",
+      "nameEn": "Plague Marines",
+      "group": "카오스",
+      "slug": "plaguemarines",
+      "path": "plaguemarines/index.html"
+    },
+    {
+      "name": "래틀링",
+      "nameEn": "Ratlings",
+      "group": "제국",
+      "slug": "ratlings",
+      "path": "ratlings/index.html"
+    },
+    {
+      "name": "래버너",
+      "nameEn": "Raveners",
+      "group": "제노",
+      "slug": "raveners",
+      "path": "raveners/index.html"
+    },
+    {
+      "name": "정화사역단",
+      "nameEn": "Sanctifiers",
+      "group": "제국",
+      "slug": "sanctifiers",
+      "path": "sanctifiers/index.html"
+    },
+    {
+      "name": "스카웃 분대",
+      "nameEn": "Scout Squad",
+      "group": "제국",
+      "slug": "scoutsquad",
+      "path": "scoutsquad/index.html"
+    },
+    {
+      "name": "유령 분대",
+      "nameEn": "Spectre Squad",
+      "group": "제국",
+      "slug": "spectresquad",
+      "path": "spectresquad/index.html"
+    },
+    {
+      "name": "템페스투스 아퀼론",
+      "nameEn": "Tempestus Aquilons",
+      "group": "제국",
+      "slug": "tempestusaquilons",
+      "path": "tempestusaquilons/index.html"
+    },
+    {
+      "name": "베스피드 독침날개",
+      "nameEn": "Vespid Stingwings",
+      "group": "제노",
+      "slug": "vespidstingwings",
+      "path": "vespidstingwings/index.html"
+    },
+    {
+      "name": "늑대 척후",
+      "nameEn": "Wolf Scout",
+      "group": "제국",
+      "slug": "wolfscout",
+      "path": "wolfscout/index.html"
+    },
+    {
+      "name": "레카 크루",
+      "nameEn": "Wrecka Krew",
+      "group": "제노",
+      "slug": "wreckakrew",
+      "path": "wreckakrew/index.html"
+    },
+    {
+      "name": "XV26 스텔스 배틀슈트",
+      "nameEn": "XV26 Stealth Battlesuits",
+      "group": "제노",
+      "slug": "xv26stealthbattlesuits",
+      "path": "xv26stealthbattlesuits/index.html"
+    }
+  ],
+  "shared_assets": [
+    "assets/detail-common.css",
+    "assets/detail-common.js"
+  ],
+  "detail_section_count": 8,
+  "faction_assets": [
+    "assets/angelofdeath-emblem.png"
+  ],
+  "ui_update": "Desktop detail-page section shortcuts fixed vertically at left; tablet/mobile shortcuts fixed horizontally below header."
+}

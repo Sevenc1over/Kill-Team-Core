@@ -1,0 +1,45 @@
+Kill Team Core - Q2 DESIGN AUDIT REPORT
+Date: 2026-09-13
+Revision: Q2 visual polish applied to the shared detail-page design system
+
+SCOPE
+- Content/rules text: unchanged
+- Page structure: unchanged
+- Errata policy: unchanged (no errata section)
+- Purchase-guide values: unchanged (unverified values remain 미정)
+- Shared detail-page CSS: visually refined
+
+Q2 DESIGN CHANGES
+- Refined dark/gold palette and background depth while preserving the established site identity.
+- Stronger hero hierarchy with refined panel borders, top accent line, faction badge treatment, and art-panel focus.
+- Larger, clearer gold section numbers with a vertical accent rail and gradient divider.
+- More consistent card depth, borders, hover states, and expanded-operative emphasis.
+- Refined stat blocks, weapon tables, rules blocks, and purchasing-guide cards.
+- Responsive refinements for desktop, tablet, and mobile without changing the information architecture.
+
+VALIDATION
+- Detail pages checked: 34/34
+- Expected 1-8 sections: 34/34
+- Last section = buying: 34/34
+- Mobile 390 px document-level horizontal overflow: 0 pages
+- Shared design source: assets/detail-common.css
+
+RESULT
+PASS
+
+The Q2 design update is presentation-only and is safe to apply across all 34 detail pages through the shared stylesheet.
+
+TARGETED UPDATE — 2026-09-14
+- Angel of Death hero only: removed temporary AOD shield mark.
+- Removed the hero-art gold X lines and radial glow on Angel of Death only.
+- Added assets/angelofdeath-emblem.png, derived from the user-supplied orange emblem with all non-orange pixels made transparent.
+- Shared detail-page CSS and the other 33 faction pages were not changed.
+
+
+TARGETED UPDATE — 2026-09-16 — v15 PERSISTENT SHORTCUTS
+- Detail pages patched: 34/34.
+- Desktop persistent left shortcut rail: 34/34.
+- Tablet/mobile fixed horizontal shortcut bar: 34/34.
+- Section shortcut targets verified: overview, operatives, composition, rules, equipment, strategic, firefight, buying.
+- Existing detail content was not rewritten by this UI-only update.
+RESULT: PASS
