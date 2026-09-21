@@ -1205,6 +1205,94 @@ footer{
   .buying-image-card img{height:190px !important;max-height:190px !important;object-fit:contain !important;background:#e7e7e7}
   .buying-image-card figcaption{padding:8px 12px !important;font-size:12px !important}
 }
+
+/* 요원 편성·팩션 규칙: 휴대폰에서 더 촘촘하게 (v2) */
+@media (max-width:680px){
+  /* 요원 편성 */
+  .composition-panel{padding:14px 12px 12px !important;border-radius:14px !important}
+  .composition-topline{gap:8px !important;padding-bottom:12px !important}
+  .composition-label{font-size:11px !important;margin-bottom:2px !important}
+  .composition-topline h3{font-size:20px !important}
+  .archetype-title{font-size:10px !important}
+  .archetype-chip{padding:4px 9px !important;font-size:11px !important}
+  .composition-summary{flex-wrap:nowrap !important;gap:6px !important;padding:12px 0 2px !important}
+  .summary-box{min-width:0 !important;flex:1 1 0 !important;padding:8px 4px !important;border-radius:10px !important}
+  .summary-box span{font-size:10px !important;margin-bottom:2px !important;line-height:1.3 !important;word-break:keep-all}
+  .composition-summary:has(.summary-box:nth-of-type(4)){flex-wrap:wrap !important;row-gap:8px !important}
+  .composition-summary:has(.summary-box:nth-of-type(4)) .summary-box{flex:1 1 38% !important}
+  .summary-box strong{font-size:18px !important}
+  .summary-plus,.summary-equals{font-size:14px !important;flex:0 0 auto}
+  .composition-columns{gap:10px !important;margin-top:12px !important}
+  .composition-block{padding:12px 11px !important;border-radius:12px !important}
+  .composition-block-head{gap:10px !important;padding-bottom:10px !important;margin-bottom:10px !important}
+  .composition-number{width:28px !important;height:28px !important;font-size:14px !important;border-radius:8px !important}
+  .composition-block-head h4{font-size:15px !important;margin:0 0 2px !important}
+  .composition-block-head p{font-size:12px !important;line-height:1.5 !important}
+  .loadout-row{gap:6px !important;margin-top:6px !important}
+  .loadout-row span,.option-group li,.fixed-loadout span{padding:4px 8px !important;font-size:12px !important;border-radius:6px !important}
+  .loadout-or{margin:7px 0 0 !important;font-size:10px !important}
+  .or-divider{margin:8px 0 !important}
+  .option-group{margin-top:8px !important}
+  .option-label{font-size:10px !important;margin-bottom:5px !important}
+  .choice-card{padding:10px 11px !important;margin-top:8px !important;border-radius:10px !important}
+  .choice-card h5{font-size:14px !important;margin:0 0 5px !important}
+  .choice-card p{font-size:12px !important;line-height:1.5 !important}
+  .operative-choice-list{grid-template-columns:repeat(2,minmax(0,1fr)) !important;gap:6px !important}
+  .operative-choice-item{padding:8px 9px !important;border-radius:9px !important;min-width:0}
+  .operative-choice-item strong{font-size:12.5px !important;line-height:1.35 !important;word-break:keep-all}
+  .operative-choice-list > :not(.operative-choice-item){grid-column:1/-1}
+  .operative-choice-item.detailed{grid-column:1/-1}
+  .operative-choice-item:has(p){grid-column:1/-1}
+  .operative-choice-item p{font-size:12px !important;line-height:1.5 !important;margin-top:4px !important}
+  .composition-rule,.bolt-note{padding:10px 12px !important;margin-top:10px !important;border-radius:10px !important}
+  .composition-rule strong,.bolt-note strong{font-size:12.5px !important;margin-bottom:3px !important}
+  .composition-rule p,.bolt-note p{font-size:12px !important;line-height:1.55 !important}
+  .composition-panel .plain-bullet-list{margin-top:6px !important;padding-left:16px !important}
+  .composition-panel .plain-bullet-list li{font-size:12px !important;line-height:1.55 !important;margin:4px 0 !important}
+  /* 팩션 규칙 */
+  .faction-rules-wrap{gap:12px !important}
+  .faction-rule-block{border-radius:14px !important}
+  .rule-block-head{padding:11px 14px 12px !important}
+  .rule-block-head:after{left:14px !important;width:56px !important}
+  .rule-kicker{font-size:11px !important;margin-bottom:2px !important}
+  .rule-block-head h3{font-size:21px !important}
+  .rule-intro{padding:12px 14px 0 !important}
+  .rule-intro p,.network-rules p,.astartes-rule-item p{font-size:14px !important;line-height:1.7 !important;margin:0 0 10px !important}
+  .rule-intro .lore-note,.aspect-card .lore-note{margin-bottom:10px !important}
+  .plain-bullet-list{margin-top:8px !important;padding-left:18px !important}
+  .plain-bullet-list li{font-size:13.5px !important;line-height:1.6 !important;margin:5px 0 !important}
+  .rules-source-note{margin:0 14px 14px !important;font-size:11.5px !important}
+  .developer-note{margin:0 14px 14px !important;padding:10px 12px !important}
+  .rule-note{margin-top:10px !important;padding:9px 10px !important}
+  .doctrine-list{margin-top:10px !important;gap:6px !important}
+  .doctrine-list li{padding:8px 10px !important}
+  .doctrine-list strong,.doctrine-list span{font-size:12.5px !important}
+  .aspect-card-grid{gap:10px !important;margin-top:12px !important}
+  .aspect-card{padding:12px 13px 13px !important;border-radius:14px !important}
+  .aspect-card h4{font-size:18px !important;margin:0 0 8px !important}
+  .aspect-card p{font-size:13.5px !important;line-height:1.7 !important;margin:8px 0 !important}
+  .aspect-card ul{margin-top:6px !important;padding-left:18px !important}
+  .aspect-card li{font-size:13.5px !important;line-height:1.6 !important;margin:5px 0 !important}
+  .aspect-groups{gap:14px !important}
+  .aspect-group{padding:13px 12px !important;border-radius:16px !important}
+  .aspect-group-heading{gap:8px !important;margin-bottom:12px !important;padding-bottom:10px !important}
+  .aspect-group-heading h3{font-size:20px !important}
+  .aspect-badge{padding:4px 9px !important;font-size:11px !important}
+  .tactics-grid{gap:8px !important;padding:0 14px 14px !important}
+  .tactic-card{padding:11px 11px 11px 44px !important}
+  .tactic-number{left:10px !important;top:10px !important;width:26px !important;height:26px !important;font-size:12px !important}
+  .tactic-card h4{font-size:15px !important;margin-bottom:5px !important}
+  .tactic-card p,.tactic-card li{font-size:12.5px !important;line-height:1.6 !important}
+  .tactic-select-box{padding:9px 10px !important}
+  .tactic-select-box strong{font-size:16px !important}
+  .astartes-quote{margin:12px 14px 0 !important;padding:10px 12px !important;font-size:13px !important;line-height:1.65 !important}
+  .astartes-body{gap:8px !important;padding:12px 14px 14px !important}
+  .astartes-rule-item{padding:10px 12px !important}
+  .requisition-grid{gap:10px !important;margin-top:12px !important}
+  .requisition-card{padding:12px 13px !important;border-radius:14px !important}
+  .requisition-card h4{font-size:18px !important;margin-bottom:6px !important}
+  .requisition-card p,.requisition-card li{font-size:13.5px !important;line-height:1.65 !important}
+}
 </style>
 </head><body>
 <!-- 유령 분대 페이지: 사용자 지시에 따라 업로드 PDF 1~9페이지만 반영. 10~15페이지 미사용. -->
