@@ -51,3 +51,19 @@ Kill Team Core - 최종 통합 오프라인 백업
 32. 늑대 척후 / Wolf Scout
 33. 레카 크루 / Wrecka Krew
 34. XV26 스텔스 배틀슈트 / XV26 Stealth Battlesuits
+
+미번역 킬팀 상세페이지
+1. 포보스 스트라이크 / Phobos Strike (미완)
+2. 노비시에이트 / Novitiates (미완)
+3. 헌터 클레이드 / Hunter Clade (미완)
+4. 엘루시디안 스타스트라이더 / Elucidian Starstriders (미완)
+5. 데스 코어 / Death Korps (미완)
+6. 리저너리 / Legionaries (미완)
+7. 워프코븐 / Warpcoven (미완)
+8. 블러디드 / Blodded (미완)
+9. 갤러폭스 인펙티드 / Gellerpox Infected (미완)
+10. 커세어 보이드스카드 / Corsair Voidscarred (미완)
+11. 보이드 댄서 트루페 / Void-Dancer Troupe (미완)
+12. 윔 블레이드 / Wyrmblade (미완)
+13. 패스파인더 / Pathfinders (미완)
+14. 코만도 / Kommandos (미완)
