@@ -1735,8 +1735,10 @@ document.querySelectorAll(".operative-summary").forEach(button => {
   });
 });
 
-</script><script id="section-spy-v16">
+</script><script id="section-spy-v17">
 // 고정 바로가기 메뉴: 현재 화면에 보이는 섹션의 링크를 강조합니다.
+// v17: 링크를 눌러 이동하는 동안에는 메뉴 막대를 움직이지 않습니다.
+//      (막대를 움직이면 휴대폰 브라우저에서 진행 중인 페이지 스크롤이 끊겨 한 섹션씩만 이동하던 문제)
 (function () {
   var toc = document.querySelector(".hero-toc");
   if (!toc) return;
@@ -1747,6 +1749,7 @@ document.querySelectorAll(".operative-summary").forEach(button => {
   });
   if (!pairs.length) return;
   var current = null;
+  var navigating = false, navTimer = null, settleTimer = null;
 
   function referenceLine() {
     var w = window.innerWidth;
@@ -1754,7 +1757,25 @@ document.querySelectorAll(".operative-summary").forEach(button => {
     return base + Math.min(120, window.innerHeight * 0.15);
   }
 
+  function moveBar(a, smooth) {
+    if (toc.scrollWidth <= toc.clientWidth + 4) return;
+    var left = Math.max(0, a.offsetLeft - (toc.clientWidth - a.offsetWidth) / 2);
+    if (smooth) toc.scrollTo({ left: left, behavior: "smooth" }); else toc.scrollLeft = left;
+  }
+
+  function setCurrent(active) {
+    if (active === current) return false;
+    current = active;
+    pairs.forEach(function (p) {
+      var on = p === active;
+      p.a.classList.toggle("is-current", on);
+      if (on) p.a.setAttribute("aria-current", "location"); else p.a.removeAttribute("aria-current");
+    });
+    return true;
+  }
+
   function update() {
+    if (navigating) return;
     var line = window.scrollY + referenceLine();
     var active = pairs[0];
     for (var i = 0; i < pairs.length; i++) {
@@ -1764,21 +1785,36 @@ document.querySelectorAll(".operative-summary").forEach(button => {
     if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
       active = pairs[pairs.length - 1];
     }
-    if (active === current) return;
-    current = active;
-    pairs.forEach(function (p) {
-      var on = p === active;
-      p.a.classList.toggle("is-current", on);
-      if (on) p.a.setAttribute("aria-current", "location"); else p.a.removeAttribute("aria-current");
-    });
-    if (toc.scrollWidth > toc.clientWidth + 4) {
-      var left = active.a.offsetLeft - (toc.clientWidth - active.a.offsetWidth) / 2;
-      toc.scrollTo({ left: Math.max(0, left), behavior: "smooth" });
-    }
+    if (setCurrent(active)) moveBar(active.a, true);
   }
+
+  function endNavigation() {
+    if (!navigating) return;
+    navigating = false;
+    window.clearTimeout(navTimer);
+    window.clearTimeout(settleTimer);
+    update();
+  }
+
+  toc.addEventListener("click", function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    if (!a) return;
+    var hit = null;
+    for (var i = 0; i < pairs.length; i++) { if (pairs[i].a === a) hit = pairs[i]; }
+    if (!hit) return;
+    navigating = true;
+    setCurrent(hit);
+    moveBar(a, false);
+    window.clearTimeout(navTimer);
+    navTimer = window.setTimeout(endNavigation, 2000);
+  });
 
   var pending = false;
   function onScroll() {
+    if (navigating) {
+      window.clearTimeout(settleTimer);
+      settleTimer = window.setTimeout(endNavigation, 200);
+    }
     if (pending) return;
     pending = true;
     window.setTimeout(function () { pending = false; update(); }, 40);
