@@ -1168,6 +1168,44 @@ footer{
 .wr-pop.is-below .wr-pop-arrow{bottom:auto;top:-7px;transform:translateX(-50%) rotate(225deg)}
 @media (max-width:680px){.wr-pop{font-size:12.5px;padding:11px 12px 12px}}
 </style>
+<style id="mobile-ui-v1">
+/* Kill Team Core — mobile layout (phones, ≤680px). Desktop/tablet untouched. */
+@media (max-width:680px){
+  /* 3. faction title: never break inside a word; smaller emblem */
+  /* per-page hero styles keep a 220px right padding for the emblem even on phones; undo it here */
+  .hero-copy[class*="-hero-copy"]{padding-right:24px !important;min-height:0 !important}
+  .hero-copy h1{font-size:clamp(28px,8.8vw,44px) !important;line-height:1.12 !important;letter-spacing:-.03em !important;word-break:keep-all !important;overflow-wrap:normal !important;text-wrap:balance}
+  .hero img[class*="-inline-emblem"]{width:min(30vw,120px) !important;margin:14px 0 0 auto !important}
+  /* 4. operative stats in one row */
+  .stat-strip{grid-template-columns:repeat(4,minmax(0,1fr)) !important;gap:6px !important;margin-bottom:14px !important}
+  .stat-box{padding:9px 6px 8px !important;text-align:center}
+  .stat-box span{font-size:9.5px !important;letter-spacing:.04em !important;margin-bottom:3px !important}
+  .stat-box strong{font-size:19px !important}
+  /* 7. flavour text: smaller and tighter */
+  .lore-note{font-size:13px !important;line-height:1.65 !important;padding:10px 12px !important;margin:0 0 12px !important}
+  /* 1. weapon tables become weapon cards: name / 공격·명중·피해 / 규칙 */
+  .weapon-table-wrap{overflow:visible !important}
+  .weapon-table,.aspect-weapon table:not(.plain-table){min-width:0 !important;width:100%;border-collapse:separate;border-spacing:0}
+  .weapon-table thead,.aspect-weapon table:not(.plain-table) thead{display:none}
+  .weapon-table tbody,.aspect-weapon table:not(.plain-table) tbody{display:block}
+  .weapon-table tbody tr,.aspect-weapon table:not(.plain-table) tbody tr{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px 8px;padding:11px 12px 12px;border-bottom:1px solid var(--line);background:transparent !important}
+  .weapon-table tbody tr:last-child,.aspect-weapon table:not(.plain-table) tbody tr:last-child{border-bottom:0}
+  .weapon-table td,.aspect-weapon table:not(.plain-table) td{display:block;padding:0 !important;border:0 !important;width:auto !important;white-space:normal !important;text-align:left !important}
+  .weapon-table td:first-child,.aspect-weapon table:not(.plain-table) td:first-child{grid-column:1/-1;font-size:14px;font-weight:800;color:var(--text);line-height:1.45;margin-bottom:1px}
+  .weapon-table td:nth-child(2),.weapon-table td:nth-child(3),.weapon-table td:nth-child(4),
+  .aspect-weapon table:not(.plain-table) td:nth-child(2),.aspect-weapon table:not(.plain-table) td:nth-child(3),.aspect-weapon table:not(.plain-table) td:nth-child(4){text-align:center !important;border:1px solid var(--line) !important;border-radius:9px;padding:6px 4px 5px !important;background:rgba(255,255,255,.03);font-size:15px;font-weight:800;line-height:1.2}
+  .weapon-table td:nth-child(2)::before,.aspect-weapon table:not(.plain-table) td:nth-child(2)::before{content:"공격"}
+  .weapon-table td:nth-child(3)::before,.aspect-weapon table:not(.plain-table) td:nth-child(3)::before{content:"명중"}
+  .weapon-table td:nth-child(4)::before,.aspect-weapon table:not(.plain-table) td:nth-child(4)::before{content:"피해"}
+  .weapon-table td:nth-child(n+2):nth-child(-n+4)::before,.aspect-weapon table:not(.plain-table) td:nth-child(n+2):nth-child(-n+4)::before{display:block;font-size:10px;font-weight:800;letter-spacing:.06em;color:var(--muted);margin-bottom:2px}
+  .weapon-table td:nth-child(5),.aspect-weapon table:not(.plain-table) td:nth-child(5){grid-column:1/-1;font-size:13px;line-height:1.7;color:var(--text);margin-top:3px}
+  .weapon-table td:nth-child(5)::before,.aspect-weapon table:not(.plain-table) td:nth-child(5)::before{content:"규칙";display:inline-block;margin-right:7px;padding:1px 6px;border-radius:6px;background:rgba(199,168,98,.13);color:var(--accent);font-size:10px;font-weight:900;letter-spacing:.06em;vertical-align:1px}
+  /* 6. buying guide images: capped height */
+  .buying-image-grid{gap:10px !important}
+  .buying-image-card img{height:190px !important;max-height:190px !important;object-fit:contain !important;background:#e7e7e7}
+  .buying-image-card figcaption{padding:8px 12px !important;font-size:12px !important}
+}
+</style>
 </head>
 <body>
 <header>

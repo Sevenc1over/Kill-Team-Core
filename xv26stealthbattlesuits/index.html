@@ -1160,6 +1160,44 @@ footer{
 .wr-pop.is-below .wr-pop-arrow{bottom:auto;top:-7px;transform:translateX(-50%) rotate(225deg)}
 @media (max-width:680px){.wr-pop{font-size:12.5px;padding:11px 12px 12px}}
 </style>
+<style id="mobile-ui-v1">
+/* Kill Team Core — mobile layout (phones, ≤680px). Desktop/tablet untouched. */
+@media (max-width:680px){
+  /* 3. faction title: never break inside a word; smaller emblem */
+  /* per-page hero styles keep a 220px right padding for the emblem even on phones; undo it here */
+  .hero-copy[class*="-hero-copy"]{padding-right:24px !important;min-height:0 !important}
+  .hero-copy h1{font-size:clamp(28px,8.8vw,44px) !important;line-height:1.12 !important;letter-spacing:-.03em !important;word-break:keep-all !important;overflow-wrap:normal !important;text-wrap:balance}
+  .hero img[class*="-inline-emblem"]{width:min(30vw,120px) !important;margin:14px 0 0 auto !important}
+  /* 4. operative stats in one row */
+  .stat-strip{grid-template-columns:repeat(4,minmax(0,1fr)) !important;gap:6px !important;margin-bottom:14px !important}
+  .stat-box{padding:9px 6px 8px !important;text-align:center}
+  .stat-box span{font-size:9.5px !important;letter-spacing:.04em !important;margin-bottom:3px !important}
+  .stat-box strong{font-size:19px !important}
+  /* 7. flavour text: smaller and tighter */
+  .lore-note{font-size:13px !important;line-height:1.65 !important;padding:10px 12px !important;margin:0 0 12px !important}
+  /* 1. weapon tables become weapon cards: name / 공격·명중·피해 / 규칙 */
+  .weapon-table-wrap{overflow:visible !important}
+  .weapon-table,.aspect-weapon table:not(.plain-table){min-width:0 !important;width:100%;border-collapse:separate;border-spacing:0}
+  .weapon-table thead,.aspect-weapon table:not(.plain-table) thead{display:none}
+  .weapon-table tbody,.aspect-weapon table:not(.plain-table) tbody{display:block}
+  .weapon-table tbody tr,.aspect-weapon table:not(.plain-table) tbody tr{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px 8px;padding:11px 12px 12px;border-bottom:1px solid var(--line);background:transparent !important}
+  .weapon-table tbody tr:last-child,.aspect-weapon table:not(.plain-table) tbody tr:last-child{border-bottom:0}
+  .weapon-table td,.aspect-weapon table:not(.plain-table) td{display:block;padding:0 !important;border:0 !important;width:auto !important;white-space:normal !important;text-align:left !important}
+  .weapon-table td:first-child,.aspect-weapon table:not(.plain-table) td:first-child{grid-column:1/-1;font-size:14px;font-weight:800;color:var(--text);line-height:1.45;margin-bottom:1px}
+  .weapon-table td:nth-child(2),.weapon-table td:nth-child(3),.weapon-table td:nth-child(4),
+  .aspect-weapon table:not(.plain-table) td:nth-child(2),.aspect-weapon table:not(.plain-table) td:nth-child(3),.aspect-weapon table:not(.plain-table) td:nth-child(4){text-align:center !important;border:1px solid var(--line) !important;border-radius:9px;padding:6px 4px 5px !important;background:rgba(255,255,255,.03);font-size:15px;font-weight:800;line-height:1.2}
+  .weapon-table td:nth-child(2)::before,.aspect-weapon table:not(.plain-table) td:nth-child(2)::before{content:"공격"}
+  .weapon-table td:nth-child(3)::before,.aspect-weapon table:not(.plain-table) td:nth-child(3)::before{content:"명중"}
+  .weapon-table td:nth-child(4)::before,.aspect-weapon table:not(.plain-table) td:nth-child(4)::before{content:"피해"}
+  .weapon-table td:nth-child(n+2):nth-child(-n+4)::before,.aspect-weapon table:not(.plain-table) td:nth-child(n+2):nth-child(-n+4)::before{display:block;font-size:10px;font-weight:800;letter-spacing:.06em;color:var(--muted);margin-bottom:2px}
+  .weapon-table td:nth-child(5),.aspect-weapon table:not(.plain-table) td:nth-child(5){grid-column:1/-1;font-size:13px;line-height:1.7;color:var(--text);margin-top:3px}
+  .weapon-table td:nth-child(5)::before,.aspect-weapon table:not(.plain-table) td:nth-child(5)::before{content:"규칙";display:inline-block;margin-right:7px;padding:1px 6px;border-radius:6px;background:rgba(199,168,98,.13);color:var(--accent);font-size:10px;font-weight:900;letter-spacing:.06em;vertical-align:1px}
+  /* 6. buying guide images: capped height */
+  .buying-image-grid{gap:10px !important}
+  .buying-image-card img{height:190px !important;max-height:190px !important;object-fit:contain !important;background:#e7e7e7}
+  .buying-image-card figcaption{padding:8px 12px !important;font-size:12px !important}
+}
+</style>
 </head><body>
 <!-- XV26 스텔스 배틀슈트 페이지: 사용자 지시에 따라 업로드 PDF 1~8페이지만 반영. 9~15페이지 미사용. 마커/토큰 안내 블록은 제외. -->
 <header><div class="header-inner"><a class="logo" href="../index.html"><span class="logo-mark">K</span><span>Kill Team Core</span></a><a class="back" href="../index.html">← 팩션 목록으로</a></div></header>
@@ -1209,7 +1247,7 @@ footer{
 </div></section>
 <section id="rules"><div class="section-head"><div><span class="section-no">04</span><h2>팩션 규칙</h2></div></div><div class="faction-rules-wrap">
 <article class="faction-rule-block"><div class="rule-block-head"><span class="rule-kicker">XV26 스텔스 배틀슈트</span><h3>은신 역장</h3></div><div class="rule-intro simple-intro"><div class="lore-note">숙련된 조종사의 XV26 스텔스 배틀슈트와 특화된 동행 드론에는 은신 역장 생성기가 내장되었다. 역장을 투사하면 팀 요원의 모습을 감추어 위험한 영역도 포착되지 않고 드나들 수 있다.</div><div class="network-rules"><p>아군 XV26 스텔스 배틀슈트 요원이 은폐 명령을 받은 상태라면, 그로부터 3″ 넘게 떨어진 적 요원의 시야에 확보되지 않습니다. 이는 다른 모든 규칙에 우선합니다.</p><p>아군 XV26 스텔스 배틀슈트 요원이 은폐 명령을 받은 상태라면, 후퇴 행동을 수행할 때 소모되는 AP가 -1만큼 변경됩니다.</p></div></div></article>
-<article class="faction-rule-block"><div class="rule-block-head"><span class="rule-kicker">XV26 스텔스 배틀슈트</span><h3>카우욘</h3></div><div class="rule-intro simple-intro"><div class="lore-note">카우욘은 불 카스트가 받드는 군사 철학 중에 가장 유서 깊고, XV26 스텔스 배틀슈트 킬 팀이 크게 선호하는 전법이기도 하다. 카우욘은 인내하는 사냥꾼이란 의미로 풀이할 수 있으며, 적이 섣부르게 행동하도록 유도해서 일제히 맹공격하는 방침에 주안점을 둔다.</div><div class="network-rules"><p>아군 XV26 스텔스 배틀슈트 요원이 적 요원을 사격할 때마다, 원거리 무기에 정확 X 무기 규칙이 부여됩니다. X 값은 그 적 요원의 위치에 따라 달라집니다.</p><div class="aspect-weapon"><table><thead><tr><th>적 요원 위치</th><th>정확 X</th></tr></thead><tbody><tr><td>플레이어 영역으로부터 3″ 내</td><td>정확 1</td></tr><tr><td>플레이어 영역 내</td><td>정확 2</td></tr><tr><td>플레이어 투입 구역으로부터 3″ 내</td><td>정확 3</td></tr></tbody></table></div></div></div></article>
+<article class="faction-rule-block"><div class="rule-block-head"><span class="rule-kicker">XV26 스텔스 배틀슈트</span><h3>카우욘</h3></div><div class="rule-intro simple-intro"><div class="lore-note">카우욘은 불 카스트가 받드는 군사 철학 중에 가장 유서 깊고, XV26 스텔스 배틀슈트 킬 팀이 크게 선호하는 전법이기도 하다. 카우욘은 인내하는 사냥꾼이란 의미로 풀이할 수 있으며, 적이 섣부르게 행동하도록 유도해서 일제히 맹공격하는 방침에 주안점을 둔다.</div><div class="network-rules"><p>아군 XV26 스텔스 배틀슈트 요원이 적 요원을 사격할 때마다, 원거리 무기에 정확 X 무기 규칙이 부여됩니다. X 값은 그 적 요원의 위치에 따라 달라집니다.</p><div class="aspect-weapon"><table class="plain-table"><thead><tr><th>적 요원 위치</th><th>정확 X</th></tr></thead><tbody><tr><td>플레이어 영역으로부터 3″ 내</td><td>정확 1</td></tr><tr><td>플레이어 영역 내</td><td>정확 2</td></tr><tr><td>플레이어 투입 구역으로부터 3″ 내</td><td>정확 3</td></tr></tbody></table></div></div></div></article>
 </div></section>
 <section id="equipment"><div class="section-head"><div><span class="section-no">05</span><h2>팩션 장비</h2></div></div><div class="ploy-grid equipment-grid">
 <article class="ploy-card"><div class="ploy-head"><span class="ploy-faction">XV26 스텔스 배틀슈트</span><h3>향상된 검은태양 필터</h3></div><div class="ploy-body"><div class="lore-note">이 광학체계로 강화된 배틀슈트와 드론 동체는 극히 부자연스럽고 시계가 제한적인 환경에 놓이더라도 놀랍도록 정확하게 표적을 식별할 수 있다.</div><div class="ploy-rule"><p>아군 XV26 스텔스 배틀슈트 요원이 차폐 효과를 받는 요원을 사격할 때마다, 차폐 규칙에 의해서 성공 주사위 하나를 버리지 않아도 됩니다. 이를 제외한 모든 차폐 규칙 효과는 그대로 적용됩니다.</p></div></div></article>
