@@ -55,10 +55,10 @@ Kill Team Core - 최종 통합 오프라인 백업
 미번역 킬팀 상세페이지
 1. 포보스 스트라이크 / Phobos Strike (미완)
 2. 노비시에이트 / Novitiates (미완)
-3. 헌터 클레이드 / Hunter Clade (미완)
+3. 헌터 클레이드 / Hunter Clade (완료)
 4. 엘루시디안 스타스트라이더 / Elucidian Starstriders (미완)
-5. 데스 코어 / Death Korps (미완)
-6. 리저너리 / Legionaries (미완)
+5. 데스 코어 / Death Korps (완료)
+6. 리저너리 / Legionaries (완료)
 7. 워프코븐 / Warpcoven (미완)
 8. 블러디드 / Blodded (미완)
 9. 갤러폭스 인펙티드 / Gellerpox Infected (미완)
