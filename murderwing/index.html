@@ -1186,22 +1186,6 @@ footer{
 }
 </style>
 
-<style id="weapon-rule-glossary-v1">
-/* weapon-rule glossary: clickable keywords + popover */
-.wr-kw{appearance:none;-webkit-appearance:none;background:none;border:0;border-bottom:1px dotted rgba(209,179,106,.75);border-radius:0;padding:0 1px;margin:0;font:inherit;line-height:inherit;letter-spacing:inherit;color:var(--accent);cursor:pointer;white-space:nowrap;text-align:inherit;-webkit-tap-highlight-color:transparent;transition:background-color .15s,border-color .15s}
-.wr-kw:hover,.wr-kw.is-open{background:var(--accent-soft);border-bottom-style:solid;border-bottom-color:var(--accent)}
-.wr-kw:focus-visible{outline:2px solid rgba(209,179,106,.6);outline-offset:1px;border-radius:3px}
-.wr-pop{position:absolute;z-index:300;width:max-content;max-width:min(400px,calc(100vw - 16px));box-sizing:border-box;background:#161b20;border:1px solid rgba(209,179,106,.38);border-radius:12px;padding:12px 14px 13px;box-shadow:0 18px 46px rgba(0,0,0,.5),0 0 0 1px rgba(0,0,0,.45);color:var(--text);font-size:13px;line-height:1.7;word-break:keep-all;overflow-wrap:break-word;text-align:left}
-.wr-pop[hidden]{display:none !important}
-.wr-pop-head{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin:0 0 6px}
-.wr-pop-ko{color:var(--accent);font-weight:900;font-size:14px}
-.wr-pop-en{color:var(--muted);font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:700}
-.wr-pop-sum{margin:0;font-weight:700;color:#f3f4f5}
-.wr-pop-det{margin:6px 0 0;color:#b9c0c7}
-.wr-pop-arrow{position:absolute;bottom:-7px;left:50%;width:12px;height:12px;background:#161b20;border-right:1px solid rgba(209,179,106,.38);border-bottom:1px solid rgba(209,179,106,.38);transform:translateX(-50%) rotate(45deg)}
-.wr-pop.is-below .wr-pop-arrow{bottom:auto;top:-7px;transform:translateX(-50%) rotate(225deg)}
-@media (max-width:680px){.wr-pop{font-size:12.5px;padding:11px 12px 12px}}
-</style>
 <style id="mobile-ui-v1">
 /* Kill Team Core — mobile layout (phones, ≤680px). Desktop/tablet untouched. */
 @media (max-width:680px){
@@ -1336,6 +1320,23 @@ footer{
 .hero-note-unofficial{color:#ef6b60;border-color:rgba(239,107,96,.7);background:rgba(239,107,96,.08)}
 @media(max-width:980px){.hero-note{left:32px;bottom:16px}}
 @media(max-width:680px){.hero-note{position:static;margin:12px 0 0;align-self:flex-start}}
+@media(min-width:681px){.hero-copy{padding-bottom:76px !important}}
+</style>
+<style id="weapon-rule-glossary-v1">
+/* weapon-rule glossary: clickable keywords + popover */
+.wr-kw{appearance:none;-webkit-appearance:none;background:none;border:0;border-bottom:1px dotted rgba(209,179,106,.75);border-radius:0;padding:0 1px;margin:0;font:inherit;line-height:inherit;letter-spacing:inherit;color:var(--accent);cursor:pointer;white-space:nowrap;text-align:inherit;-webkit-tap-highlight-color:transparent;transition:background-color .15s,border-color .15s}
+.wr-kw:hover,.wr-kw.is-open{background:var(--accent-soft);border-bottom-style:solid;border-bottom-color:var(--accent)}
+.wr-kw:focus-visible{outline:2px solid rgba(209,179,106,.6);outline-offset:1px;border-radius:3px}
+.wr-pop{position:absolute;z-index:300;width:max-content;max-width:min(400px,calc(100vw - 16px));box-sizing:border-box;background:#161b20;border:1px solid rgba(209,179,106,.38);border-radius:12px;padding:12px 14px 13px;box-shadow:0 18px 46px rgba(0,0,0,.5),0 0 0 1px rgba(0,0,0,.45);color:var(--text);font-size:13px;line-height:1.7;word-break:keep-all;overflow-wrap:break-word;text-align:left}
+.wr-pop[hidden]{display:none !important}
+.wr-pop-head{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin:0 0 6px}
+.wr-pop-ko{color:var(--accent);font-weight:900;font-size:14px}
+.wr-pop-en{color:var(--muted);font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:700}
+.wr-pop-sum{margin:0;font-weight:700;color:#f3f4f5}
+.wr-pop-det{margin:6px 0 0;color:#b9c0c7}
+.wr-pop-arrow{position:absolute;bottom:-7px;left:50%;width:12px;height:12px;background:#161b20;border-right:1px solid rgba(209,179,106,.38);border-bottom:1px solid rgba(209,179,106,.38);transform:translateX(-50%) rotate(45deg)}
+.wr-pop.is-below .wr-pop-arrow{bottom:auto;top:-7px;transform:translateX(-50%) rotate(225deg)}
+@media (max-width:680px){.wr-pop{font-size:12.5px;padding:11px 12px 12px}}
 </style>
 </head>
 <body>
@@ -1943,7 +1944,10 @@ document.querySelectorAll(".operative-summary").forEach(button => {
       det: "효과는 대상의 다음 운용이 끝날 때까지 지속됩니다. APL이 줄어든 요원은 행동을 하나 덜 하게 되므로 목표물 장악이나 후퇴를 방해하기 좋습니다." },
     torrent: { ko: "격류 {v}", en: "Torrent {v}",
       sum: "유효 대상을 하나 고른 뒤, 그 대상으로부터 {v} 이내에 있는 다른 유효 대상들을 원하는 만큼 추가로 골라 각각 별도의 사격을 수행합니다.",
-      det: "폭발과 달리 추가 대상은 사격 요원에게 유효 대상이어야 하고, 아군은 휘말리지 않으며, 원하지 않는 대상은 제외할 수 있습니다." }
+      det: "폭발과 달리 추가 대상은 사격 요원에게 유효 대상이어야 하고, 아군은 휘말리지 않으며, 원하지 않는 대상은 제외할 수 있습니다." },
+    guard: { ko: "엄호", en: "Guard",
+      sum: "1AP 행동입니다. 요원이 엄호 상태에 들어가, 적 요원이 행동을 마친 직후 그 운용을 방해해 무상 사격 또는 근접전 행동을 수행할 수 있습니다. 무상 행동을 수행하면(어떤 행동이든 하면) 엄호 상태가 끝나므로, 엄호 한 번으로 무상 사격·근접전은 한 번만 쓸 수 있습니다.",
+      det: "방해는 각 적 요원의 운용당 한 번, 그 적 요원이 행동을 수행한 뒤에 할 수 있으며, 엄호 상태인 아군 요원 하나를 지정해 사격 또는 근접전 행동(해치 통로전처럼 그런 행동으로 간주되는 행동 포함)을 무상으로 수행합니다. 엄호 상태는 요원이 어떤 행동이든 수행하거나, 요원의 장악 범위 내에서 적 요원이 행동을 마쳤는데 방해하지 않거나, 받은 명령이 바뀌거나, 다음 전환점이 시작되면 끝납니다. 엄호는 사격 행동으로 간주하며, 은폐 명령 상태이거나 적 요원의 장악 범위 내에 있을 때는 수행할 수 없습니다. 방해로 하는 사격은 적 요원의 장악 범위 내에서도 할 수 있는 영거리 사격으로, 일반 사격 요건에 우선합니다. 영거리 사격은 요원의 장악 범위 내에 있는 적 요원을 대상으로 지정하고(평소 유효 대상이 아닌 적도 가능), 무기의 명중 요구치가 1만큼 악화되며, 방해당한 적 요원의 운용이 끝날 때까지 반격할 수 없습니다." }
   };
   var KEYS = [
     ["결정적 관통", "piercing_crits"], ["저밀도 색적", "seek_light"], ["중화기", "heavy"],
@@ -1951,19 +1955,20 @@ document.querySelectorAll(".operative-summary").forEach(button => {
     ["무자비", "brutal"], ["집요", "ceaseless"], ["궤멸", "devastating"], ["과열", "hot"],
     ["살상", "lethal"], ["한도", "limited"], ["관통", "piercing"], ["맹공", "punishing"],
     ["혹독", "relentless"], ["파쇄", "rending"], ["포화", "saturate"], ["색적", "seek"],
-    ["중상", "severe"], ["충격", "shock"], ["무성", "silent"], ["혼미", "stun"], ["격류", "torrent"]
+    ["중상", "severe"], ["충격", "shock"], ["무성", "silent"], ["혼미", "stun"], ["격류", "torrent"],
+    ["엄호", "guard"]
   ];
   var ID = {};
   KEYS.forEach(function (k) { ID[k[0]] = k[1]; });
   var VALKW = "결정적 관통|사거리|정확|폭발|궤멸|살상|한도|관통|격류";
-  var NOVALKW = /저밀도 색적|중화기(?:\((?:질주|기동) 한정\))?|균형|무자비|집요|과열|맹공|혹독|파쇄|포화|색적|중상|충격|무성|혼미/.source;
+  var NOVALKW = /저밀도 색적|중화기(?:\((?:질주|기동) 한정\))?|균형|무자비|집요|과열|맹공|혹독|파쇄|포화|색적|중상|충격|무성|혼미|엄호/.source;
   var VAL = /(?:\d+″|\d+\+|\d+|[xX](?![가-힣A-Za-z0-9″]))/.source;
   var DIST = /\d+″ 궤멸(?: ?\d+)?/.source;
   var TOKEN = "(?:" + DIST + "|(?:" + VALKW + ")(?: ?" + VAL + ")?|(?:" + NOVALKW + "))";
   var SCAN = new RegExp("(^|[^가-힣A-Za-z0-9])(" + TOKEN + ")", "g");
   var TAIL = new RegExp("^(?: ?(?:,|과|와|이나|나|및|또는|·) ?" + TOKEN + ")*(?: 등의| 등)? (?:무기 )?규칙");
   var LISTLINE = new RegExp("^(?:" + TOKEN + "|[^,]{1,18})(?:, ?(?:" + TOKEN + "|[^,]{1,18}))*$");
-  var PARSE = /^(?:(\d+″) )?(결정적 관통|저밀도 색적|중화기|사거리|정확|균형|폭발|무자비|집요|궤멸|과열|살상|한도|관통|맹공|혹독|파쇄|포화|색적|중상|충격|무성|혼미|격류)(\((질주|기동) 한정\))?(?: ?(\d+″|\d+\+|\d+|[xX]))?$/;
+  var PARSE = /^(?:(\d+″) )?(결정적 관통|저밀도 색적|중화기|사거리|정확|균형|폭발|무자비|집요|궤멸|과열|살상|한도|관통|맹공|혹독|파쇄|포화|색적|중상|충격|무성|혼미|격류|엄호)(\((질주|기동) 한정\))?(?: ?(\d+″|\d+\+|\d+|[xX]))?$/;
   var ANYWHERE = { "결정적 관통": 1, "정확": 1, "폭발": 1, "궤멸": 1, "살상": 1, "한도": 1, "관통": 1, "격류": 1 };
   var LIST_TAGS = { TD: 1, LI: 1, DD: 1, DT: 1, SPAN: 1, STRONG: 1, EM: 1, B: 1, P: 1, DIV: 1, H4: 1, H5: 1 };
   var SKIP = "script,style,button,a,h1,h2,h3,.hero-toc,.breadcrumb,.wr-pop,[data-wr-skip]";
@@ -1977,10 +1982,20 @@ document.querySelectorAll(".operative-summary").forEach(button => {
     if (id === "lethal") v = v.replace("+", "");
     return { id: id, kw: m[2], dist: m[1] || "", val: v, numeric: /^\d/.test(m[5] || "") };
   }
-  function qualifies(info, rest, listMode) {
+  var COLON_LIST = new RegExp("무기 규칙[^:]{0,40}: ?(?:" + TOKEN + ", ?)*$");
+  var LIST_REST = /^(?:,|[.)]|$| 등| 중)/;
+  var GUARD_AFTER = /^(?: (?:행동|상태|제외|포함|이외)|는 )/;
+  function guardOk(before, rest, listMode) {
+    if (listMode) return true;
+    if (GUARD_AFTER.test(rest)) return true;
+    return /^,/.test(rest) && /[,(] ?$/.test(before);
+  }
+  function qualifies(info, before, rest, listMode) {
+    if (info.id === "guard") return guardOk(before, rest, listMode);
     if (listMode) return true;
     if (info.numeric && (ANYWHERE[info.kw] || info.dist)) return true;
-    return TAIL.test(rest);
+    if (TAIL.test(rest)) return true;
+    return COLON_LIST.test(before) && LIST_REST.test(rest);
   }
   function makeKw(tok, info) {
     var b = document.createElement("button");
@@ -2009,7 +2024,7 @@ document.querySelectorAll(".operative-summary").forEach(button => {
         if ((before && !/,$/.test(before)) || (after && !/^,/.test(after))) continue;
       }
       var info = parseToken(tok);
-      if (!info || !qualifies(info, text.slice(end), listMode)) continue;
+      if (!info || !qualifies(info, text.slice(0, start), text.slice(end), listMode)) continue;
       if (!frag) frag = document.createDocumentFragment();
       if (start > last) frag.appendChild(document.createTextNode(text.slice(last, start)));
       frag.appendChild(makeKw(tok, info));
