@@ -65,5 +65,5 @@ Kill Team Core - 최종 통합 오프라인 백업
 10. 공허상흔 해적단 / Corsair Voidscarred (미완)
 11. 공허춤꾼 극단 / Void-Dancer Troupe (미완)
 12. 이무기 칼날 / Wyrmblade (미완)
-13. 선도 요원 / Pathfinders (미완)
+13. 선도 요원 / Pathfinders (완료)
 14. 코만도스 / Kommandos (완료)
