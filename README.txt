@@ -54,7 +54,7 @@ Kill Team Core - 최종 통합 오프라인 백업
 
 미번역 킬팀 상세페이지
 1. 포보스 타격반 / Phobos Strike (완료)
-2. 수습 수녀단 / Novitiates (미완)
+2. 수습 수녀단 / Novitiates (완료)
 3. 사냥 계통 / Hunter Clade (완료)
 4. 엘루시디아의 성간활보자 / Elucidian Starstriders (미완)
 5. 데스 코어 / Death Korps (완료)
