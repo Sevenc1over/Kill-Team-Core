@@ -61,7 +61,7 @@ Kill Team Core - 최종 통합 오프라인 백업
 6. 군단병 / Legionaries (완료)
 7. 워프주술회 / Warpcoven (미완)
 8. 피칠갑 / Blodded (미완)
-9. 겔러폭스 감염자 / Gellerpox Infected (미완)
+9. 겔러폭스 감염자 / Gellerpox Infected (완료)
 10. 공허상흔 해적단 / Corsair Voidscarred (미완)
 11. 공허춤꾼 극단 / Void-Dancer Troupe (미완)
 12. 이무기 칼날 / Wyrmblade (미완)
