@@ -59,7 +59,7 @@ Kill Team Core - 최종 통합 오프라인 백업
 4. 엘루시디아의 성간활보자 / Elucidian Starstriders (완료)
 5. 데스 코어 / Death Korps (완료)
 6. 군단병 / Legionaries (완료)
-7. 워프주술회 / Warpcoven (미완)
+7. 워프주술회 / Warpcoven (완료)
 8. 피칠갑 / Blodded (미완)
 9. 겔러폭스 감염자 / Gellerpox Infected (완료)
 10. 공허상흔 해적단 / Corsair Voidscarred (미완)
