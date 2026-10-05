@@ -1,0 +1,158 @@
+html{color-scheme:dark;--surface-rgb:13,15,17;--overlay-rgb:255,255,255}
+html[data-theme="light"]{color-scheme:light;--bg:#f5f6f8;--panel:#ffffff;--panel-2:#edf0f4;--panel2:#edf0f4;--line:#cbd1d9;--text:#20242b;--muted:#535d69;--accent:#e9c654;--accent-soft:rgba(217,173,42,.12);--gold-fill:#e9c654;--danger:#a33d35;--surface-rgb:255,255,255;--overlay-rgb:30,40,55}
+.header-actions{display:flex;align-items:center;gap:18px}
+.theme-toggle{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:9px 12px;border:1px solid var(--line);border-radius:10px;background:var(--panel);color:var(--text);font:inherit;font-size:13px;font-weight:700;cursor:pointer;white-space:nowrap}
+.theme-toggle:hover{border-color:var(--accent)}.theme-toggle:focus-visible{outline:2px solid var(--accent);outline-offset:3px}
+html[data-theme="light"] :is(.aspect-family){color:#993b3b}html[data-theme="light"] :is(.aspect-type){color:#e9c654}
+html[data-theme="light"] :is(.hero-note-unofficial,.buying-warning,.buying-guide-warning){color:#913f36}
+html[data-theme="light"] .hero-toc{background:rgba(255,255,255,.96);border-color:var(--line)}
+html[data-theme="light"] :is(.art,.hero-art){background:linear-gradient(145deg,#e4e8ed,#f6f7f9)}
+html[data-theme="light"] :is(.notice-panel,.notice){background:var(--panel);color:var(--text)}
+html[data-theme="light"] :is(.search-wrap,.search-wrap input){background:var(--panel);color:var(--text)}
+html[data-theme="light"] .filter-btn.active{color:var(--text)}
+@media(max-width:680px){.header-actions{gap:8px}.theme-toggle{font-size:12px;padding:8px}.header-actions .back{font-size:0}.header-actions .back:after{content:'← 목록';font-size:12px}.logo{gap:8px;font-size:13px;letter-spacing:.08em}.logo-mark{width:42px;height:42px}.header-inner{padding-inline:14px}}
+
+html[data-theme="light"] body{background:radial-gradient(circle at 50% 0%,rgba(128,96,32,.06),transparent 26rem),linear-gradient(180deg,#ffffff,var(--bg))}
+
+/* Light surfaces for detail pages, including faction-specific panels. */
+html[data-theme="light"] :is(header,.site-header){background:rgba(255,255,255,.95);border-bottom-color:var(--line);box-shadow:0 4px 16px rgba(30,40,55,.06)}
+html[data-theme="light"] :is(.hero-copy,.hero-art,.panel,.placeholder,.composition-panel,.faction-rule-block,.aspect-card,.requisition-card){background:linear-gradient(145deg,#ffffff,#f1f3f6);border-color:var(--line);box-shadow:0 8px 24px rgba(30,40,55,.04)}
+html[data-theme="light"] :is(.hero-toc a,.operative-detail,.wr-pop,.wr-pop-arrow){background:var(--panel);border-color:var(--line)}
+html[data-theme="light"] :is(.buying-image-card figcaption,.overview-caveat){color:var(--muted)}
+html[data-theme="light"] .hero-note-official{color:#226a3b;border-color:#226a3b;background:rgba(34,106,59,.07)}
+html[data-theme="light"] .hero-note-unofficial{color:#a03b32;border-color:#a03b32;background:rgba(160,59,50,.07)}
+html[data-theme="light"] .section-head:after{background:linear-gradient(90deg,rgba(128,96,32,.3),var(--line))}
+html[data-theme="light"] footer{background:#edf0f4;border-top-color:var(--line)}
+
+/* Gold accents: readable gold text and brighter selected surfaces. */
+html[data-theme="light"] :is(.hero-toc a.is-current,.hero-toc a.is-current:hover){background:var(--gold-fill) !important;color:#29230f !important;border-color:#e9c654 !important;box-shadow:0 2px 8px rgba(146,112,0,.12)}
+html[data-theme="light"] :is(.overview-tag,.archetype-chip,.tag,.aspect-badge){color:var(--accent);background:rgba(233,198,84,.09);border-color:rgba(233,198,84,.65)}
+html[data-theme="light"] :is(.ap-badge,.cp-badge,.weapon-type,.operative-card.open .toggle){background:var(--gold-fill);color:#29230f;border-color:#e9c654}
+
+/* Shared gold palette across all faction detail pages. */
+html{--gold-rgb:199,168,98;--gold-detail-rgb:209,179,106}
+html[data-theme="light"]{--gold-rgb:233,198,84;--gold-detail-rgb:233,198,84}
+html[data-theme="light"] :is(.aspect-type,.aspect-badge,.archetype-chip,.overview-tag,.tag){color:var(--accent);background:rgba(233,198,84,.09);border-color:rgba(233,198,84,.65)}
+
+/* Final light palette: yellow gold fills, solid surfaces, readable gold type. */
+html[data-theme="light"]{--accent:#e9c654;--gold-fill:#e9c654;--gold-rgb:217,173,42;--gold-detail-rgb:217,173,42}
+html[data-theme="light"] :is(.lore-note,.astartes-quote,.rule-note,.rules-source-note){border-left-color:var(--gold-fill)}
+html[data-theme="light"] .section-head:before{background:var(--gold-fill) !important;box-shadow:none}
+html[data-theme="light"] :is(.hero-copy,.hero-art,.panel,.faction-rule-block){background:#fff !important}
+html[data-theme="light"] .angel-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .ap-badge{background:var(--gold-fill) !important;color:#29230f !important;}
+html[data-theme="light"] .art.aod-card-art{background-image:none !important;background-color:var(--panel) !important;}
+html[data-theme="light"] .art{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .aspect-card{background-image:none !important;background-color:var(--panel) !important;}
+html[data-theme="light"] .batch-faction-card-art{background-image:none !important;background-color:var(--panel) !important;}
+html[data-theme="light"] .battleclade-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .blades-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .blooded-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .broodbrothers-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .buying-image-card figcaption{background-image:none !important;background-color:var(--panel) !important;}
+html[data-theme="light"] .buying-magnet-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .canoptek-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .card{background-image:none !important;background-color:var(--panel) !important;}
+html[data-theme="light"] .celestian-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .chaoscult-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .chaoscult-buying-panel .buying-image-card figcaption{background-image:none !important;background-color:var(--panel) !important;}
+html[data-theme="light"] .composition-number{background:var(--gold-fill) !important;color:#29230f !important;}
+html[data-theme="light"] .composition-panel{background-image:none !important;background-color:var(--panel) !important;}
+html[data-theme="light"] .corsairvoidscarred-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .data-block-title{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .deathkorps-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .deathwatch-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .elucidianstarstriders-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .exaction-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .exodite-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .faction-rule-block{background-image:none !important;background-color:var(--panel) !important;}
+html[data-theme="light"] .farstalker-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .fellgorravagers-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .fellgorravagers-buying-panel .buying-image-card figcaption{background-image:none !important;background-color:var(--panel) !important;}
+html[data-theme="light"] .filter-btn.active{background:var(--gold-fill) !important;color:#29230f !important;}
+html[data-theme="light"] .gellerpoxinfected-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .goremongers-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .guide-grid div{background-image:none !important;background-color:var(--panel) !important;}
+html[data-theme="light"] .handofthearchon-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .hearthkyn-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .hemkyn-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .hemkynyaegirs-card-art{background-image:none !important;background-color:var(--panel) !important;}
+html[data-theme="light"] .hero-art:before,
+html[data-theme="light"] .hero-art:after{background-image:none !important;background-color:var(--gold-fill) !important;}
+html[data-theme="light"] .hero-art{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .hero-copy,
+html[data-theme="light"] .hero-art{background-image:none !important;background-color:var(--panel) !important;}
+html[data-theme="light"] .hero-copy:before{background-image:none !important;background-color:var(--gold-fill) !important;}
+html[data-theme="light"] .hero-copy{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .hero-mark{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .hero-toc a.is-current:hover{background:var(--gold-fill) !important;color:#29230f !important;}
+html[data-theme="light"] .hero-toc a.is-current{background:var(--gold-fill) !important;color:#29230f !important;}
+html[data-theme="light"] .hierotek-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .hierotek-card-art{background-image:none !important;background-color:var(--panel) !important;}
+html[data-theme="light"] .hunterclade-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .imperialnavy-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .imperialnavybreachers-card-art{background-image:none !important;background-color:var(--panel) !important;}
+html[data-theme="light"] .inquisitorial-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .kasrkin-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .kommandos-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .legionaries-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .logo-mark{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .murderwing-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .murderwing-card-art{background-image:none !important;background-color:var(--panel) !important;}
+html[data-theme="light"] .notice-btn{background:var(--gold-fill) !important;color:#29230f !important;}
+html[data-theme="light"] .notice-panel::before{background-image:none !important;background-color:var(--gold-fill) !important;}
+html[data-theme="light"] .notice-panel{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .novitiates-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .operative-card.open .toggle{background:var(--gold-fill) !important;color:#29230f !important;}
+html[data-theme="light"] .operative-card:before{background-image:none !important;background-color:var(--gold-fill) !important;}
+html[data-theme="light"] .operative-card{background-image:none !important;background-color:var(--panel) !important;}
+html[data-theme="light"] .overview-panel{background-image:none !important;background-color:var(--panel) !important;}
+html[data-theme="light"] .pathfinders-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .phobosstriketeam-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .placeholder,
+html[data-theme="light"] .panel,
+html[data-theme="light"] .composition-panel,
+html[data-theme="light"] .faction-rule-block{background-image:none !important;background-color:var(--panel) !important;}
+html[data-theme="light"] .placeholder,
+html[data-theme="light"] .panel{background-image:none !important;background-color:var(--panel) !important;}
+html[data-theme="light"] .plaguemarines-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .ploy-card{background-image:none !important;background-color:var(--panel) !important;}
+html[data-theme="light"] .ploy-head{background-image:none !important;background-color:var(--panel) !important;}
+html[data-theme="light"] .ratlings-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .raveners-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .requisition-card{background-image:none !important;background-color:var(--panel) !important;}
+html[data-theme="light"] .rule-block-head:after{background:var(--gold-fill) !important;color:#29230f !important;}
+html[data-theme="light"] .rule-block-head{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .rule-block-head{background-image:none !important;background-color:var(--panel) !important;}
+html[data-theme="light"] .sanctifiers-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .scoutsquad-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .section-head:after{background-image:none !important;background-color:var(--gold-fill) !important;}
+html[data-theme="light"] .section-head:before{background-image:none !important;background-color:var(--gold-fill) !important;}
+html[data-theme="light"] .spectresquad-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .stat-box{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .tactic-number{background:var(--gold-fill) !important;color:#29230f !important;}
+html[data-theme="light"] .tag:before{background:var(--gold-fill) !important;color:#29230f !important;}
+html[data-theme="light"] .tempestus-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .vespid-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .vespid-card-art{background-image:none !important;background-color:var(--panel) !important;}
+html[data-theme="light"] .voiddancertroupe-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .warpcoven-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .wolfscout-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .wolfscout-card-art{background-image:none !important;background-color:var(--panel) !important;}
+html[data-theme="light"] .wreckakrew-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .wyrmblade-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] .xv26-buying-panel .buying-guide-note{background-image:none !important;background-color:rgba(233,198,84,.07) !important;}
+html[data-theme="light"] body:before{background-image:none !important;background-color:var(--gold-fill) !important;}
+html[data-theme="light"] body{background-image:none !important;background-color:var(--bg) !important;}
+html[data-theme="light"] .hero-toc a.is-current{background:var(--gold-fill) !important;color:#29230f !important;}
+
+/* Use the approved yellow consistently, including accent text and section numbers. */
+html[data-theme="light"]{--accent:#e9c654;--gold-fill:#e9c654;--gold-rgb:233,198,84;--gold-detail-rgb:233,198,84}
+html[data-theme="light"] :is(.overview-tag,.archetype-chip,.tag,.aspect-badge,.aspect-type){color:var(--accent);border-color:var(--accent)}
+
+/* Weapon glossary: readable body and supporting text on white. */
+html[data-theme="light"] .wr-pop{background:#fff;color:#20242b;border-color:#cbd1d9;box-shadow:0 8px 28px rgba(30,40,55,.15)}
+html[data-theme="light"] .wr-pop-sum{color:#20242b}
+html[data-theme="light"] :is(.wr-pop-det,.wr-pop-en){color:#535d69}
+html[data-theme="light"] .wr-pop-arrow{background:#fff;border-color:#cbd1d9}
