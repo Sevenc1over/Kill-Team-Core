@@ -1,248 +1,538 @@
 {
   "site": "Kill Team Core",
-  "version": "final-34-factions-all-buying-guides-fixed-persistent-shortcuts-cumulative-v15",
-  "updated": "2026-09-16",
+  "version": "factions-url-migration-v1",
+  "updated": "2026-10-06",
   "main": "index.html",
-  "completed_count": 34,
+  "completed_count": 48,
   "pending_count": 0,
   "completed": [
     {
       "name": "죽음의 천사",
-      "nameEn": "Angel of Death",
+      "nameEn": "Angels of Death",
       "group": "제국",
-      "slug": "angelofdeath",
-      "path": "angelofdeath/index.html"
+      "slug": "angels-of-death",
+      "localHref": "factions/angels-of-death/",
+      "assetSlug": "angelofdeath",
+      "path": "factions/angels-of-death/index.html",
+      "oldSlug": "angelofdeath",
+      "url": "https://killteamcore.kr/factions/angels-of-death/"
     },
     {
       "name": "전투계통",
       "nameEn": "Battleclade",
       "group": "제국",
       "slug": "battleclade",
-      "path": "battleclade/index.html"
+      "localHref": "factions/battleclade/",
+      "assetSlug": "battleclade",
+      "path": "factions/battleclade/index.html",
+      "oldSlug": "battleclade",
+      "url": "https://killteamcore.kr/factions/battleclade/"
     },
     {
       "name": "케인의 칼날",
       "nameEn": "Blades of Khaine",
       "group": "제노",
-      "slug": "bladesofkhaine",
-      "path": "bladesofkhaine/index.html"
+      "slug": "blades-of-khaine",
+      "localHref": "factions/blades-of-khaine/",
+      "assetSlug": "bladesofkhaine",
+      "path": "factions/blades-of-khaine/index.html",
+      "oldSlug": "bladesofkhaine",
+      "url": "https://killteamcore.kr/factions/blades-of-khaine/"
     },
     {
       "name": "무리 형제단",
       "nameEn": "Brood Brothers",
       "group": "제노",
-      "slug": "broodbrothers",
-      "path": "broodbrothers/index.html"
+      "slug": "brood-brothers",
+      "localHref": "factions/brood-brothers/",
+      "assetSlug": "broodbrothers",
+      "path": "factions/brood-brothers/index.html",
+      "oldSlug": "broodbrothers",
+      "url": "https://killteamcore.kr/factions/brood-brothers/"
     },
     {
       "name": "카놉텍 회합",
       "nameEn": "Canoptek Circle",
       "group": "제노",
-      "slug": "canoptekcircle",
-      "path": "canoptekcircle/index.html"
+      "slug": "canoptek-circle",
+      "localHref": "factions/canoptek-circle/",
+      "assetSlug": "canoptekcircle",
+      "path": "factions/canoptek-circle/index.html",
+      "oldSlug": "canoptekcircle",
+      "url": "https://killteamcore.kr/factions/canoptek-circle/"
     },
     {
       "name": "셀레스티안 항마단",
-      "nameEn": "Celestian Insidants",
+      "nameEn": "Celestian Insidiants",
       "group": "제국",
-      "slug": "celestianinsidants",
-      "path": "celestianinsidants/index.html"
+      "slug": "celestian-insidiants",
+      "localHref": "factions/celestian-insidiants/",
+      "assetSlug": "celestianinsidants",
+      "path": "factions/celestian-insidiants/index.html",
+      "oldSlug": "celestianinsidants",
+      "url": "https://killteamcore.kr/factions/celestian-insidiants/"
     },
     {
       "name": "카오스 사교도",
       "nameEn": "Chaos Cult",
       "group": "카오스",
-      "slug": "chaoscult",
-      "path": "chaoscult/index.html"
+      "slug": "chaos-cult",
+      "localHref": "factions/chaos-cult/",
+      "assetSlug": "chaoscult",
+      "path": "factions/chaos-cult/index.html",
+      "oldSlug": "chaoscult",
+      "url": "https://killteamcore.kr/factions/chaos-cult/"
+    },
+    {
+      "name": "데스 코어",
+      "nameEn": "Death Korps",
+      "group": "제국",
+      "slug": "death-korps",
+      "localHref": "factions/death-korps/",
+      "assetSlug": "deathkorps",
+      "path": "factions/death-korps/index.html",
+      "oldSlug": "deathkorps",
+      "url": "https://killteamcore.kr/factions/death-korps/"
     },
     {
       "name": "데스워치",
       "nameEn": "Deathwatch",
       "group": "제국",
       "slug": "deathwatch",
-      "path": "deathwatch/index.html"
+      "localHref": "factions/deathwatch/",
+      "assetSlug": "deathwatch",
+      "path": "factions/deathwatch/index.html",
+      "oldSlug": "deathwatch",
+      "url": "https://killteamcore.kr/factions/deathwatch/"
     },
     {
       "name": "집행 분대",
       "nameEn": "Exaction Squad",
       "group": "제국",
-      "slug": "exactionsquad",
-      "path": "exactionsquad/index.html"
+      "slug": "exaction-squad",
+      "localHref": "factions/exaction-squad/",
+      "assetSlug": "exactionsquad",
+      "path": "factions/exaction-squad/index.html",
+      "oldSlug": "exactionsquad",
+      "url": "https://killteamcore.kr/factions/exaction-squad/"
     },
     {
       "name": "엑소다이트 용의 달인",
-      "nameEn": "Exodite dragon master",
+      "nameEn": "Exodite Dragon Masters",
       "group": "제노",
-      "slug": "exoditedragonmaster",
-      "path": "exoditedragonmaster/index.html"
+      "slug": "exodite-dragon-masters",
+      "localHref": "factions/exodite-dragon-masters/",
+      "assetSlug": "exoditedragonmaster",
+      "path": "factions/exodite-dragon-masters/index.html",
+      "oldSlug": "exoditedragonmaster",
+      "url": "https://killteamcore.kr/factions/exodite-dragon-masters/"
     },
     {
       "name": "먼길밟이 혈족단",
       "nameEn": "Farstalker Kinband",
       "group": "제노",
-      "slug": "farstalkerkinband",
-      "path": "farstalkerkinband/index.html"
+      "slug": "farstalker-kinband",
+      "localHref": "factions/farstalker-kinband/",
+      "assetSlug": "farstalkerkinband",
+      "path": "factions/farstalker-kinband/index.html",
+      "oldSlug": "farstalkerkinband",
+      "url": "https://killteamcore.kr/factions/farstalker-kinband/"
     },
     {
       "name": "펠고어 약탈자",
       "nameEn": "Fellgor Ravagers",
       "group": "카오스",
-      "slug": "fellgorravagers",
-      "path": "fellgorravagers/index.html"
+      "slug": "fellgor-ravagers",
+      "localHref": "factions/fellgor-ravagers/",
+      "assetSlug": "fellgorravagers",
+      "path": "factions/fellgor-ravagers/index.html",
+      "oldSlug": "fellgorravagers",
+      "url": "https://killteamcore.kr/factions/fellgor-ravagers/"
     },
     {
       "name": "유혈광",
       "nameEn": "Goremongers",
       "group": "카오스",
       "slug": "goremongers",
-      "path": "goremongers/index.html"
+      "localHref": "factions/goremongers/",
+      "assetSlug": "goremongers",
+      "path": "factions/goremongers/index.html",
+      "oldSlug": "goremongers",
+      "url": "https://killteamcore.kr/factions/goremongers/"
     },
     {
       "name": "집정관의 손",
       "nameEn": "Hand of the Archon",
       "group": "제노",
-      "slug": "handofthearchon",
-      "path": "handofthearchon/index.html"
+      "slug": "hand-of-the-archon",
+      "localHref": "factions/hand-of-the-archon/",
+      "assetSlug": "handofthearchon",
+      "path": "factions/hand-of-the-archon/index.html",
+      "oldSlug": "handofthearchon",
+      "url": "https://killteamcore.kr/factions/hand-of-the-archon/"
     },
     {
       "name": "하스킨 인양단",
       "nameEn": "Hearthkyn Salvagers",
       "group": "제노",
-      "slug": "hearthkynsalvagers",
-      "path": "hearthkynsalvagers/index.html"
+      "slug": "hearthkyn-salvagers",
+      "localHref": "factions/hearthkyn-salvagers/",
+      "assetSlug": "hearthkynsalvagers",
+      "path": "factions/hearthkyn-salvagers/index.html",
+      "oldSlug": "hearthkynsalvagers",
+      "url": "https://killteamcore.kr/factions/hearthkyn-salvagers/"
     },
     {
       "name": "헤른킨 예이기르",
-      "nameEn": "Hemkyn Yaegirs",
+      "nameEn": "Hernkyn Yaegirs",
       "group": "제노",
-      "slug": "hemkynyaegirs",
-      "path": "hemkynyaegirs/index.html"
+      "slug": "hernkyn-yaegirs",
+      "localHref": "factions/hernkyn-yaegirs/",
+      "assetSlug": "hemkynyaegirs",
+      "path": "factions/hernkyn-yaegirs/index.html",
+      "oldSlug": "hemkynyaegirs",
+      "url": "https://killteamcore.kr/factions/hernkyn-yaegirs/"
     },
     {
       "name": "히에로텍 회합",
       "nameEn": "Hierotek Circle",
       "group": "제노",
-      "slug": "hierotekcircle",
-      "path": "hierotekcircle/index.html"
+      "slug": "hierotek-circle",
+      "localHref": "factions/hierotek-circle/",
+      "assetSlug": "hierotekcircle",
+      "path": "factions/hierotek-circle/index.html",
+      "oldSlug": "hierotekcircle",
+      "url": "https://killteamcore.kr/factions/hierotek-circle/"
+    },
+    {
+      "name": "사냥 계통",
+      "nameEn": "Hunter Clade",
+      "group": "제국",
+      "slug": "hunter-clade",
+      "localHref": "factions/hunter-clade/",
+      "assetSlug": "hunterclade",
+      "path": "factions/hunter-clade/index.html",
+      "oldSlug": "hunterclade",
+      "url": "https://killteamcore.kr/factions/hunter-clade/"
     },
     {
       "name": "제국 해군 돌파조",
       "nameEn": "Imperial Navy Breachers",
       "group": "제국",
-      "slug": "imperialnavybreachers",
-      "path": "imperialnavybreachers/index.html"
+      "slug": "imperial-navy-breachers",
+      "localHref": "factions/imperial-navy-breachers/",
+      "assetSlug": "imperialnavybreachers",
+      "path": "factions/imperial-navy-breachers/index.html",
+      "oldSlug": "imperialnavybreachers",
+      "url": "https://killteamcore.kr/factions/imperial-navy-breachers/"
     },
     {
       "name": "이단심문관 심복요원",
       "nameEn": "Inquisitorial Agents",
       "group": "제국",
-      "slug": "inquisitorialagents",
-      "path": "inquisitorialagents/index.html"
+      "slug": "inquisitorial-agents",
+      "localHref": "factions/inquisitorial-agents/",
+      "assetSlug": "inquisitorialagents",
+      "path": "factions/inquisitorial-agents/index.html",
+      "oldSlug": "inquisitorialagents",
+      "url": "https://killteamcore.kr/factions/inquisitorial-agents/"
     },
     {
       "name": "카스르킨",
       "nameEn": "Kasrkin",
       "group": "제국",
       "slug": "kasrkin",
-      "path": "kasrkin/index.html"
+      "localHref": "factions/kasrkin/",
+      "assetSlug": "kasrkin",
+      "path": "factions/kasrkin/index.html",
+      "oldSlug": "kasrkin",
+      "url": "https://killteamcore.kr/factions/kasrkin/"
+    },
+    {
+      "name": "코만도스",
+      "nameEn": "Kommandos",
+      "group": "제노",
+      "slug": "kommandos",
+      "localHref": "factions/kommandos/",
+      "assetSlug": "kommandos",
+      "path": "factions/kommandos/index.html",
+      "oldSlug": "kommandos",
+      "url": "https://killteamcore.kr/factions/kommandos/"
+    },
+    {
+      "name": "군단병",
+      "nameEn": "Legionaries",
+      "group": "카오스",
+      "slug": "legionaries",
+      "localHref": "factions/legionaries/",
+      "assetSlug": "legionaries",
+      "path": "factions/legionaries/index.html",
+      "oldSlug": "legionaries",
+      "url": "https://killteamcore.kr/factions/legionaries/"
     },
     {
       "name": "맨드레이크",
       "nameEn": "Mandrakes",
       "group": "제노",
       "slug": "mandrakes",
-      "path": "mandrakes/index.html"
+      "localHref": "factions/mandrakes/",
+      "assetSlug": "mandrakes",
+      "path": "factions/mandrakes/index.html",
+      "oldSlug": "mandrakes",
+      "url": "https://killteamcore.kr/factions/mandrakes/"
     },
     {
       "name": "살육날개",
       "nameEn": "Murderwing",
       "group": "카오스",
       "slug": "murderwing",
-      "path": "murderwing/index.html"
+      "localHref": "factions/murderwing/",
+      "assetSlug": "murderwing",
+      "path": "factions/murderwing/index.html",
+      "oldSlug": "murderwing",
+      "url": "https://killteamcore.kr/factions/murderwing/"
     },
     {
       "name": "천벌갈퀴",
       "nameEn": "Nemesis Claw",
       "group": "카오스",
-      "slug": "nemesisclaw",
-      "path": "nemesisclaw/index.html"
+      "slug": "nemesis-claw",
+      "localHref": "factions/nemesis-claw/",
+      "assetSlug": "nemesisclaw",
+      "path": "factions/nemesis-claw/index.html",
+      "oldSlug": "nemesisclaw",
+      "url": "https://killteamcore.kr/factions/nemesis-claw/"
+    },
+    {
+      "name": "수습 수녀단",
+      "nameEn": "Novitiates",
+      "group": "제국",
+      "slug": "novitiates",
+      "localHref": "factions/novitiates/",
+      "assetSlug": "novitiates",
+      "path": "factions/novitiates/index.html",
+      "oldSlug": "novitiates",
+      "url": "https://killteamcore.kr/factions/novitiates/"
+    },
+    {
+      "name": "선도 요원",
+      "nameEn": "Pathfinders",
+      "group": "제노",
+      "slug": "pathfinders",
+      "localHref": "factions/pathfinders/",
+      "assetSlug": "pathfinders",
+      "path": "factions/pathfinders/index.html",
+      "oldSlug": "pathfinders",
+      "url": "https://killteamcore.kr/factions/pathfinders/"
+    },
+    {
+      "name": "포보스 타격반",
+      "nameEn": "Phobos Strike Team",
+      "group": "제국",
+      "slug": "phobos-strike-team",
+      "localHref": "factions/phobos-strike-team/",
+      "assetSlug": "phobosstriketeam",
+      "path": "factions/phobos-strike-team/index.html",
+      "oldSlug": "phobosstriketeam",
+      "url": "https://killteamcore.kr/factions/phobos-strike-team/"
     },
     {
       "name": "플레이그 마린",
       "nameEn": "Plague Marines",
       "group": "카오스",
-      "slug": "plaguemarines",
-      "path": "plaguemarines/index.html"
+      "slug": "plague-marines",
+      "localHref": "factions/plague-marines/",
+      "assetSlug": "plaguemarines",
+      "path": "factions/plague-marines/index.html",
+      "oldSlug": "plaguemarines",
+      "url": "https://killteamcore.kr/factions/plague-marines/"
     },
     {
       "name": "래틀링",
       "nameEn": "Ratlings",
       "group": "제국",
       "slug": "ratlings",
-      "path": "ratlings/index.html"
+      "localHref": "factions/ratlings/",
+      "assetSlug": "ratlings",
+      "path": "factions/ratlings/index.html",
+      "oldSlug": "ratlings",
+      "url": "https://killteamcore.kr/factions/ratlings/"
     },
     {
       "name": "래버너",
       "nameEn": "Raveners",
       "group": "제노",
       "slug": "raveners",
-      "path": "raveners/index.html"
+      "localHref": "factions/raveners/",
+      "assetSlug": "raveners",
+      "path": "factions/raveners/index.html",
+      "oldSlug": "raveners",
+      "url": "https://killteamcore.kr/factions/raveners/"
     },
     {
       "name": "정화사역단",
       "nameEn": "Sanctifiers",
       "group": "제국",
       "slug": "sanctifiers",
-      "path": "sanctifiers/index.html"
+      "localHref": "factions/sanctifiers/",
+      "assetSlug": "sanctifiers",
+      "path": "factions/sanctifiers/index.html",
+      "oldSlug": "sanctifiers",
+      "url": "https://killteamcore.kr/factions/sanctifiers/"
     },
     {
       "name": "스카웃 분대",
       "nameEn": "Scout Squad",
       "group": "제국",
-      "slug": "scoutsquad",
-      "path": "scoutsquad/index.html"
+      "slug": "scout-squad",
+      "localHref": "factions/scout-squad/",
+      "assetSlug": "scoutsquad",
+      "path": "factions/scout-squad/index.html",
+      "oldSlug": "scoutsquad",
+      "url": "https://killteamcore.kr/factions/scout-squad/"
     },
     {
       "name": "유령 분대",
       "nameEn": "Spectre Squad",
       "group": "제국",
-      "slug": "spectresquad",
-      "path": "spectresquad/index.html"
+      "slug": "spectre-squad",
+      "localHref": "factions/spectre-squad/",
+      "assetSlug": "spectresquad",
+      "path": "factions/spectre-squad/index.html",
+      "oldSlug": "spectresquad",
+      "url": "https://killteamcore.kr/factions/spectre-squad/"
     },
     {
       "name": "템페스투스 아퀼론",
       "nameEn": "Tempestus Aquilons",
       "group": "제국",
-      "slug": "tempestusaquilons",
-      "path": "tempestusaquilons/index.html"
+      "slug": "tempestus-aquilons",
+      "localHref": "factions/tempestus-aquilons/",
+      "assetSlug": "tempestusaquilons",
+      "path": "factions/tempestus-aquilons/index.html",
+      "oldSlug": "tempestusaquilons",
+      "url": "https://killteamcore.kr/factions/tempestus-aquilons/"
     },
     {
       "name": "베스피드 독침날개",
       "nameEn": "Vespid Stingwings",
       "group": "제노",
-      "slug": "vespidstingwings",
-      "path": "vespidstingwings/index.html"
+      "slug": "vespid-stingwings",
+      "localHref": "factions/vespid-stingwings/",
+      "assetSlug": "vespidstingwings",
+      "path": "factions/vespid-stingwings/index.html",
+      "oldSlug": "vespidstingwings",
+      "url": "https://killteamcore.kr/factions/vespid-stingwings/"
     },
     {
       "name": "늑대 척후",
-      "nameEn": "Wolf Scout",
+      "nameEn": "Wolf Scouts",
       "group": "제국",
-      "slug": "wolfscout",
-      "path": "wolfscout/index.html"
+      "slug": "wolf-scouts",
+      "localHref": "factions/wolf-scouts/",
+      "assetSlug": "wolfscout",
+      "path": "factions/wolf-scouts/index.html",
+      "oldSlug": "wolfscout",
+      "url": "https://killteamcore.kr/factions/wolf-scouts/"
     },
     {
       "name": "레카 크루",
       "nameEn": "Wrecka Krew",
       "group": "제노",
-      "slug": "wreckakrew",
-      "path": "wreckakrew/index.html"
+      "slug": "wrecka-krew",
+      "localHref": "factions/wrecka-krew/",
+      "assetSlug": "wreckakrew",
+      "path": "factions/wrecka-krew/index.html",
+      "oldSlug": "wreckakrew",
+      "url": "https://killteamcore.kr/factions/wrecka-krew/"
     },
     {
       "name": "XV26 스텔스 배틀슈트",
       "nameEn": "XV26 Stealth Battlesuits",
       "group": "제노",
-      "slug": "xv26stealthbattlesuits",
-      "path": "xv26stealthbattlesuits/index.html"
+      "slug": "xv26-stealth-battlesuits",
+      "localHref": "factions/xv26-stealth-battlesuits/",
+      "assetSlug": "xv26stealthbattlesuits",
+      "path": "factions/xv26-stealth-battlesuits/index.html",
+      "oldSlug": "xv26stealthbattlesuits",
+      "url": "https://killteamcore.kr/factions/xv26-stealth-battlesuits/"
+    },
+    {
+      "name": "엘루시디아의 성간활보자",
+      "nameEn": "Elucidian Starstriders",
+      "group": "제국",
+      "slug": "elucidian-starstriders",
+      "localHref": "factions/elucidian-starstriders/",
+      "assetSlug": "elucidianstarstriders",
+      "path": "factions/elucidian-starstriders/index.html",
+      "oldSlug": "elucidianstarstriders",
+      "url": "https://killteamcore.kr/factions/elucidian-starstriders/"
+    },
+    {
+      "name": "겔러폭스 감염자",
+      "nameEn": "Gellerpox Infected",
+      "group": "카오스",
+      "slug": "gellerpox-infected",
+      "localHref": "factions/gellerpox-infected/",
+      "assetSlug": "gellerpoxinfected",
+      "path": "factions/gellerpox-infected/index.html",
+      "oldSlug": "gellerpoxinfected",
+      "url": "https://killteamcore.kr/factions/gellerpox-infected/"
+    },
+    {
+      "name": "공허춤꾼 극단",
+      "nameEn": "Void-Dancer Troupe",
+      "group": "제노",
+      "slug": "void-dancer-troupe",
+      "localHref": "factions/void-dancer-troupe/",
+      "assetSlug": "voiddancertroupe",
+      "path": "factions/void-dancer-troupe/index.html",
+      "oldSlug": "voiddancertroupe",
+      "url": "https://killteamcore.kr/factions/void-dancer-troupe/"
+    },
+    {
+      "name": "워프주술회",
+      "nameEn": "Warpcoven",
+      "group": "카오스",
+      "slug": "warpcoven",
+      "localHref": "factions/warpcoven/",
+      "assetSlug": "warpcoven",
+      "path": "factions/warpcoven/index.html",
+      "oldSlug": "warpcoven",
+      "url": "https://killteamcore.kr/factions/warpcoven/"
+    },
+    {
+      "name": "피칠갑",
+      "nameEn": "Blooded",
+      "group": "카오스",
+      "slug": "blooded",
+      "localHref": "factions/blooded/",
+      "assetSlug": "blooded",
+      "path": "factions/blooded/index.html",
+      "oldSlug": "blooded",
+      "url": "https://killteamcore.kr/factions/blooded/"
+    },
+    {
+      "name": "공허상흔 해적단",
+      "nameEn": "Corsair Voidscarred",
+      "group": "제노",
+      "slug": "corsair-voidscarred",
+      "localHref": "factions/corsair-voidscarred/",
+      "assetSlug": "corsairvoidscarred",
+      "path": "factions/corsair-voidscarred/index.html",
+      "oldSlug": "corsairvoidscarred",
+      "url": "https://killteamcore.kr/factions/corsair-voidscarred/"
+    },
+    {
+      "name": "이무기 칼날",
+      "nameEn": "Wyrmblade",
+      "group": "제노",
+      "slug": "wyrmblade",
+      "localHref": "factions/wyrmblade/",
+      "assetSlug": "wyrmblade",
+      "path": "factions/wyrmblade/index.html",
+      "oldSlug": "wyrmblade",
+      "url": "https://killteamcore.kr/factions/wyrmblade/"
     }
   ],
   "shared_assets": [

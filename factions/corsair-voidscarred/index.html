@@ -1,0 +1,1731 @@
+<!DOCTYPE html>
+
+<html lang="ko">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>공허상흔 해적단 · Corsair Voidscarred · Kill Team Core</title>
+
+<style id="detail-common-inline">
+/* Kill Team Core — shared detail-page stylesheet
+   Consolidated 2026-09-10 from the latest 34-page design system. */
+
+:root {
+  --bg:#0d0f11; --panel:#15181c; --panel2:#1b1f24; --line:#2b3037;
+  --text:#f1f3f5; --muted:#9fa6ad; --accent:#c7a862;
+}
+*{box-sizing:border-box} html{scroll-behavior:smooth}
+body{
+  margin:0;color:var(--text);
+  font-family:Inter,Pretendard,"Noto Sans KR",system-ui,sans-serif;
+  background:radial-gradient(circle at 50% 0%,rgba(var(--gold-rgb),.08),transparent 26rem),
+             linear-gradient(180deg,var(--panel) 0%,var(--bg) 100%);
+}
+a{color:inherit;text-decoration:none} button{font:inherit}
+header{
+  position:sticky;top:0;z-index:30;background:rgba(var(--surface-rgb),.86);
+  backdrop-filter:blur(16px);border-bottom:1px solid rgba(var(--overlay-rgb),.06)
+}
+.header-inner{max-width:1240px;margin:auto;height:70px;padding:0 24px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:12px;font-weight:900;letter-spacing:.16em;text-transform:uppercase}
+.logo-mark { width:48px; height:48px; display:block; flex:0 0 auto; object-fit:contain; }
+.back{color:var(--muted);font-weight:800;font-size:14px}
+.hero{max-width:1240px;margin:auto;padding:68px 24px 32px}
+.breadcrumb{color:var(--muted);font-size:13px;margin-bottom:22px}
+.hero-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:24px}
+.hero-copy,.hero-art{border:1px solid var(--line);border-radius:16px;background:linear-gradient(180deg,var(--panel2),var(--panel))}
+.hero-copy{padding:42px;display:flex;flex-direction:column;justify-content:center}
+.tag{width:max-content;border:1px solid rgba(var(--gold-rgb),.35);border-radius:7px;padding:5px 9px;color:var(--accent);font-size:11px;font-weight:900}
+h1{font-size:clamp(40px,6vw,72px);margin:14px 0 0;line-height:.95;letter-spacing:-.04em}
+.hero-en{margin:12px 0 0;color:var(--muted);font-weight:800;letter-spacing:.06em;text-transform:uppercase}
+.hero-art{min-height:280px;display:grid;place-items:center;position:relative;overflow:hidden}
+.hero-art:before,.hero-art:after{content:"";position:absolute;width:55%;height:1px;background:rgba(var(--gold-rgb),.2);transform:rotate(35deg)}
+.hero-art:after{transform:rotate(-35deg)}
+.hero-mark{
+  position:relative;z-index:2;width:88px;aspect-ratio:1;display:grid;place-items:center;color:var(--accent);
+  border:1px solid rgba(var(--gold-rgb),.35);background:rgba(var(--surface-rgb),.55);
+  clip-path:polygon(50% 0%,88% 18%,82% 76%,50% 100%,18% 76%,12% 18%);font-weight:900
+}
+.nav-wrap{position:sticky;top:70px;z-index:25;background:rgba(var(--surface-rgb),.92);backdrop-filter:blur(14px);border-block:1px solid rgba(var(--overlay-rgb),.05)}
+.section-nav{max-width:1240px;margin:auto;padding:12px 24px;display:flex;gap:9px;overflow:auto}
+.section-nav a{flex:0 0 auto;padding:8px 12px;border:1px solid var(--line);border-radius:999px;color:var(--muted);font-size:12px;font-weight:800;background:var(--panel)}
+main{max-width:1240px;margin:auto;padding:18px 24px 80px}
+section{scroll-margin-top:145px;padding:34px 0 8px}
+.section-head{display:flex;align-items:end;justify-content:space-between;border-bottom:1px solid var(--line);padding-bottom:13px;margin-bottom:18px}
+.section-no{color:var(--accent);font-size:18px;font-weight:900;letter-spacing:.08em;line-height:1}
+h2{margin:4px 0 0;font-size:38px;line-height:1.08;letter-spacing:-.03em}
+.placeholder,.panel{border:1px solid var(--line);border-radius:14px;background:linear-gradient(180deg,var(--panel2),var(--panel));padding:22px}
+.placeholder{color:var(--muted);min-height:118px;display:flex;flex-direction:column;justify-content:center}
+.placeholder strong{color:var(--text);margin-bottom:7px}
+.operative-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px}
+.operative-card{border:1px solid var(--line);border-radius:14px;overflow:hidden;background:linear-gradient(180deg,var(--panel2),var(--panel))}
+.operative-summary{width:100%;border:0;background:transparent;color:var(--text);padding:18px;display:flex;align-items:center;justify-content:space-between;gap:16px;text-align:left;cursor:pointer}
+.operative-summary strong{display:block;font-size:17px;line-height:1.35}
+.toggle{flex:0 0 auto;color:var(--muted);font-size:12px;font-weight:900;border:1px solid var(--line);border-radius:999px;padding:7px 10px}
+.operative-detail{display:none;border-top:1px solid var(--line);padding:18px;color:var(--muted);background:rgba(var(--surface-rgb),.35)}
+.operative-card.open .operative-detail{display:block}
+.operative-card.open .toggle{background:var(--accent);border-color:var(--accent);color:#111315}
+.detail-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:14px}
+.detail-grid div{border:1px dashed var(--line);border-radius:10px;padding:12px}
+.detail-grid b{display:block;color:var(--text);font-size:12px;margin-bottom:5px}
+.detail-grid span{font-size:13px}
+.guide-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:12px}
+.guide-grid div{border:1px solid var(--line);border-radius:12px;padding:15px}
+.guide-grid span{display:block;color:var(--muted);font-size:12px;margin-bottom:6px}
+
+
+.corsairvoidscarred-buying-panel .buying-image-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:0;}
+.corsairvoidscarred-buying-panel .buying-image-card{margin:0;border:1px solid var(--line);border-radius:14px;overflow:hidden;background:rgba(var(--overlay-rgb),.02);}
+.corsairvoidscarred-buying-panel .buying-image-card img{display:block;width:100%;height:420px;object-fit:contain;background:#e7e7e7;}
+.corsairvoidscarred-buying-panel .buying-image-card figcaption{padding:12px 14px;border-top:1px solid var(--line);color:#c8d2dc;font-size:14px;font-weight:700;background:rgba(var(--surface-rgb),.82);}
+.corsairvoidscarred-buying-panel .guide-grid{margin-top:18px;}
+.corsairvoidscarred-buying-panel .buying-guide-note{margin-top:18px;border:1px solid rgba(var(--gold-rgb),.28);border-radius:14px;padding:18px 18px 17px;background:linear-gradient(180deg,rgba(var(--gold-rgb),.07),rgba(var(--overlay-rgb),.015));}
+.corsairvoidscarred-buying-panel .buying-note-kicker{display:block;color:#f0bf62;font-size:13px;font-weight:900;letter-spacing:.04em;margin-bottom:10px;}
+.corsairvoidscarred-buying-panel .buying-guide-note p{margin:0;color:var(--text);font-size:16px;line-height:1.8;}
+
+
+.operative-card.open{grid-column:1/-1}
+.captain-detail,.operative-full-detail{padding:20px}
+.stat-strip{
+  display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:18px
+}
+.stat-box{
+  border:1px solid var(--line);border-radius:12px;padding:13px 14px;
+  background:linear-gradient(180deg,rgba(var(--gold-rgb),.08),rgba(var(--overlay-rgb),.015))
+}
+.stat-box span{
+  display:block;color:var(--muted);font-size:11px;font-weight:900;
+  letter-spacing:.08em;margin-bottom:4px
+}
+.stat-box strong{font-size:24px;line-height:1;color:var(--text)}
+.data-block{
+  border:1px solid var(--line);border-radius:12px;overflow:hidden;margin-bottom:16px
+}
+.data-block-title{
+  padding:12px 14px;background:rgba(var(--gold-rgb),.08);border-bottom:1px solid var(--line);
+  color:var(--accent);font-weight:900;font-size:13px;letter-spacing:.04em
+}
+.weapon-table-wrap{overflow-x:auto}
+.weapon-table{width:100%;border-collapse:collapse;min-width:760px}
+.weapon-table th,.weapon-table td{
+  padding:12px 13px;border-bottom:1px solid var(--line);text-align:left;vertical-align:top
+}
+.weapon-table th{
+  color:var(--muted);font-size:11px;font-weight:900;letter-spacing:.05em;background:rgba(var(--overlay-rgb),.015)
+}
+.weapon-table td{color:var(--text);font-size:13px;line-height:1.55}
+.weapon-table tbody tr:last-child td{border-bottom:0}
+.weapon-table th:nth-child(2),.weapon-table th:nth-child(3),.weapon-table th:nth-child(4),
+.weapon-table td:nth-child(2),.weapon-table td:nth-child(3),.weapon-table td:nth-child(4){
+  width:72px;text-align:center;white-space:nowrap
+}
+.weapon-type{
+  display:inline-block;margin-right:8px;padding:3px 6px;border:1px solid rgba(var(--gold-rgb),.35);
+  border-radius:5px;color:var(--accent);font-size:10px;font-weight:900;vertical-align:1px
+}
+.weapon-type.melee{color:var(--text);border-color:var(--line)}
+.ability-grid{display:grid;grid-template-columns:1.55fr .85fr;gap:14px}
+.ability-card{
+  border:1px solid var(--line);border-radius:12px;padding:17px;background:rgba(var(--overlay-rgb),.015)
+}
+.ability-card h4{margin:0 0 9px;color:var(--accent);font-size:16px}
+.ability-card p{margin:0;color:var(--text);font-size:14px;line-height:1.75}
+.ability-card ul{margin:10px 0 0;padding-left:20px;color:var(--text)}
+.ability-card li{margin:7px 0;line-height:1.7;font-size:14px}
+.keyword{color:var(--accent);font-weight:900}
+
+
+.ability-card.wide{grid-column:1/-1}
+.action-title-row{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:4px}
+.action-title-row h4{margin:0}
+.ap-badge{
+  flex:0 0 auto;padding:4px 8px;border-radius:6px;background:var(--accent);
+  color:#111315;font-size:11px;font-weight:1000;letter-spacing:.04em
+}
+.action-card ul{margin-top:10px}
+
+
+.composition-panel{
+  border:1px solid var(--line);border-radius:16px;padding:22px;
+  background:linear-gradient(180deg,var(--panel2),var(--panel))
+}
+.composition-topline{
+  display:flex;align-items:flex-start;justify-content:space-between;gap:20px;
+  padding-bottom:18px;border-bottom:1px solid var(--line)
+}
+.composition-label{
+  display:block;color:var(--accent);font-size:12px;font-weight:900;letter-spacing:.06em;margin-bottom:4px
+}
+.composition-topline h3{margin:0;font-size:24px}
+.archetype-wrap{display:flex;align-items:center;gap:8px;flex-wrap:wrap;justify-content:flex-end}
+.archetype-title{color:var(--muted);font-size:11px;font-weight:900;letter-spacing:.06em}
+.archetype-chip{
+  border:1px solid rgba(var(--gold-rgb),.35);background:rgba(var(--gold-rgb),.08);
+  color:var(--accent);padding:6px 10px;border-radius:999px;font-size:12px;font-weight:900
+}
+.composition-summary{
+  display:flex;align-items:center;justify-content:center;gap:12px;padding:20px 0 4px
+}
+.summary-box{
+  min-width:130px;border:1px solid var(--line);border-radius:12px;padding:12px 16px;text-align:center;
+  background:rgba(var(--overlay-rgb),.015)
+}
+.summary-box span{display:block;color:var(--muted);font-size:11px;font-weight:800;margin-bottom:4px}
+.summary-box strong{font-size:23px}
+.summary-box.total{border-color:rgba(var(--gold-rgb),.45);background:rgba(var(--gold-rgb),.07)}
+.summary-plus,.summary-equals{color:var(--accent);font-size:21px;font-weight:900}
+.composition-columns{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:18px
+}
+.composition-block{
+  border:1px solid var(--line);border-radius:14px;padding:16px;background:rgba(var(--surface-rgb),.28)
+}
+.composition-block-head{
+  display:flex;align-items:flex-start;gap:12px;padding-bottom:14px;margin-bottom:14px;border-bottom:1px solid var(--line)
+}
+.composition-number{
+  width:34px;height:34px;display:grid;place-items:center;flex:0 0 auto;border-radius:9px;
+  background:var(--accent);color:#111315;font-size:17px;font-weight:1000
+}
+.composition-block-head h4{margin:0 0 3px;font-size:17px}
+.composition-block-head p,.choice-card p,.operative-choice-item p,.composition-rule p,.bolt-note p{
+  margin:0;color:var(--muted);font-size:13px;line-height:1.65
+}
+.choice-card{
+  border:1px solid var(--line);border-radius:12px;padding:15px;margin-top:12px;background:rgba(var(--overlay-rgb),.015)
+}
+.choice-card h5{margin:0 0 7px;font-size:16px;color:var(--text)}
+.option-group{margin-top:12px}
+.option-label{
+  display:block;color:var(--accent);font-size:11px;font-weight:900;letter-spacing:.05em;margin-bottom:7px
+}
+.option-group ul{
+  display:flex;flex-wrap:wrap;gap:7px;list-style:none;padding:0;margin:0
+}
+.option-group li,.fixed-loadout span,.loadout-row span{
+  border:1px solid var(--line);border-radius:7px;padding:6px 9px;background:rgba(var(--overlay-rgb),.02);
+  color:var(--text);font-size:12px
+}
+.or-divider{display:flex;align-items:center;gap:8px;margin:12px 0}
+.or-divider:before,.or-divider:after{content:"";height:1px;background:var(--line);flex:1}
+.or-divider span{color:var(--muted);font-size:11px;font-weight:800}
+.fixed-loadout{display:flex;gap:7px;flex-wrap:wrap}
+.simple-choice{padding:16px}
+.simple-choice h5{margin:0}
+.operative-choice-list{display:grid;gap:10px}
+.operative-choice-item{
+  border:1px solid var(--line);border-radius:11px;padding:13px;background:rgba(var(--overlay-rgb),.015)
+}
+.operative-choice-item strong{font-size:14px}
+.operative-choice-item.detailed p{margin-top:6px}
+.loadout-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin-top:8px}
+.loadout-row span{
+  display:inline-flex;align-items:center;width:auto;flex:0 0 auto
+}
+.loadout-or{
+  display:flex;align-items:center;gap:9px;margin:9px 0 2px;
+  color:var(--muted);font-size:11px;font-weight:900
+}
+.loadout-or:before,.loadout-or:after{
+  content:"";height:1px;background:var(--line);flex:1
+}
+.loadout-or span{flex:0 0 auto}
+.composition-rule,.bolt-note{
+  border:1px solid var(--line);border-radius:12px;padding:15px;margin-top:16px
+}
+.composition-rule strong,.bolt-note strong{display:block;margin-bottom:5px;font-size:13px}
+.composition-rule{background:rgba(var(--overlay-rgb),.015)}
+.bolt-note{border-color:rgba(var(--gold-rgb),.48);background:rgba(var(--gold-rgb),.06)}
+.bolt-note strong{color:var(--accent)}
+
+
+.faction-rules-wrap{display:grid;gap:18px}
+.faction-rule-block{
+  border:1px solid var(--line);border-radius:16px;overflow:hidden;
+  background:linear-gradient(180deg,var(--panel2),var(--panel))
+}
+.rule-block-head{
+  padding:18px 22px 20px;border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(var(--overlay-rgb),.02),rgba(var(--overlay-rgb),.01))
+}
+.rule-kicker{
+  display:block;color:var(--accent);font-size:12px;font-weight:900;
+  letter-spacing:.04em;margin-bottom:6px
+}
+.rule-block-head h3{margin:0;font-size:28px;letter-spacing:-.03em}
+.rule-intro{padding:18px 22px 0}
+.rule-intro p{
+  margin:0 0 14px;color:var(--text);font-size:15px;line-height:1.9
+}
+.tactic-selection-summary{
+  display:flex;align-items:center;justify-content:flex-start;gap:12px;
+  padding:2px 22px 18px
+}
+.tactic-select-box{
+  min-width:180px;border:1px solid var(--line);border-radius:10px;padding:12px 14px;
+  text-align:center;background:rgba(var(--overlay-rgb),.015)
+}
+.tactic-select-box span{
+  display:block;color:var(--muted);font-size:11px;font-weight:800;margin-bottom:5px
+}
+.tactic-select-box strong{font-size:18px}
+.tactic-select-plus{color:var(--accent);font-weight:1000;font-size:20px}
+.developer-note{
+  margin:0 22px 18px;padding:14px 16px;border:1px solid rgba(var(--gold-rgb),.35);
+  border-radius:10px;background:rgba(var(--gold-rgb),.04)
+}
+.developer-note strong{
+  display:block;color:var(--accent);font-size:13px;margin-bottom:6px
+}
+.developer-note p{margin:0;color:var(--text);font-size:13px;line-height:1.75}
+.tactics-grid{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;padding:0 22px 22px
+}
+.tactic-card{
+  position:relative;border:1px solid var(--line);border-radius:12px;padding:16px 16px 16px 54px;
+  background:rgba(var(--overlay-rgb),.015)
+}
+.tactic-number{
+  position:absolute;left:14px;top:14px;width:28px;height:28px;display:grid;place-items:center;
+  border-radius:8px;background:var(--accent);color:#111315;font-size:13px;font-weight:1000
+}
+.tactic-card h4{margin:0 0 8px;font-size:16px;color:var(--text)}
+.tactic-card p,.tactic-card li{
+  color:var(--muted);font-size:13px;line-height:1.72
+}
+.tactic-card p{margin:0}
+.tactic-card ul{margin:0;padding-left:18px}
+.tactic-card li+li{margin-top:7px}
+.tactic-card strong{color:var(--text)}
+.rules-source-note{
+  margin:0 22px 22px;padding:10px 12px;border-left:3px solid var(--accent);
+  color:var(--muted);font-size:12px;background:rgba(var(--overlay-rgb),.015)
+}
+.astartes-quote{
+  margin:20px 22px 0;padding:16px 18px;border-left:3px solid var(--accent);
+  color:var(--muted);font-family:Gelasio,Tinos,serif;
+  font-size:16px;font-style:italic;line-height:1.75;background:rgba(var(--overlay-rgb),.015)
+}
+.astartes-body{display:grid;gap:12px;padding:18px 22px 22px}
+.astartes-rule-item{
+  display:block;
+  border:1px solid var(--line);border-radius:12px;padding:16px 18px;background:rgba(var(--overlay-rgb),.015)
+}
+.rule-icon{display:none}
+.astartes-rule-item p{margin:0;color:var(--text);font-size:15px;line-height:1.85}
+
+
+.simple-intro{border-top:0}
+.simple-selection .tactic-select-plus{align-self:center}
+.simple-note{box-shadow:none}
+
+
+.lore-note{
+  margin:0 0 18px;
+  padding:15px 18px;
+  border-left:3px solid var(--accent);
+  background:rgba(var(--overlay-rgb),.015);
+  color:var(--muted);
+  font-family:Gelasio,Tinos,serif;
+  font-size:15px;
+  font-style:italic;
+  line-height:1.8;
+}
+
+
+.ploy-grid{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px
+}
+.ploy-card{
+  border:1px solid var(--line);
+  border-radius:16px;
+  overflow:hidden;
+  background:linear-gradient(180deg,var(--panel2),var(--panel))
+}
+.ploy-head{
+  padding:18px 20px 19px;
+  border-bottom:1px solid var(--line);
+  background:linear-gradient(180deg,rgba(var(--overlay-rgb),.025),rgba(var(--overlay-rgb),.01))
+}
+.ploy-faction{
+  display:block;
+  color:var(--accent);
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.07em;
+  margin-bottom:5px
+}
+.ploy-head h3{
+  margin:0;
+  font-size:23px;
+  letter-spacing:-.025em
+}
+.ploy-body{padding:18px 20px 20px}
+.ploy-body .lore-note{
+  margin:0 0 18px
+}
+.ploy-rule{
+  border-top:1px solid var(--line);
+  padding-top:15px
+}
+.ploy-rule p{
+  margin:0;
+  color:var(--text);
+  font-size:14px;
+  line-height:1.85
+}
+.ploy-rule strong{color:var(--text)}
+.doctrine-list{
+  list-style:none;
+  margin:15px 0 0;
+  padding:0;
+  display:grid;
+  gap:9px
+}
+.doctrine-list li{
+  display:grid;
+  grid-template-columns:135px 1fr;
+  gap:12px;
+  align-items:start;
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:11px 12px;
+  background:rgba(var(--overlay-rgb),.015)
+}
+.doctrine-list strong{
+  color:var(--accent);
+  font-size:13px
+}
+.doctrine-list span{
+  color:var(--muted);
+  font-size:13px;
+  line-height:1.55
+}
+
+
+.firefight-grid .ploy-card .ploy-rule .plain-bullet-list{
+  margin:14px 0 0;
+  padding-left:20px;
+  color:var(--text)
+}
+.firefight-grid .ploy-card .ploy-rule .plain-bullet-list li{
+  margin:8px 0;
+  font-size:14px;
+  line-height:1.75;
+  color:var(--text)
+}
+
+
+.hero-toc{display:flex;flex-wrap:wrap;gap:10px;margin-top:22px}
+.hero-toc a{
+  padding:8px 12px;border:1px solid var(--line);border-radius:999px;
+  color:var(--muted);font-size:12px;font-weight:800;background:rgba(var(--overlay-rgb),.02)
+}
+.hero-toc a:hover{color:var(--text);border-color:rgba(var(--gold-rgb),.42)}
+
+.restriction{
+  margin-top:12px !important;
+  padding:10px 12px;
+  border-left:3px solid #a84d45;
+  background:rgba(168,77,69,.07);
+  color:var(--muted) !important
+}
+
+.network-rules{
+  padding-bottom:4px
+}
+.network-rules p{
+  margin:0 0 15px;
+  color:var(--text);
+  font-size:15px;
+  line-height:1.9
+}
+.network-rules strong{color:var(--text)}
+.rule-note{
+  margin-top:14px !important;
+  padding:11px 12px;
+  border-left:3px solid var(--accent);
+  background:rgba(var(--gold-rgb),.05);
+  color:var(--muted) !important
+}
+.plain-bullet-list{
+  margin:14px 0 0;
+  padding-left:20px;
+  color:var(--text)
+}
+.plain-bullet-list li{
+  margin:8px 0;
+  font-size:14px;
+  line-height:1.75;
+  color:var(--text)
+}
+
+footer{border-top:1px solid var(--line);color:var(--muted);text-align:center;padding:28px 20px 38px;font-size:13px}
+@media(max-width:980px){
+  .hero-grid{grid-template-columns:1fr}
+  .operative-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .guide-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+}
+@media(max-width:900px){
+  .composition-columns{grid-template-columns:1fr}
+}
+@media(max-width:760px){
+  .tactics-grid{grid-template-columns:1fr}
+  .tactic-selection-summary{flex-wrap:wrap}
+  .tactic-select-box{min-width:130px;flex:1}
+}
+@media(max-width:840px){
+  .ploy-grid{grid-template-columns:1fr}
+}
+@media(max-width:820px){
+  .ability-grid{grid-template-columns:1fr}
+}
+@media(max-width:680px){
+  .section-no{font-size:16px}
+  h2{font-size:30px}
+  .header-inner{height:62px;padding:0 16px} .nav-wrap{top:62px}
+  .hero{padding:44px 16px 24px} .hero-copy{padding:28px 22px}
+  main{padding-left:16px;padding-right:16px}
+  .operative-grid,.detail-grid{grid-template-columns:1fr}
+  .doctrine-list li{grid-template-columns:1fr;gap:4px}
+  .composition-topline{flex-direction:column}
+  .archetype-wrap{justify-content:flex-start}
+  .composition-summary{flex-wrap:wrap}
+  .summary-box{min-width:110px;flex:1}
+  .summary-plus,.summary-equals{font-size:17px}
+  .stat-strip{grid-template-columns:repeat(2,minmax(0,1fr))}
+  .back{font-size:0} .back:after{content:"← 메인";font-size:13px}
+}
+
+.aspect-groups{display:grid;gap:28px}
+.aspect-group{padding:22px;background:var(--panel2);border:1px solid var(--line);border-radius:24px;box-shadow:0 14px 34px rgba(0,0,0,.28)}
+.aspect-group-heading{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;margin-bottom:18px;padding-bottom:14px;border-bottom:1px solid var(--line)}
+.aspect-badge{display:inline-flex;align-items:center;padding:6px 12px;border-radius:999px;background:rgba(245,158,11,.12);border:1px solid rgba(245,158,11,.35);color:var(--accent);font-size:12px;font-weight:800;letter-spacing:.08em;text-transform:uppercase}
+.aspect-group-heading h3{margin:0;font-size:26px}
+.aspect-card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+.aspect-card{background:linear-gradient(180deg,rgba(var(--surface-rgb),.88),rgba(var(--surface-rgb),.88));border:1px solid var(--line);border-radius:22px;padding:18px 18px 20px}
+.aspect-card-head{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin-bottom:10px}
+.aspect-family{display:inline-flex;align-items:center;padding:5px 10px;border-radius:999px;background:rgba(248,113,113,.10);border:1px solid rgba(248,113,113,.25);color:#ffb4b4;font-size:12px;font-weight:800}
+.aspect-type{display:inline-flex;align-items:center;padding:5px 10px;border-radius:999px;background:rgba(245,158,11,.10);border:1px solid rgba(245,158,11,.25);color:var(--accent);font-size:12px;font-weight:800}
+.aspect-card h4{margin:0 0 12px;font-size:24px;line-height:1.2;color:var(--text)}
+.aspect-card p{margin:10px 0;font-size:14px;line-height:1.85;color:var(--text)}
+.aspect-card ul{margin:10px 0 0;padding-left:20px}
+.aspect-card li{margin:8px 0;font-size:14px;line-height:1.75;color:var(--text)}
+.aspect-note{margin-top:14px;padding:12px 14px;border-left:4px solid var(--accent);background:rgba(var(--overlay-rgb),.03);border-radius:12px;color:var(--muted);font-size:13px;line-height:1.75}
+.aspect-weapon{margin-top:14px;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.aspect-weapon table{width:100%;border-collapse:collapse}
+.aspect-weapon th,.aspect-weapon td{padding:10px 12px;border-bottom:1px solid rgba(var(--overlay-rgb),.06);font-size:13px;text-align:left}
+.aspect-weapon tr:last-child td{border-bottom:none}
+.aspect-weapon thead th{background:rgba(var(--overlay-rgb),.03);color:var(--text);font-weight:800}
+
+
+.token-grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+  gap:10px;
+  padding:20px 22px 22px
+}
+.token-grid span{
+  border:1px solid var(--line);
+  border-radius:10px;
+  padding:11px 12px;
+  background:rgba(var(--overlay-rgb),.015);
+  color:var(--text);
+  font-size:13px;
+  font-weight:800
+}
+.network-rules p{
+  margin:0 0 15px;
+  color:var(--text);
+  font-size:15px;
+  line-height:1.9
+}
+.restriction{
+  margin-top:12px !important;
+  padding:10px 12px;
+  border-left:3px solid #a84d45;
+  background:rgba(168,77,69,.07);
+  color:var(--muted) !important
+}
+
+
+.aspect-card-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px;margin-top:18px}
+.aspect-card{background:linear-gradient(180deg,rgba(var(--surface-rgb),.88),rgba(var(--surface-rgb),.88));border:1px solid var(--line);border-radius:22px;padding:18px 18px 20px}
+.aspect-card h4{margin:0 0 12px;font-size:23px;color:var(--text)}
+.aspect-card p{margin:10px 0;font-size:14px;line-height:1.8;color:var(--text)}
+.network-rules p{margin:0 0 15px;color:var(--text);font-size:15px;line-height:1.9}
+.restriction{margin-top:12px !important;padding:10px 12px;border-left:3px solid #a84d45;background:rgba(168,77,69,.07);color:var(--muted) !important}
+.source-gap{border-left:4px solid var(--accent);padding-left:16px}
+
+/* Specialized reusable layouts (currently used by Inquisitorial Agents). */
+.subsection-heading{margin:28px 0 14px;padding:16px 18px;border:1px solid var(--line);border-radius:18px;background:rgba(var(--overlay-rgb),.02)}
+.subsection-heading h3{margin:0 0 6px;font-size:24px;color:var(--text)}
+.subsection-heading p{margin:0;color:var(--muted);font-size:14px;line-height:1.7}
+.requisition-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:18px;margin-top:22px}
+.requisition-card{background:linear-gradient(180deg,rgba(var(--surface-rgb),.9),rgba(var(--surface-rgb),.9));border:1px solid var(--line);border-radius:20px;padding:18px}
+.requisition-card h4{margin:0 0 10px;font-size:22px;color:var(--text)}
+.requisition-card p{margin:8px 0;font-size:14px;line-height:1.75;color:var(--text)}
+.requisition-card ul{margin:10px 0;padding-left:20px}
+.requisition-card li{margin:7px 0;font-size:14px;line-height:1.65;color:var(--text)}
+.aspect-weapon{margin-top:14px;border:1px solid var(--line);border-radius:16px;overflow:hidden}
+.aspect-weapon table{width:100%;border-collapse:collapse}
+.aspect-weapon th,.aspect-weapon td{padding:10px 12px;border-bottom:1px solid rgba(var(--overlay-rgb),.06);font-size:13px;text-align:left}
+.aspect-weapon tr:last-child td{border-bottom:none}
+.aspect-weapon thead th{background:rgba(var(--overlay-rgb),.03);color:var(--text);font-weight:800}
+.network-rules p{margin:0 0 15px;color:var(--text);font-size:15px;line-height:1.9}
+.restriction{margin-top:12px !important;padding:10px 12px;border-left:3px solid #a84d45;background:rgba(168,77,69,.07);color:var(--muted) !important}
+
+
+.operative-group-title{
+  grid-column:1/-1;
+  margin:26px 0 6px;
+  padding:0 2px 12px;
+  border-bottom:1px solid var(--line)
+}
+.operative-group-title h3{
+  margin:0;
+  color:var(--text);
+  font-size:24px;
+  font-weight:900;
+  letter-spacing:-.02em
+}
+
+/* ============================================================
+   Q2 visual polish — 2026-09-13
+   Purpose: elevate hierarchy and finish without changing content.
+   ============================================================ */
+:root{
+  --bg:#090b0d;
+  --panel:var(--panel);
+  --panel2:var(--panel2);
+  --line:#2a3037;
+  --line-soft:rgba(var(--overlay-rgb),.055);
+  --text:#f3f4f5;
+  --muted:#9aa2aa;
+  --accent:#d1b36a;
+  --accent-soft:rgba(var(--gold-detail-rgb),.10);
+  --shadow:0 18px 46px rgba(0,0,0,.24);
+}
+html{background:var(--bg)}
+body{
+  min-height:100vh;
+  background:
+    radial-gradient(circle at 16% -6%,rgba(var(--gold-detail-rgb),.10),transparent 28rem),
+    radial-gradient(circle at 88% 5%,rgba(124,141,151,.055),transparent 30rem),
+    linear-gradient(180deg,var(--panel) 0%,var(--panel) 42%,var(--panel) 100%);
+}
+body:before{
+  content:"";
+  position:fixed;
+  inset:0;
+  z-index:-1;
+  pointer-events:none;
+  opacity:.16;
+  background-image:
+    linear-gradient(rgba(var(--overlay-rgb),.022) 1px,transparent 1px),
+    linear-gradient(90deg,rgba(var(--overlay-rgb),.018) 1px,transparent 1px);
+  background-size:56px 56px;
+  mask-image:linear-gradient(to bottom,rgba(0,0,0,.68),transparent 70%);
+}
+header{
+  background:rgba(var(--surface-rgb),.82);
+  border-bottom:1px solid rgba(var(--gold-detail-rgb),.10);
+  box-shadow:0 7px 24px rgba(0,0,0,.13);
+}
+.header-inner{height:72px}
+.logo{gap:13px;font-size:14px;letter-spacing:.18em}
+.logo-mark { width:48px; height:48px; display:block; flex:0 0 auto; object-fit:contain; }
+.back{transition:color .18s ease,transform .18s ease}
+.back:hover{color:var(--text);transform:translateX(-2px)}
+
+.hero{padding-top:58px;padding-bottom:42px}
+.breadcrumb{
+  margin-bottom:18px;
+  font-size:12px;
+  font-weight:800;
+  letter-spacing:.055em;
+  text-transform:uppercase;
+}
+.hero-grid{grid-template-columns:minmax(0,1.28fr) minmax(320px,.72fr);gap:18px}
+.hero-copy,.hero-art{
+  border-radius:22px;
+  border-color:rgba(var(--overlay-rgb),.075);
+  box-shadow:var(--shadow),inset 0 1px 0 rgba(var(--overlay-rgb),.025);
+}
+.hero-copy{
+  position:relative;
+  overflow:hidden;
+  min-height:330px;
+  padding:44px 46px 40px;
+  background:
+    radial-gradient(circle at 8% 10%,rgba(var(--gold-detail-rgb),.10),transparent 18rem),
+    linear-gradient(145deg,var(--panel-2) 0%,var(--panel) 72%);
+}
+.hero-copy:before{
+  content:"";
+  position:absolute;
+  inset:0 auto auto 0;
+  width:54%;
+  height:2px;
+  background:linear-gradient(90deg,var(--accent),rgba(var(--gold-detail-rgb),0));
+}
+.hero-copy:after{
+  content:"";
+  position:absolute;
+  right:20px;
+  top:20px;
+  width:26px;
+  height:26px;
+  border-top:1px solid rgba(var(--gold-detail-rgb),.22);
+  border-right:1px solid rgba(var(--gold-detail-rgb),.22);
+  pointer-events:none;
+}
+.tag{
+  position:relative;
+  padding:6px 11px 6px 24px;
+  border-color:rgba(var(--gold-detail-rgb),.38);
+  background:rgba(var(--gold-detail-rgb),.055);
+  letter-spacing:.08em;
+}
+.tag:before{
+  content:"";
+  position:absolute;
+  left:10px;
+  top:50%;
+  width:6px;
+  height:6px;
+  border-radius:50%;
+  transform:translateY(-50%);
+  background:var(--accent);
+  box-shadow:0 0 10px rgba(var(--gold-detail-rgb),.45);
+}
+h1{
+  margin-top:17px;
+  font-size:clamp(42px,5.7vw,76px);
+  letter-spacing:-.055em;
+  text-wrap:balance;
+}
+.hero-en{
+  margin-top:14px;
+  font-size:13px;
+  letter-spacing:.13em;
+  color:var(--muted);
+}
+.hero-toc{gap:8px;margin-top:27px;max-width:760px}
+.hero-toc a{
+  position:relative;
+  padding:8px 12px;
+  border-color:rgba(var(--overlay-rgb),.075);
+  background:rgba(var(--surface-rgb),.22);
+  transition:color .18s ease,border-color .18s ease,background .18s ease,transform .18s ease;
+}
+.hero-toc a:hover{
+  color:var(--text);
+  border-color:rgba(var(--gold-detail-rgb),.48);
+  background:rgba(var(--gold-detail-rgb),.06);
+  transform:translateY(-1px);
+}
+.hero-art{
+  min-height:330px;
+  background:
+    radial-gradient(circle at 50% 48%,rgba(var(--gold-detail-rgb),.11),transparent 8.5rem),
+    radial-gradient(circle at 50% 50%,rgba(var(--overlay-rgb),.024),transparent 17rem),
+    linear-gradient(155deg,var(--panel),var(--panel));
+}
+.hero-art:before,.hero-art:after{
+  width:76%;
+  background:linear-gradient(90deg,transparent,rgba(var(--gold-detail-rgb),.32),transparent);
+}
+.hero-art:before{transform:rotate(42deg)}
+.hero-art:after{transform:rotate(-42deg)}
+.hero-mark{
+  width:104px;
+  background:linear-gradient(180deg,rgba(var(--surface-rgb),.94),rgba(var(--surface-rgb),.80));
+  border-color:rgba(var(--gold-detail-rgb),.52);
+  box-shadow:0 0 0 18px rgba(var(--gold-detail-rgb),.025),0 0 60px rgba(var(--gold-detail-rgb),.08);
+  letter-spacing:.06em;
+}
+
+main{padding-top:10px;padding-bottom:96px}
+section{padding-top:42px}
+.section-head{
+  position:relative;
+  align-items:flex-end;
+  border-bottom:0;
+  padding:0 0 18px 18px;
+  margin-bottom:20px;
+}
+.section-head:before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:2px;
+  bottom:19px;
+  width:3px;
+  border-radius:3px;
+  background:linear-gradient(180deg,var(--accent),rgba(var(--gold-detail-rgb),.20));
+  box-shadow:0 0 18px rgba(var(--gold-detail-rgb),.15);
+}
+.section-head:after{
+  content:"";
+  position:absolute;
+  left:0;
+  right:0;
+  bottom:0;
+  height:1px;
+  background:linear-gradient(90deg,rgba(var(--gold-detail-rgb),.34),var(--line) 28%,rgba(var(--surface-rgb),.44));
+}
+.section-no{
+  display:inline-block;
+  margin-bottom:5px;
+  color:var(--accent);
+  font-size:21px;
+  letter-spacing:.10em;
+  text-shadow:0 0 20px rgba(var(--gold-detail-rgb),.13);
+}
+h2{font-size:40px;letter-spacing:-.042em}
+
+.placeholder,.panel,.operative-card,.composition-panel,.faction-rule-block,.ploy-card,.equipment-card,
+.aspect-group,.aspect-card,.requisition-card,.subsection-heading{
+  box-shadow:0 12px 34px rgba(0,0,0,.13),inset 0 1px 0 rgba(var(--overlay-rgb),.018);
+}
+.placeholder,.panel,.composition-panel,.faction-rule-block{
+  border-color:rgba(var(--overlay-rgb),.073);
+  background:linear-gradient(155deg,rgba(var(--surface-rgb),.98),rgba(var(--surface-rgb),.98));
+}
+.placeholder{min-height:122px;padding:24px 26px}
+.placeholder strong{font-size:15px}
+
+.operative-grid{gap:15px}
+.operative-card{
+  position:relative;
+  border-color:rgba(var(--overlay-rgb),.072);
+  border-radius:16px;
+  background:linear-gradient(155deg,var(--panel2),var(--panel));
+  transition:border-color .18s ease,transform .18s ease,box-shadow .18s ease;
+}
+.operative-card:before{
+  content:"";
+  position:absolute;
+  left:0;
+  top:0;
+  width:0;
+  height:2px;
+  z-index:3;
+  background:linear-gradient(90deg,var(--accent),rgba(var(--gold-detail-rgb),.1));
+  transition:width .22s ease;
+}
+.operative-summary{min-height:66px;padding:19px 19px}
+.operative-summary strong{font-size:17px;letter-spacing:-.015em}
+.toggle{
+  color:var(--muted);
+  border-color:rgba(var(--overlay-rgb),.08);
+  background:rgba(var(--overlay-rgb),.015);
+  transition:all .18s ease;
+}
+.operative-card.open{
+  border-color:rgba(var(--gold-detail-rgb),.32);
+  box-shadow:0 20px 54px rgba(0,0,0,.24),0 0 0 1px rgba(var(--gold-detail-rgb),.035) inset;
+}
+.operative-card.open:before{width:100%}
+.operative-card.open .operative-detail{background:rgba(var(--surface-rgb),.24)}
+.operative-card.open .toggle{box-shadow:0 5px 16px rgba(var(--gold-detail-rgb),.12)}
+.stat-box{
+  border-color:rgba(var(--overlay-rgb),.075);
+  background:linear-gradient(180deg,rgba(var(--gold-detail-rgb),.085),rgba(var(--overlay-rgb),.012));
+}
+.stat-box strong{font-size:25px}
+.data-block{border-color:rgba(var(--overlay-rgb),.075)}
+.data-block-title{background:linear-gradient(90deg,rgba(var(--gold-detail-rgb),.105),rgba(var(--gold-detail-rgb),.025))}
+.weapon-table th{background:rgba(var(--overlay-rgb),.022)}
+.weapon-table tbody tr{transition:background .15s ease}
+.weapon-table tbody tr:hover{background:rgba(var(--overlay-rgb),.018)}
+.ability-card,.choice-card,.operative-choice-item,.composition-block,.tactic-select-box{
+  border-color:rgba(var(--overlay-rgb),.072);
+  background:rgba(var(--overlay-rgb),.013);
+}
+.ability-card h4{letter-spacing:-.015em}
+
+.rule-block-head{
+  position:relative;
+  background:linear-gradient(90deg,rgba(var(--gold-detail-rgb),.07),rgba(var(--overlay-rgb),.012) 35%,rgba(var(--overlay-rgb),.008));
+}
+.rule-block-head:after{
+  content:"";
+  position:absolute;
+  left:22px;
+  bottom:-1px;
+  width:78px;
+  height:1px;
+  background:var(--accent);
+}
+.rule-block-head h3{font-size:29px}
+.ploy-card,.equipment-card{border-color:rgba(var(--overlay-rgb),.072)}
+
+.guide-grid{gap:14px}
+.guide-grid div{
+  position:relative;
+  min-height:112px;
+  padding:18px 18px 17px;
+  overflow:hidden;
+  border-color:rgba(var(--overlay-rgb),.075);
+  background:linear-gradient(155deg,rgba(var(--overlay-rgb),.025),rgba(var(--overlay-rgb),.006));
+}
+.guide-grid div:after{
+  content:"";
+  position:absolute;
+  right:-22px;
+  bottom:-30px;
+  width:82px;
+  height:82px;
+  border:1px solid rgba(var(--gold-detail-rgb),.09);
+  transform:rotate(45deg);
+}
+.guide-grid span{
+  margin-bottom:10px;
+  color:var(--muted);
+  font-size:11px;
+  font-weight:900;
+  letter-spacing:.045em;
+}
+.guide-grid strong{
+  position:relative;
+  z-index:1;
+  font-size:22px;
+  letter-spacing:-.025em;
+}
+footer{
+  border-top-color:rgba(var(--gold-detail-rgb),.10);
+  background:rgba(var(--surface-rgb),.58);
+  letter-spacing:.04em;
+}
+
+@media (hover:hover){
+  .operative-card:not(.open):hover{
+    transform:translateY(-2px);
+    border-color:rgba(var(--gold-detail-rgb),.21);
+    box-shadow:0 18px 42px rgba(0,0,0,.20);
+  }
+  .operative-card:not(.open):hover:before{width:42%}
+  .operative-card:hover .toggle{color:var(--text);border-color:rgba(var(--gold-detail-rgb),.32)}
+  .guide-grid div{transition:transform .18s ease,border-color .18s ease,background .18s ease}
+  .guide-grid div:hover{transform:translateY(-2px);border-color:rgba(var(--gold-detail-rgb),.23);background:rgba(var(--gold-detail-rgb),.03)}
+}
+
+@media(max-width:980px){
+  .hero-grid{grid-template-columns:1fr}
+  .hero-art{min-height:220px}
+}
+@media(max-width:680px){
+  body:before{background-size:42px 42px}
+  .header-inner{height:62px}
+  .hero{padding-top:38px;padding-bottom:28px}
+  .hero-grid{display:flex;flex-direction:column}
+  .hero-art{order:1;min-height:190px}
+  .hero-copy{order:2;min-height:0;padding:30px 24px 28px}
+  .hero-copy:after{display:none}
+  .hero-mark{width:86px}
+  h1{font-size:clamp(40px,13.2vw,58px)}
+  .hero-toc{margin-top:22px}
+  .hero-toc a{padding:7px 10px;font-size:11px}
+  section{padding-top:36px}
+  .section-head{padding-left:14px}
+  .section-no{font-size:18px}
+  h2{font-size:31px}
+  .placeholder,.panel{padding:19px}
+  .guide-grid{grid-template-columns:1fr 1fr;gap:10px}
+  .guide-grid div{min-height:96px;padding:15px}
+  .guide-grid strong{font-size:19px}
+}
+@media(max-width:430px){
+  .guide-grid{grid-template-columns:1fr}
+  .guide-grid div{min-height:84px}
+}
+
+
+
+@media (max-width: 860px){
+  .corsairvoidscarred-buying-panel .buying-image-grid{grid-template-columns:1fr;}
+  .corsairvoidscarred-buying-panel .buying-image-card img{height:auto;max-height:none;}
+}
+
+
+
+/* Section 01 개요: 한 줄 요약 · 태그 · 특징 / 추천 대상 */
+.overview-panel{
+  border:1px solid var(--line);border-radius:16px;padding:24px;
+  background:linear-gradient(180deg,var(--panel2),var(--panel))
+}
+.overview-lead{
+  margin:0;color:var(--text);font-size:19px;font-weight:700;line-height:1.7;
+  letter-spacing:-.01em;word-break:keep-all
+}
+.overview-tags{display:flex;flex-wrap:wrap;gap:8px;margin-top:14px}
+.overview-tag{
+  border:1px solid rgba(var(--gold-rgb),.35);background:rgba(var(--gold-rgb),.08);color:var(--accent);
+  padding:6px 11px;border-radius:999px;font-size:12px;font-weight:900
+}
+.overview-grid{
+  display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;margin-top:20px
+}
+.overview-block{
+  border:1px solid var(--line);border-radius:14px;padding:18px 20px;background:rgba(var(--surface-rgb),.28)
+}
+.overview-block h4{
+  margin:0 0 12px;padding-bottom:10px;border-bottom:1px solid var(--line);
+  color:var(--accent);font-size:13px;font-weight:900;letter-spacing:.06em
+}
+.overview-block ul{margin:0;padding-left:18px;color:var(--text)}
+.overview-block li{margin:0 0 9px;font-size:14px;line-height:1.75;word-break:keep-all}
+.overview-block li:last-child{margin-bottom:0}
+.overview-caveat{
+  margin:14px 0 0;padding:12px 14px;border:1px dashed rgba(224,90,79,.55);border-radius:10px;
+  background:rgba(224,90,79,.07);color:#f1c9c4;font-size:13px;line-height:1.7;word-break:keep-all
+}
+.overview-caveat strong{
+  display:block;color:#ef6b60;font-size:12px;margin-bottom:4px;letter-spacing:.04em
+}
+@media(max-width:760px){
+  .overview-grid{grid-template-columns:1fr}
+  .overview-panel{padding:18px}
+  .overview-lead{font-size:17px}
+  .overview-block{padding:16px}
+}
+</style>
+<style id="corsairvoidscarred-emblem-style">
+/* 공허상흔 해적단: same emblem size/position as Angel of Death. */
+.hero-grid.corsairvoidscarred-hero-grid{display:block;}
+.hero-copy.corsairvoidscarred-hero-copy{position:relative;min-height:300px;padding-right:clamp(220px,30vw,360px);}
+.corsairvoidscarred-inline-emblem{position:absolute;right:46px;top:50%;transform:translateY(-50%);width:clamp(140px,20vw,230px);height:auto;filter:none;pointer-events:none;}
+.hero-art,.hero-art.corsairvoidscarred-hero-art{display:none !important;}
+@media(max-width:980px){.corsairvoidscarred-hero-copy{padding-right:220px;min-height:280px;} .corsairvoidscarred-inline-emblem{right:32px;width:clamp(120px,22vw,180px);}}
+@media(max-width:680px){.corsairvoidscarred-hero-copy{padding-right:24px;min-height:0;} .corsairvoidscarred-inline-emblem{position:static;display:block;margin:24px 0 4px auto;transform:none;width:min(42vw,150px);}}
+</style>
+<style id="fixed-section-shortcuts-v15">
+/* Kill Team Core — persistent section shortcuts
+   Desktop: fixed vertical rail on the left.
+   Tablet/mobile: fixed horizontal bar below the header. */
+@media (min-width:1101px){
+  .hero-toc{
+    position:fixed !important;
+    left:16px !important;
+    top:50% !important;
+    right:auto !important;
+    transform:translateY(-50%) !important;
+    z-index:60 !important;
+    width:174px !important;
+    max-width:none !important;
+    margin:0 !important;
+    padding:12px !important;
+    display:flex !important;
+    flex-direction:column !important;
+    flex-wrap:nowrap !important;
+    gap:7px !important;
+    overflow:visible !important;
+    border:1px solid rgba(var(--overlay-rgb),.08) !important;
+    border-radius:16px !important;
+    background:rgba(var(--surface-rgb),.92) !important;
+    backdrop-filter:blur(16px) !important;
+    box-shadow:0 14px 36px rgba(0,0,0,.28) !important;
+  }
+  .hero-toc a{
+    width:100% !important;
+    padding:9px 11px !important;
+    border-radius:10px !important;
+    text-align:left !important;
+    white-space:nowrap !important;
+    flex:0 0 auto !important;
+    transition:color .18s ease,border-color .18s ease,background .18s ease,transform .18s ease !important;
+  }
+  .hero-toc a:hover{
+    color:var(--text) !important;
+    border-color:rgba(var(--gold-rgb),.42) !important;
+    background:rgba(var(--gold-rgb),.08) !important;
+    transform:translateX(2px) !important;
+  }
+  .hero,main{
+    width:calc(100% - 220px) !important;
+    max-width:1240px !important;
+    margin-left:max(200px,calc((100vw - 1060px)/2)) !important;
+    margin-right:20px !important;
+  }
+  section{scroll-margin-top:92px !important;}
+}
+@media (min-width:681px) and (max-width:1100px){
+  .hero-toc{
+    position:fixed !important;
+    left:0 !important;
+    right:0 !important;
+    top:70px !important;
+    transform:none !important;
+    z-index:60 !important;
+    width:100% !important;
+    max-width:none !important;
+    margin:0 !important;
+    padding:8px 12px !important;
+    display:flex !important;
+    flex-direction:row !important;
+    flex-wrap:nowrap !important;
+    gap:7px !important;
+    overflow-x:auto !important;
+    overflow-y:hidden !important;
+    background:rgba(var(--surface-rgb),.94) !important;
+    border-top:1px solid rgba(var(--overlay-rgb),.05) !important;
+    border-bottom:1px solid rgba(var(--overlay-rgb),.07) !important;
+    border-radius:0 !important;
+    backdrop-filter:blur(14px) !important;
+    scrollbar-width:none !important;
+  }
+  .hero-toc::-webkit-scrollbar{display:none !important;}
+  .hero-toc a{
+    flex:0 0 auto !important;
+    width:auto !important;
+    padding:8px 11px !important;
+    border-radius:999px !important;
+    white-space:nowrap !important;
+  }
+  .hero{padding-top:124px !important;}
+  section{scroll-margin-top:132px !important;}
+}
+@media (max-width:680px){
+  .hero-toc{
+    position:fixed !important;
+    left:0 !important;
+    right:0 !important;
+    top:62px !important;
+    transform:none !important;
+    z-index:60 !important;
+    width:100% !important;
+    max-width:none !important;
+    margin:0 !important;
+    padding:8px 12px !important;
+    display:flex !important;
+    flex-direction:row !important;
+    flex-wrap:nowrap !important;
+    gap:7px !important;
+    overflow-x:auto !important;
+    overflow-y:hidden !important;
+    background:rgba(var(--surface-rgb),.94) !important;
+    border-top:1px solid rgba(var(--overlay-rgb),.05) !important;
+    border-bottom:1px solid rgba(var(--overlay-rgb),.07) !important;
+    border-radius:0 !important;
+    backdrop-filter:blur(14px) !important;
+    scrollbar-width:none !important;
+  }
+  .hero-toc::-webkit-scrollbar{display:none !important;}
+  .hero-toc a{
+    flex:0 0 auto !important;
+    width:auto !important;
+    padding:8px 11px !important;
+    border-radius:999px !important;
+    white-space:nowrap !important;
+  }
+  .hero{padding-top:112px !important;}
+  section{scroll-margin-top:124px !important;}
+}
+</style>
+<style id="section-spy-v16">
+/* Kill Team Core — section spy: highlight the shortcut of the section currently in view */
+.hero-toc a.is-current{
+  color:#111315 !important;
+  background:var(--accent) !important;
+  border-color:var(--accent) !important;
+  box-shadow:0 0 0 1px rgba(var(--gold-rgb),.35),0 0 18px rgba(var(--gold-rgb),.45) !important;
+}
+.hero-toc a.is-current:hover{
+  color:#111315 !important;
+  background:var(--accent) !important;
+  transform:none !important;
+}
+</style>
+
+<style id="mobile-ui-v1">
+/* Kill Team Core — mobile layout (phones, ≤680px). Desktop/tablet untouched. */
+@media (max-width:680px){
+  /* 3. faction title: never break inside a word; smaller emblem */
+  /* per-page hero styles keep a 220px right padding for the emblem even on phones; undo it here */
+  .hero-copy[class*="-hero-copy"]{padding-right:24px !important;min-height:0 !important}
+  .hero-copy h1{font-size:clamp(28px,8.8vw,44px) !important;line-height:1.12 !important;letter-spacing:-.03em !important;word-break:keep-all !important;overflow-wrap:normal !important;text-wrap:balance}
+  .hero img[class*="-inline-emblem"]{width:min(30vw,120px) !important;margin:14px 0 0 auto !important}
+  /* 4. operative stats in one row */
+  .stat-strip{grid-template-columns:repeat(4,minmax(0,1fr)) !important;gap:6px !important;margin-bottom:14px !important}
+  .stat-box{padding:9px 6px 8px !important;text-align:center}
+  .stat-box span{font-size:9.5px !important;letter-spacing:.04em !important;margin-bottom:3px !important}
+  .stat-box strong{font-size:19px !important}
+  /* 7. flavour text: smaller and tighter */
+  .lore-note{font-size:13px !important;line-height:1.65 !important;padding:10px 12px !important;margin:0 0 12px !important}
+  /* 1. weapon tables become weapon cards: name / 공격·명중·피해 / 규칙 */
+  .weapon-table-wrap{overflow:visible !important}
+  .weapon-table,.aspect-weapon table:not(.plain-table){min-width:0 !important;width:100%;border-collapse:separate;border-spacing:0}
+  .weapon-table thead,.aspect-weapon table:not(.plain-table) thead{display:none}
+  .weapon-table tbody,.aspect-weapon table:not(.plain-table) tbody{display:block}
+  .weapon-table tbody tr,.aspect-weapon table:not(.plain-table) tbody tr{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:6px 8px;padding:11px 12px 12px;border-bottom:1px solid var(--line);background:transparent !important}
+  .weapon-table tbody tr:last-child,.aspect-weapon table:not(.plain-table) tbody tr:last-child{border-bottom:0}
+  .weapon-table td,.aspect-weapon table:not(.plain-table) td{display:block;padding:0 !important;border:0 !important;width:auto !important;white-space:normal !important;text-align:left !important}
+  .weapon-table td:first-child,.aspect-weapon table:not(.plain-table) td:first-child{grid-column:1/-1;font-size:14px;font-weight:800;color:var(--text);line-height:1.45;margin-bottom:1px}
+  .weapon-table td:nth-child(2),.weapon-table td:nth-child(3),.weapon-table td:nth-child(4),
+  .aspect-weapon table:not(.plain-table) td:nth-child(2),.aspect-weapon table:not(.plain-table) td:nth-child(3),.aspect-weapon table:not(.plain-table) td:nth-child(4){text-align:center !important;border:1px solid var(--line) !important;border-radius:9px;padding:6px 4px 5px !important;background:rgba(var(--overlay-rgb),.03);font-size:15px;font-weight:800;line-height:1.2}
+  .weapon-table td:nth-child(2)::before,.aspect-weapon table:not(.plain-table) td:nth-child(2)::before{content:"공격"}
+  .weapon-table td:nth-child(3)::before,.aspect-weapon table:not(.plain-table) td:nth-child(3)::before{content:"명중"}
+  .weapon-table td:nth-child(4)::before,.aspect-weapon table:not(.plain-table) td:nth-child(4)::before{content:"피해"}
+  .weapon-table td:nth-child(n+2):nth-child(-n+4)::before,.aspect-weapon table:not(.plain-table) td:nth-child(n+2):nth-child(-n+4)::before{display:block;font-size:10px;font-weight:800;letter-spacing:.06em;color:var(--muted);margin-bottom:2px}
+  .weapon-table td:nth-child(5),.aspect-weapon table:not(.plain-table) td:nth-child(5){grid-column:1/-1;font-size:13px;line-height:1.7;color:var(--text);margin-top:3px}
+  .weapon-table td:nth-child(5)::before,.aspect-weapon table:not(.plain-table) td:nth-child(5)::before{content:"규칙";display:inline-block;margin-right:7px;padding:1px 6px;border-radius:6px;background:rgba(var(--gold-rgb),.13);color:var(--accent);font-size:10px;font-weight:900;letter-spacing:.06em;vertical-align:1px}
+  /* 6. buying guide images: capped height */
+  .buying-image-grid{gap:10px !important}
+  .buying-image-card img{height:190px !important;max-height:190px !important;object-fit:contain !important;background:#e7e7e7}
+  .buying-image-card figcaption{padding:8px 12px !important;font-size:12px !important}
+}
+
+/* 요원 편성·팩션 규칙: 휴대폰에서 더 촘촘하게 (v2) */
+@media (max-width:680px){
+  /* 요원 편성 */
+  .composition-panel{padding:14px 12px 12px !important;border-radius:14px !important}
+  .composition-topline{gap:8px !important;padding-bottom:12px !important}
+  .composition-label{font-size:11px !important;margin-bottom:2px !important}
+  .composition-topline h3{font-size:20px !important}
+  .archetype-title{font-size:10px !important}
+  .archetype-chip{padding:4px 9px !important;font-size:11px !important}
+  .composition-summary{flex-wrap:nowrap !important;gap:6px !important;padding:12px 0 2px !important}
+  .summary-box{min-width:0 !important;flex:1 1 0 !important;padding:8px 4px !important;border-radius:10px !important}
+  .summary-box span{font-size:10px !important;margin-bottom:2px !important;line-height:1.3 !important;word-break:keep-all}
+  .composition-summary:has(.summary-box:nth-of-type(4)){flex-wrap:wrap !important;row-gap:8px !important}
+  .composition-summary:has(.summary-box:nth-of-type(4)) .summary-box{flex:1 1 38% !important}
+  .summary-box strong{font-size:18px !important}
+  .summary-plus,.summary-equals{font-size:14px !important;flex:0 0 auto}
+  .composition-columns{gap:10px !important;margin-top:12px !important}
+  .composition-block{padding:12px 11px !important;border-radius:12px !important}
+  .composition-block-head{gap:10px !important;padding-bottom:10px !important;margin-bottom:10px !important}
+  .composition-number{width:28px !important;height:28px !important;font-size:14px !important;border-radius:8px !important}
+  .composition-block-head h4{font-size:15px !important;margin:0 0 2px !important}
+  .composition-block-head p{font-size:12px !important;line-height:1.5 !important}
+  .loadout-row{gap:6px !important;margin-top:6px !important}
+  .loadout-row span,.option-group li,.fixed-loadout span{padding:4px 8px !important;font-size:12px !important;border-radius:6px !important}
+  .loadout-or{margin:7px 0 0 !important;font-size:10px !important}
+  .or-divider{margin:8px 0 !important}
+  .option-group{margin-top:8px !important}
+  .option-label{font-size:10px !important;margin-bottom:5px !important}
+  .choice-card{padding:10px 11px !important;margin-top:8px !important;border-radius:10px !important}
+  .choice-card h5{font-size:14px !important;margin:0 0 5px !important}
+  .choice-card p{font-size:12px !important;line-height:1.5 !important}
+  .operative-choice-list{grid-template-columns:repeat(2,minmax(0,1fr)) !important;gap:6px !important}
+  .operative-choice-item{padding:8px 9px !important;border-radius:9px !important;min-width:0}
+  .operative-choice-item strong{font-size:12.5px !important;line-height:1.35 !important;word-break:keep-all}
+  .operative-choice-list > :not(.operative-choice-item){grid-column:1/-1}
+  .operative-choice-item.detailed{grid-column:1/-1}
+  .operative-choice-item:has(p){grid-column:1/-1}
+  .operative-choice-item p{font-size:12px !important;line-height:1.5 !important;margin-top:4px !important}
+  .composition-rule,.bolt-note{padding:10px 12px !important;margin-top:10px !important;border-radius:10px !important}
+  .composition-rule strong,.bolt-note strong{font-size:12.5px !important;margin-bottom:3px !important}
+  .composition-rule p,.bolt-note p{font-size:12px !important;line-height:1.55 !important}
+  .composition-panel .plain-bullet-list{margin-top:6px !important;padding-left:16px !important}
+  .composition-panel .plain-bullet-list li{font-size:12px !important;line-height:1.55 !important;margin:4px 0 !important}
+  /* 팩션 규칙 */
+  .faction-rules-wrap{gap:12px !important}
+  .faction-rule-block{border-radius:14px !important}
+  .rule-block-head{padding:11px 14px 12px !important}
+  .rule-block-head:after{left:14px !important;width:56px !important}
+  .rule-kicker{font-size:11px !important;margin-bottom:2px !important}
+  .rule-block-head h3{font-size:21px !important}
+  .rule-intro{padding:12px 14px 0 !important}
+  .rule-intro p,.network-rules p,.astartes-rule-item p{font-size:14px !important;line-height:1.7 !important;margin:0 0 10px !important}
+  .rule-intro .lore-note,.aspect-card .lore-note{margin-bottom:10px !important}
+  .plain-bullet-list{margin-top:8px !important;padding-left:18px !important}
+  .plain-bullet-list li{font-size:13.5px !important;line-height:1.6 !important;margin:5px 0 !important}
+  .rules-source-note{margin:0 14px 14px !important;font-size:11.5px !important}
+  .developer-note{margin:0 14px 14px !important;padding:10px 12px !important}
+  .rule-note{margin-top:10px !important;padding:9px 10px !important}
+  .doctrine-list{margin-top:10px !important;gap:6px !important}
+  .doctrine-list li{padding:8px 10px !important}
+  .doctrine-list strong,.doctrine-list span{font-size:12.5px !important}
+  .aspect-card-grid{gap:10px !important;margin-top:12px !important}
+  .aspect-card{padding:12px 13px 13px !important;border-radius:14px !important}
+  .aspect-card h4{font-size:18px !important;margin:0 0 8px !important}
+  .aspect-card p{font-size:13.5px !important;line-height:1.7 !important;margin:8px 0 !important}
+  .aspect-card ul{margin-top:6px !important;padding-left:18px !important}
+  .aspect-card li{font-size:13.5px !important;line-height:1.6 !important;margin:5px 0 !important}
+  .aspect-groups{gap:14px !important}
+  .aspect-group{padding:13px 12px !important;border-radius:16px !important}
+  .aspect-group-heading{gap:8px !important;margin-bottom:12px !important;padding-bottom:10px !important}
+  .aspect-group-heading h3{font-size:20px !important}
+  .aspect-badge{padding:4px 9px !important;font-size:11px !important}
+  .tactics-grid{gap:8px !important;padding:0 14px 14px !important}
+  .tactic-card{padding:11px 11px 11px 44px !important}
+  .tactic-number{left:10px !important;top:10px !important;width:26px !important;height:26px !important;font-size:12px !important}
+  .tactic-card h4{font-size:15px !important;margin-bottom:5px !important}
+  .tactic-card p,.tactic-card li{font-size:12.5px !important;line-height:1.6 !important}
+  .tactic-select-box{padding:9px 10px !important}
+  .tactic-select-box strong{font-size:16px !important}
+  .astartes-quote{margin:12px 14px 0 !important;padding:10px 12px !important;font-size:13px !important;line-height:1.65 !important}
+  .astartes-body{gap:8px !important;padding:12px 14px 14px !important}
+  .astartes-rule-item{padding:10px 12px !important}
+  .requisition-grid{gap:10px !important;margin-top:12px !important}
+  .requisition-card{padding:12px 13px !important;border-radius:14px !important}
+  .requisition-card h4{font-size:18px !important;margin-bottom:6px !important}
+  .requisition-card p,.requisition-card li{font-size:13.5px !important;line-height:1.65 !important}
+}
+</style>
+<style id="translation-badge-v1">
+/* 번역 출처 표시: 공식(초록) / 비공식(붉은색) */
+.hero-note{position:absolute;left:46px;bottom:20px;margin:0;display:inline-flex;align-items:center;gap:7px;padding:5px 11px;border:1px solid;border-radius:999px;font-size:11px;font-weight:800;letter-spacing:.08em;line-height:1.4;white-space:nowrap}
+.hero-note::before{content:"";width:6px;height:6px;border-radius:50%;background:currentColor;flex:0 0 auto}
+.hero-note-official{color:#5fd38a;border-color:rgba(95,211,138,.7);background:rgba(95,211,138,.08)}
+.hero-note-unofficial{color:#ef6b60;border-color:rgba(239,107,96,.7);background:rgba(239,107,96,.08)}
+@media(max-width:980px){.hero-note{left:32px;bottom:16px}}
+@media(max-width:680px){.hero-note{position:static;margin:12px 0 0;align-self:flex-start}}
+@media(min-width:681px){.hero-copy{padding-bottom:76px !important}}
+</style>
+<style id="weapon-rule-glossary-v1">
+/* weapon-rule glossary: clickable keywords + popover */
+.wr-kw{appearance:none;-webkit-appearance:none;background:none;border:0;border-bottom:1px dotted rgba(var(--gold-detail-rgb),.75);border-radius:0;padding:0 1px;margin:0;font:inherit;line-height:inherit;letter-spacing:inherit;color:var(--accent);cursor:pointer;white-space:nowrap;text-align:inherit;-webkit-tap-highlight-color:transparent;transition:background-color .15s,border-color .15s}
+.wr-kw:hover,.wr-kw.is-open{background:var(--accent-soft);border-bottom-style:solid;border-bottom-color:var(--accent)}
+.wr-kw:focus-visible{outline:2px solid rgba(var(--gold-detail-rgb),.6);outline-offset:1px;border-radius:3px}
+.wr-pop{position:absolute;z-index:300;width:max-content;max-width:min(400px,calc(100vw - 16px));box-sizing:border-box;background:var(--panel);border:1px solid rgba(var(--gold-detail-rgb),.38);border-radius:12px;padding:12px 14px 13px;box-shadow:0 18px 46px rgba(0,0,0,.5),0 0 0 1px rgba(0,0,0,.45);color:var(--text);font-size:13px;line-height:1.7;word-break:keep-all;overflow-wrap:break-word;text-align:left}
+.wr-pop[hidden]{display:none !important}
+.wr-pop-head{display:flex;align-items:baseline;gap:8px;flex-wrap:wrap;margin:0 0 6px}
+.wr-pop-ko{color:var(--accent);font-weight:900;font-size:14px}
+.wr-pop-en{color:var(--muted);font-size:11px;letter-spacing:.06em;text-transform:uppercase;font-weight:700}
+.wr-pop-sum{margin:0;font-weight:700;color:#f3f4f5}
+.wr-pop-det{margin:6px 0 0;color:#b9c0c7}
+.wr-pop-arrow{position:absolute;bottom:-7px;left:50%;width:12px;height:12px;background:var(--panel);border-right:1px solid rgba(var(--gold-detail-rgb),.38);border-bottom:1px solid rgba(var(--gold-detail-rgb),.38);transform:translateX(-50%) rotate(45deg)}
+.wr-pop.is-below .wr-pop-arrow{bottom:auto;top:-7px;transform:translateX(-50%) rotate(225deg)}
+@media (max-width:680px){.wr-pop{font-size:12.5px;padding:11px 12px 12px}}
+</style>
+<style id="corsairvoidscarred-page-style">.ploy-rule p + p{margin-top:10px}.ability-card p + p{margin-top:8px}.composition-rule p + p{margin-top:6px}.operative-keywords{display:flex;flex-wrap:wrap;align-items:center;gap:6px;margin-top:14px;padding-top:12px;border-top:1px solid var(--line)}.operative-keywords-label{color:var(--muted);font-size:11px;font-weight:900;letter-spacing:.06em;margin-right:4px}.operative-keyword{border:1px solid rgba(var(--gold-rgb),.3);border-radius:999px;padding:3px 9px;font-size:11.5px;font-weight:700;color:var(--accent);background:rgba(var(--gold-rgb),.06)}@media(max-width:680px){.operative-keywords{margin-top:10px;padding-top:10px;gap:5px}.operative-keyword{padding:2px 7px;font-size:11px}}.ploy-rule .weapon-table-wrap{margin-top:10px}.ploy-rule .weapon-table{min-width:0;font-size:12px}.ploy-rule .weapon-table th,.ploy-rule .weapon-table td{padding:8px 9px}.ploy-rule .weapon-table td:first-child{white-space:nowrap}.corsairvoidscarred-hero-copy h1{word-break:keep-all}</style>
+<link rel="icon" type="image/png" sizes="256x256" href="../../assets/kill-team-core-favicon.png?v=13138ca91b"/>
+<link rel="icon" href="../../favicon.ico?v=13138ca91b" sizes="any"/>
+<link rel="stylesheet" href="../../assets/site-fonts.css"/>
+<link rel="stylesheet" href="../../assets/site-theme.css?v=8"/>
+<script src="../../assets/site-theme.js"></script>
+<link rel="canonical" href="https://killteamcore.kr/factions/corsair-voidscarred/"/>
+</head>
+<body>
+<header>
+<div class="header-inner">
+<a class="logo" href="../../index.html"><img class="logo-mark" src="../../assets/kill-team-core-logo.png?v=13138ca91b" alt="" aria-hidden="true"/><span>Kill Team Core</span></a>
+<div class="header-actions"><a class="back" href="../../index.html">← 팩션 목록으로</a><button class="theme-toggle" id="theme-toggle" type="button" aria-label="화이트 모드로 전환" aria-pressed="false">☀ 화이트 모드</button></div>
+</div>
+</header>
+<div class="hero"><div class="breadcrumb">Kill Team Core / <span style="color:var(--accent)">공허상흔 해적단</span></div><div class="hero-grid corsairvoidscarred-hero-grid"><div class="hero-copy corsairvoidscarred-hero-copy"><span class="tag">제노</span><h1>공허상흔 해적단</h1><p class="hero-en">Corsair Voidscarred</p><img alt="공허상흔 해적단 엠블럼" class="corsairvoidscarred-inline-emblem" src="../../assets/corsairvoidscarred-emblem.png"/><p class="hero-note hero-note-unofficial">비공식 번역</p><div class="hero-toc"><a href="#overview">개요</a><a href="#operatives">요원 데이터카드</a><a href="#composition">요원 편성</a><a href="#rules">팩션 규칙</a><a href="#equipment">팩션 장비</a><a href="#strategic">전략 플로이</a><a href="#firefight">화력전 플로이</a><a href="#buying">구매 가이드</a></div></div></div></div><main>
+<section id="overview"><div class="section-head"><div><span class="section-no">01</span><h2>개요</h2></div></div><div class="overview-panel"><p class="overview-lead">이동 7″와 운용마다 얻는 무상 질주로 전장을 빠르게 누비는 엘다리 해적 킬 팀입니다. 사격과 근접전, 사이킥 지원과 위치 교환을 조합해 목표물을 차지하고 적의 허점을 찌릅니다.</p><div class="overview-tags"><span class="overview-tag">요원 9명 · 기동형</span><span class="overview-tag">사격 · 근접 · 임무 수행</span><span class="overview-tag">입문 난이도 보통</span></div><div class="overview-grid"><div class="overview-block"><h4>특징</h4><ul><li>엘다리 약탈자로 모든 요원이 운용 중 무상 질주를 한 번 수행합니다. 분대장은 그 질주 대신 1AP 행동 하나를 무상으로 수행할 수 있습니다.</li><li>그림자 질주자의 워프 도약, 개척자의 위치 교환, 쿠르나이트 사냥꾼의 추격으로 배치와 이동에서 다양한 선택지를 가집니다.</li><li>사수와 중화기 사수의 관통 무기, 쿠르나티의 검술, 별폭풍 결투가의 권총 탄막으로 사격과 근접전 모두에 대응합니다.</li><li>영혼 직조자는 아군의 APL을 높이거나 체력을 회복하고, 개척자는 사이킥 사격과 보호 능력으로 지원합니다.</li></ul></div><div class="overview-block"><h4>추천 대상</h4><ul><li>높은 기동력으로 유리한 사선과 임무 위치를 선점하는 플레이를 즐기는 분.</li><li>사격, 근접, 사이킥 지원을 역할별로 조합하고 싶은 분.</li><li>엘다리 해적 미니어처와 개성 있는 전문 요원을 좋아하는 분.</li></ul><p class="overview-caveat"><strong>이런 분에게는 비추천</strong>대부분 방호 4+, 체력 8로 노출된 상태에서 오래 버티기 어렵습니다. 정면 화력전보다 이동과 위치 선정에 신경 써야 합니다.</p></div></div></div></section>
+<section id="operatives"><div class="section-head"><div><span class="section-no">02</span><h2>요원 데이터카드</h2></div></div><div class="operative-grid"><article class="operative-card"><button aria-expanded="false" class="operative-summary" type="button"><span><strong>공허상흔 분대장</strong></span><span class="toggle">상세 보기</span></button><div class="operative-detail operative-full-detail"><div class="stat-strip"><div class="stat-box"><span>APL</span><strong>2</strong></div><div class="stat-box"><span>이동</span><strong>7″</strong></div><div class="stat-box"><span>방호</span><strong>4+</strong></div><div class="stat-box"><span>체력</span><strong>9</strong></div></div><div class="data-block"><div class="data-block-title">무기</div><div class="weapon-table-wrap"><table class="weapon-table"><thead><tr><th>무기 명칭</th><th>공격</th><th>명중</th><th>피해</th><th>무기 규칙</th></tr></thead><tbody><tr><td><span class="weapon-type">사격</span>신경 교란기</td><td>4</td><td>3+</td><td>4/5</td><td>사거리 8″, 관통 1, 혼미</td></tr><tr><td><span class="weapon-type">사격</span>수리검 권총</td><td>4</td><td>3+</td><td>3/4</td><td>사거리 8″, 파쇄</td></tr><tr><td><span class="weapon-type">사격</span>수리검 투척기</td><td>4</td><td>3+</td><td>3/4</td><td>파쇄</td></tr><tr><td><span class="weapon-type melee">근접</span>역장 무기</td><td>4</td><td>3+</td><td>4/6</td><td>살상 5+</td></tr></tbody></table></div></div><div class="ability-grid"><section class="ability-card wide"><h4>무기 선택</h4><p>수리검 투척기·수리검 권총·역장 무기 또는 신경 교란기·역장 무기 중 하나의 조합을 장비합니다. 위 표에는 모든 선택지의 프로필을 실었습니다.</p></section><section class="ability-card wide"><h4>노련한 약탈자</h4><p>이 요원은 엘다리 약탈자 규칙에 따라 자신의 운용 중 무상 질주 행동 대신 1AP 행동 1개를 무상로 수행할 수 있습니다.</p></section><section class="ability-card wide"><h4>한발 앞서</h4><p>전투 중 1회, 적 요원이 자신의 운용 중 행동을 수행한 후, 이 요원이 준비 상태라면 이 규칙을 사용할 수 있습니다. 사용합니다면 D6를 1개 굴립니다. 결과가 그 적 요원의 APL 수치보다 높다면, 그 운용을 중단시키고 즉시 이 요원으로 무상 사격 또는 무상 근접전 행동 1개를 수행할 수 있습니다. 단, 그 행동에서 다른 적 요원을 유효 대상 또는 싸울 상대로 선택할 수 없습니다(폭발 무기 규칙으로 인한 2차 대상은 여전히 대상으로 선택될 수 있습니다는 점에 유의합니다). 그 행동을 수행한 후, 이 요원의 다음 운용이 끝날 때까지 이 요원의 APL 수치에서 1을 뺍니다.</p></section></div><div class="operative-keywords"><span class="operative-keywords-label">키워드</span><span class="operative-keyword">공허상흔 해적단</span><span class="operative-keyword">엘다리</span><span class="operative-keyword">안흐라테</span><span class="operative-keyword">지휘관</span><span class="operative-keyword">분대장</span></div></div></article><article class="operative-card"><button aria-expanded="false" class="operative-summary" type="button"><span><strong>공허상흔 운명의 결정자</strong></span><span class="toggle">상세 보기</span></button><div class="operative-detail operative-full-detail"><div class="stat-strip"><div class="stat-box"><span>APL</span><strong>2</strong></div><div class="stat-box"><span>이동</span><strong>7″</strong></div><div class="stat-box"><span>방호</span><strong>4+</strong></div><div class="stat-box"><span>체력</span><strong>8</strong></div></div><div class="data-block"><div class="data-block-title">무기</div><div class="weapon-table-wrap"><table class="weapon-table"><thead><tr><th>무기 명칭</th><th>공격</th><th>명중</th><th>피해</th><th>무기 규칙</th></tr></thead><tbody><tr><td><span class="weapon-type">사격</span>레인저 장총(기동)</td><td>4</td><td>3+</td><td>3/4</td><td>-</td></tr><tr><td><span class="weapon-type">사격</span>레인저 장총(고정)</td><td>4</td><td>2+</td><td>3/3</td><td>궤멸 3, 중화기, 무성</td></tr><tr><td><span class="weapon-type">사격</span>수리검 권총</td><td>4</td><td>3+</td><td>3/4</td><td>사거리 8″, 파쇄</td></tr><tr><td><span class="weapon-type melee">근접</span>주먹</td><td>3</td><td>3+</td><td>2/3</td><td>-</td></tr></tbody></table></div></div><div class="ability-grid"><section class="ability-card wide"><h4>위장 망토</h4><p>이 요원이 사격당할 때마다:</p><ul><li>포화 무기 규칙을 무시합니다.</li><li>엄폐 방호를 보전할 수 있습니다면, 엄폐 방호를 추가로 1개 보전하거나, 엄폐 방호 1개를 대신 결정적 성공으로 보전할 수 있습니다. 이는 고지 지형으로 인한 엄폐 방호의 개선과 중복 적용되지 않습니다.</li></ul></section></div><div class="operative-keywords"><span class="operative-keywords-label">키워드</span><span class="operative-keyword">공허상흔 해적단</span><span class="operative-keyword">엘다리</span><span class="operative-keyword">안흐라테</span><span class="operative-keyword">운명의 결정자</span></div></div></article><article class="operative-card"><button aria-expanded="false" class="operative-summary" type="button"><span><strong>공허상흔 사수</strong></span><span class="toggle">상세 보기</span></button><div class="operative-detail operative-full-detail"><div class="stat-strip"><div class="stat-box"><span>APL</span><strong>2</strong></div><div class="stat-box"><span>이동</span><strong>7″</strong></div><div class="stat-box"><span>방호</span><strong>4+</strong></div><div class="stat-box"><span>체력</span><strong>8</strong></div></div><div class="data-block"><div class="data-block-title">무기</div><div class="weapon-table-wrap"><table class="weapon-table"><thead><tr><th>무기 명칭</th><th>공격</th><th>명중</th><th>피해</th><th>무기 규칙</th></tr></thead><tbody><tr><td><span class="weapon-type">사격</span>블라스터</td><td>4</td><td>3+</td><td>4/5</td><td>관통 2</td></tr><tr><td><span class="weapon-type">사격</span>슈레더</td><td>4</td><td>3+</td><td>4/5</td><td>파쇄, 격류 2″</td></tr><tr><td><span class="weapon-type">사격</span>수리검 권총</td><td>4</td><td>3+</td><td>3/4</td><td>사거리 8″, 파쇄</td></tr><tr><td><span class="weapon-type melee">근접</span>주먹</td><td>3</td><td>3+</td><td>2/3</td><td>-</td></tr></tbody></table></div></div><div class="ability-grid"><section class="ability-card wide"><h4>무기 선택</h4><p>블라스터 또는 슈레더 중 하나와 수리검 권총, 주먹을 장비합니다. 블라스터와 레이스캐논을 동시에 편성할 수 없습니다. 위 표에는 모든 선택지의 프로필을 실었습니다.</p></section></div><div class="operative-keywords"><span class="operative-keywords-label">키워드</span><span class="operative-keyword">공허상흔 해적단</span><span class="operative-keyword">엘다리</span><span class="operative-keyword">안흐라테</span><span class="operative-keyword">사수</span></div></div></article><article class="operative-card"><button aria-expanded="false" class="operative-summary" type="button"><span><strong>공허상흔 중화기 사수</strong></span><span class="toggle">상세 보기</span></button><div class="operative-detail operative-full-detail"><div class="stat-strip"><div class="stat-box"><span>APL</span><strong>2</strong></div><div class="stat-box"><span>이동</span><strong>7″</strong></div><div class="stat-box"><span>방호</span><strong>4+</strong></div><div class="stat-box"><span>체력</span><strong>8</strong></div></div><div class="data-block"><div class="data-block-title">무기</div><div class="weapon-table-wrap"><table class="weapon-table"><thead><tr><th>무기 명칭</th><th>공격</th><th>명중</th><th>피해</th><th>무기 규칙</th></tr></thead><tbody><tr><td><span class="weapon-type">사격</span>수리검 캐논(집중)</td><td>5</td><td>3+</td><td>4/5</td><td>중화기(질주 한정), 파쇄</td></tr><tr><td><span class="weapon-type">사격</span>수리검 캐논(휩쓸기)</td><td>4</td><td>3+</td><td>4/5</td><td>중화기(질주 한정), 파쇄, 격류 1″</td></tr><tr><td><span class="weapon-type">사격</span>수리검 권총</td><td>4</td><td>3+</td><td>3/4</td><td>사거리 8″, 파쇄</td></tr><tr><td><span class="weapon-type">사격</span>레이스캐논</td><td>4</td><td>3+</td><td>6/3</td><td>궤멸 4, 중화기(질주 한정), 관통 2</td></tr><tr><td><span class="weapon-type melee">근접</span>주먹</td><td>3</td><td>3+</td><td>2/3</td><td>-</td></tr></tbody></table></div></div><div class="ability-grid"><section class="ability-card wide"><h4>무기 선택</h4><p>수리검 캐논 또는 레이스캐논 중 하나와 수리검 권총, 주먹을 장비합니다. 레이스캐논과 블라스터를 동시에 편성할 수 없습니다. 위 표에는 모든 선택지의 프로필을 실었습니다.</p></section></div><div class="operative-keywords"><span class="operative-keywords-label">키워드</span><span class="operative-keyword">공허상흔 해적단</span><span class="operative-keyword">엘다리</span><span class="operative-keyword">안흐라테</span><span class="operative-keyword">중화기 사수</span></div></div></article><article class="operative-card"><button aria-expanded="false" class="operative-summary" type="button"><span><strong>공허상흔 쿠르나티</strong></span><span class="toggle">상세 보기</span></button><div class="operative-detail operative-full-detail"><div class="stat-strip"><div class="stat-box"><span>APL</span><strong>2</strong></div><div class="stat-box"><span>이동</span><strong>7″</strong></div><div class="stat-box"><span>방호</span><strong>4+</strong></div><div class="stat-box"><span>체력</span><strong>8</strong></div></div><div class="data-block"><div class="data-block-title">무기</div><div class="weapon-table-wrap"><table class="weapon-table"><thead><tr><th>무기 명칭</th><th>공격</th><th>명중</th><th>피해</th><th>무기 규칙</th></tr></thead><tbody><tr><td><span class="weapon-type">사격</span>수리검 권총</td><td>4</td><td>3+</td><td>3/4</td><td>사거리 8″, 파쇄</td></tr><tr><td><span class="weapon-type melee">근접</span>쌍수 역장 무기</td><td>4</td><td>3+</td><td>4/6</td><td>집요, 살상 5+</td></tr></tbody></table></div></div><div class="ability-grid"><section class="ability-card wide"><h4>검술의 달인</h4><p>이 요원은 돌격 행동을 수행한 운용 중에도 질주 행동을 수행할 수 있습니다. 단, 그 돌격 행동에서 남은 이동 거리만 사용할 수 있습니다(최대 3″).</p></section><section class="ability-card wide"><h4>검의 자세</h4><p>이 요원이 근접전을 벌이거나 반격할 때마다, 자신의 성공 1개를 정상적인 순서보다 먼저 처리할 수 있습니다. 그렇게 한다면, 그 성공은 반드시 막기에 사용해야 합니다.</p></section></div><div class="operative-keywords"><span class="operative-keywords-label">키워드</span><span class="operative-keyword">공허상흔 해적단</span><span class="operative-keyword">엘다리</span><span class="operative-keyword">안흐라테</span><span class="operative-keyword">쿠르나티</span></div></div></article><article class="operative-card"><button aria-expanded="false" class="operative-summary" type="button"><span><strong>공허상흔 쿠르나이트 사냥꾼</strong></span><span class="toggle">상세 보기</span></button><div class="operative-detail operative-full-detail"><div class="stat-strip"><div class="stat-box"><span>APL</span><strong>2</strong></div><div class="stat-box"><span>이동</span><strong>7″</strong></div><div class="stat-box"><span>방호</span><strong>4+</strong></div><div class="stat-box"><span>체력</span><strong>8</strong></div></div><div class="data-block"><div class="data-block-title">무기</div><div class="weapon-table-wrap"><table class="weapon-table"><thead><tr><th>무기 명칭</th><th>공격</th><th>명중</th><th>피해</th><th>무기 규칙</th></tr></thead><tbody><tr><td><span class="weapon-type">사격</span>파올쿠</td><td>4</td><td>3+</td><td>1/2</td><td>파쇄, 포화, 저밀도 색적, 무성</td></tr><tr><td><span class="weapon-type">사격</span>수리검 권총</td><td>4</td><td>3+</td><td>3/4</td><td>사거리 8″, 파쇄</td></tr><tr><td><span class="weapon-type melee">근접</span>역장 무기</td><td>4</td><td>3+</td><td>4/6</td><td>살상 5+</td></tr></tbody></table></div></div><div class="ability-grid"><section class="ability-card wide"><h4>파올쿠와의 유대</h4><p>각 전환점 동안 처음으로 이 요원이 반격할 때, 이 요원이 준비 상태라면, 그 교전의 공격 주사위 처리 단계에서 자신이 첫 번째 공격 주사위를 처리합니다(즉, 공격자 대신 방어자가 먼저 처리합니다).</p></section><section class="ability-card wide"><h4>노련한 사냥꾼</h4><p>전략 포석. 이 요원으로부터 9″ 이내에 있는 적 요원 1명을 선택합니다. 이번 전환점 동안 1회, 그 적 요원이 자신의 운용 중 이동하는 행동을 수행한 후, 그 운용을 중단시키고 이 규칙을 사용할 수 있습니다. 사용합니다면, 이 요원은 즉시 무상 기동 행동(그 적 요원으로부터 더 멀어지는 위치에서 이동을 끝낼 수 없다) 또는 무상 돌격 행동(이를 수행하기 위해 자신의 명령을 변경할 수 있으며, 반드시 그 적 요원의 장악 범위 내에서 이동을 끝내야 한다) 중 하나를 수행할 수 있습니다.</p></section></div><div class="operative-keywords"><span class="operative-keywords-label">키워드</span><span class="operative-keyword">공허상흔 해적단</span><span class="operative-keyword">엘다리</span><span class="operative-keyword">안흐라테</span><span class="operative-keyword">쿠르나이트 사냥꾼</span></div></div></article><article class="operative-card"><button aria-expanded="false" class="operative-summary" type="button"><span><strong>공허상흔 그림자 질주자</strong></span><span class="toggle">상세 보기</span></button><div class="operative-detail operative-full-detail"><div class="stat-strip"><div class="stat-box"><span>APL</span><strong>2</strong></div><div class="stat-box"><span>이동</span><strong>7″</strong></div><div class="stat-box"><span>방호</span><strong>4+</strong></div><div class="stat-box"><span>체력</span><strong>8</strong></div></div><div class="data-block"><div class="data-block-title">무기</div><div class="weapon-table-wrap"><table class="weapon-table"><thead><tr><th>무기 명칭</th><th>공격</th><th>명중</th><th>피해</th><th>무기 규칙</th></tr></thead><tbody><tr><td><span class="weapon-type">사격</span>수리검 권총</td><td>4</td><td>3+</td><td>3/4</td><td>사거리 8″, 파쇄</td></tr><tr><td><span class="weapon-type">사격</span>투척용 칼</td><td>4</td><td>3+</td><td>2/4</td><td>사거리 6″, 무성</td></tr><tr><td><span class="weapon-type melee">근접</span>헤카타리 칼</td><td>4</td><td>3+</td><td>3/5</td><td>집요, 살상 5+</td></tr></tbody></table></div></div><div class="ability-grid"><section class="ability-card wide"><h4>순간이동 장치</h4><p>이 요원이 돌격, 후퇴, 또는 기동 행동을 수행할 때마다, 워프 도약을 할 수 있습니다. 그렇게 한다면, 이 요원을 이동시키지 않습니다. 대신, 킬존에서 제거하고 원래 위치로부터 수평으로 완전히 7″ 이내에 들어오는 위치에 다시 배치합니다(킬존: 갤로우다크에서는 이 거리를 벽 지형을 통과하여 측정할 수 있습니다). 반드시 배치 가능한 위치에 배치해야 하며, 돌격 행동인 경우가 아니라면 적 요원의 장악 범위 내에는 배치될 수 없습니다. 이 요원은 질주 행동을 수행한 운용 중에는 워프 도약을 할 수 없으며, 그 반대도 마찬가지입니다.</p></section><section class="ability-card wide"><h4>베어 가르는 공격</h4><p>이 요원이 워프 도약으로 기동 행동을 수행할 때마다, 이 규칙을 사용할 수 있습니다. 사용합니다면, 이동한 후 이 요원과 이전 위치 사이에 두께 1mm, 길이 최대 7″의 가상의 선을 그립니다. 이 선은 직선일 필요가 없다는 점에 유의합니다. 그 선이 가로지르는 적 요원 1명에게 D3+2의 피해를 입힙니다. 그 행동이 시작될 때 이 요원에게 시야에 들어오지 않았던 적 요원에게는 피해를 입힐 수 없다. 이를 판정하기 쉽도록, 이동하기 전에 이 요원 아래에 28mm 원형 마커를 임시로 놓을 수 있다.</p></section></div><div class="operative-keywords"><span class="operative-keywords-label">키워드</span><span class="operative-keyword">공허상흔 해적단</span><span class="operative-keyword">엘다리</span><span class="operative-keyword">안흐라테</span><span class="operative-keyword">그림자 질주자</span></div></div></article><article class="operative-card"><button aria-expanded="false" class="operative-summary" type="button"><span><strong>공허상흔 영혼 직조자</strong></span><span class="toggle">상세 보기</span></button><div class="operative-detail operative-full-detail"><div class="stat-strip"><div class="stat-box"><span>APL</span><strong>2</strong></div><div class="stat-box"><span>이동</span><strong>7″</strong></div><div class="stat-box"><span>방호</span><strong>4+</strong></div><div class="stat-box"><span>체력</span><strong>8</strong></div></div><div class="data-block"><div class="data-block-title">무기</div><div class="weapon-table-wrap"><table class="weapon-table"><thead><tr><th>무기 명칭</th><th>공격</th><th>명중</th><th>피해</th><th>무기 규칙</th></tr></thead><tbody><tr><td><span class="weapon-type">사격</span>수리검 권총</td><td>4</td><td>3+</td><td>3/4</td><td>사거리 8″, 파쇄</td></tr><tr><td><span class="weapon-type melee">근접</span>역장 무기</td><td>4</td><td>3+</td><td>4/6</td><td>살상 5+</td></tr></tbody></table></div></div><div class="ability-grid"><section class="ability-card wide action-card"><div class="action-title-row"><h4>영혼 전달</h4><span class="ap-badge">1AP</span></div><p>사이킥. 이 요원에게 시야에 들어오고 6″ 이내에 있는 다른 아군 공허상흔 해적단 요원 1명을 선택합니다. 그 요원의 다음 운용이 끝날 때까지, 그 요원의 APL 수치에 1을 더합니다.</p><p class="restriction">이 요원은 적 요원의 장악 범위 내에 있는 동안 이 행동을 수행할 수 없습니다.</p></section><section class="ability-card wide action-card"><div class="action-title-row"><h4>영혼 치유</h4><span class="ap-badge">1AP</span></div><p>사이킥. 이 요원에게 시야에 들어오고 6″ 이내에 있는 아군 공허상흔 해적단 요원 1명을 선택합니다. 그 요원은 잃은 체력 수치를 최대 2D3만큼 회복합니다.</p><p class="restriction">이 요원은 적 요원의 장악 범위 내에 있는 동안 이 행동을 수행할 수 없습니다.</p></section></div><div class="operative-keywords"><span class="operative-keywords-label">키워드</span><span class="operative-keyword">공허상흔 해적단</span><span class="operative-keyword">엘다리</span><span class="operative-keyword">안흐라테</span><span class="operative-keyword">사이커</span><span class="operative-keyword">의무병</span><span class="operative-keyword">영혼 직조자</span></div></div></article><article class="operative-card"><button aria-expanded="false" class="operative-summary" type="button"><span><strong>공허상흔 별폭풍 결투가</strong></span><span class="toggle">상세 보기</span></button><div class="operative-detail operative-full-detail"><div class="stat-strip"><div class="stat-box"><span>APL</span><strong>2</strong></div><div class="stat-box"><span>이동</span><strong>7″</strong></div><div class="stat-box"><span>방호</span><strong>4+</strong></div><div class="stat-box"><span>체력</span><strong>8</strong></div></div><div class="data-block"><div class="data-block-title">무기</div><div class="weapon-table-wrap"><table class="weapon-table"><thead><tr><th>무기 명칭</th><th>공격</th><th>명중</th><th>피해</th><th>무기 규칙</th></tr></thead><tbody><tr><td><span class="weapon-type">사격</span>융합 권총</td><td>4</td><td>3+</td><td>5/3</td><td>사거리 3″, 궤멸 3, 관통 2</td></tr><tr><td><span class="weapon-type">사격</span>수리검 권총</td><td>4</td><td>3+</td><td>3/4</td><td>사거리 8″, 파쇄</td></tr><tr><td><span class="weapon-type melee">근접</span>주먹</td><td>3</td><td>3+</td><td>2/3</td><td>-</td></tr></tbody></table></div></div><div class="ability-grid"><section class="ability-card wide"><h4>빠른 방아쇠</h4><p>이 요원은 적 요원의 장악 범위 내에 있는 동안에도 사격 행동을 수행할 수 있습니다. 그렇게 한다면, 유효 대상을 선택할 때 이 요원의 장악 범위 내에 있는 적 요원만 선택할 수 있으며, 다른 아군 요원이 그 적 요원의 장악 범위 내에 있더라도 선택할 수 있습니다.</p></section><section class="ability-card wide action-card"><div class="action-title-row"><h4>권총 탄막</h4><span class="ap-badge">1AP</span></div><p>이 요원으로 무상 사격 행동 2회를 수행합니다(이는 행동 제한에 우선한다). 반드시 한 행동에는 융합 권총을, 다른 행동에는 수리검 권총을 선택해야 한다(순서는 원하는 대로 정한다).</p><p class="restriction">이 요원은 은폐 명령을 가지고 있는 동안, 또는 사격 행동을 수행한 운용 중에는 이 행동을 수행할 수 없습니다(그 반대도 마찬가지입니다).</p></section></div><div class="operative-keywords"><span class="operative-keywords-label">키워드</span><span class="operative-keyword">공허상흔 해적단</span><span class="operative-keyword">엘다리</span><span class="operative-keyword">안흐라테</span><span class="operative-keyword">별폭풍 결투가</span></div></div></article><article class="operative-card"><button aria-expanded="false" class="operative-summary" type="button"><span><strong>공허상흔 전사</strong></span><span class="toggle">상세 보기</span></button><div class="operative-detail operative-full-detail"><div class="stat-strip"><div class="stat-box"><span>APL</span><strong>2</strong></div><div class="stat-box"><span>이동</span><strong>7″</strong></div><div class="stat-box"><span>방호</span><strong>4+</strong></div><div class="stat-box"><span>체력</span><strong>8</strong></div></div><div class="data-block"><div class="data-block-title">무기</div><div class="weapon-table-wrap"><table class="weapon-table"><thead><tr><th>무기 명칭</th><th>공격</th><th>명중</th><th>피해</th><th>무기 규칙</th></tr></thead><tbody><tr><td><span class="weapon-type">사격</span>수리검 권총</td><td>4</td><td>3+</td><td>3/4</td><td>사거리 8″, 파쇄</td></tr><tr><td><span class="weapon-type">사격</span>수리검 투척기</td><td>4</td><td>3+</td><td>3/4</td><td>파쇄</td></tr><tr><td><span class="weapon-type melee">근접</span>역장 무기</td><td>4</td><td>3+</td><td>4/6</td><td>살상 5+</td></tr><tr><td><span class="weapon-type melee">근접</span>주먹</td><td>3</td><td>3+</td><td>2/3</td><td>-</td></tr></tbody></table></div></div><div class="ability-grid"><section class="ability-card wide"><h4>무기 선택</h4><p>수리검 권총과 역장 무기 또는 수리검 투척기와 주먹 중 하나의 조합을 장비합니다. 위 표에는 모든 선택지의 프로필을 실었습니다.</p></section><section class="ability-card wide"><h4>배회하는 약탈자</h4><p>변덕스러운 도주 및 재빠른 손놀림 화력전 플로이에서 지정하는 공허상흔 해적단 요원이 아군 전사 요원이라면, 해당 플로이를 각각 0CP로 사용할 수 있습니다.</p></section></div><div class="operative-keywords"><span class="operative-keywords-label">키워드</span><span class="operative-keyword">공허상흔 해적단</span><span class="operative-keyword">엘다리</span><span class="operative-keyword">안흐라테</span><span class="operative-keyword">전사</span></div></div></article><article class="operative-card"><button aria-expanded="false" class="operative-summary" type="button"><span><strong>공허상흔 개척자</strong></span><span class="toggle">상세 보기</span></button><div class="operative-detail operative-full-detail"><div class="stat-strip"><div class="stat-box"><span>APL</span><strong>2</strong></div><div class="stat-box"><span>이동</span><strong>7″</strong></div><div class="stat-box"><span>방호</span><strong>4+</strong></div><div class="stat-box"><span>체력</span><strong>8</strong></div></div><div class="data-block"><div class="data-block-title">무기</div><div class="weapon-table-wrap"><table class="weapon-table"><thead><tr><th>무기 명칭</th><th>공격</th><th>명중</th><th>피해</th><th>무기 규칙</th></tr></thead><tbody><tr><td><span class="weapon-type">사격</span>얼어붙는 손아귀</td><td>4</td><td>3+</td><td>1/2</td><td>사이킥, 중상, 무성, 혼미</td></tr><tr><td><span class="weapon-type">사격</span>번개 일격</td><td>4</td><td>3+</td><td>4/3</td><td>사이킥, 2″ 궤멸 2</td></tr><tr><td><span class="weapon-type">사격</span>수리검 권총</td><td>4</td><td>3+</td><td>3/4</td><td>사거리 8″, 파쇄</td></tr><tr><td><span class="weapon-type melee">근접</span>위치 지팡이</td><td>4</td><td>3+</td><td>3/5</td><td>사이킥, 충격</td></tr></tbody></table></div></div><div class="ability-grid"><section class="ability-card wide action-card"><div class="action-title-row"><h4>워프 접기</h4><span class="ap-badge">1AP</span></div><p>사이킥. 이 요원에게 시야에 들어오고 5″ 이내에 있는 아군 공허상흔 해적단 요원 2명을 선택합니다. 둘 다 킬존에서 제거하고 서로의 이전 위치에 다시 배치합니다(즉, 위치를 맞바꿉니다). 그중 한 요원이 이번 전환점 동안 돌격, 후퇴, 또는 기동 행동을 수행했으며 다른 요원이 준비 상태라면, 그 다른 요원은 이번 전환점의 자신의 운용 중 해당 행동들을 수행할 수 없습니다.</p><p class="restriction">이 요원은 적 요원의 장악 범위 내에 있는 동안 이 행동을 수행할 수 없습니다.</p></section><section class="ability-card wide action-card"><div class="action-title-row"><h4>수호 방패</h4><span class="ap-badge">1AP</span></div><p>사이킥. 이 요원에게 시야에 들어오고 6″ 이내에 있는 아군 공허상흔 해적단 요원 1명을 선택합니다. 이 요원의 다음 운용이 시작되거나, 무력화되거나, 이 행동을 다시 수행할 때까지(그중 먼저 오는 시점까지), 처음으로 공격 주사위가 그 아군 요원에게 일반 피해를 입힐 때 그 피해를 무시합니다.</p><p class="restriction">이 요원은 적 요원의 장악 범위 내에 있는 동안 이 행동을 수행할 수 없습니다.</p></section></div><div class="operative-keywords"><span class="operative-keywords-label">키워드</span><span class="operative-keyword">공허상흔 해적단</span><span class="operative-keyword">엘다리</span><span class="operative-keyword">안흐라테</span><span class="operative-keyword">사이커</span><span class="operative-keyword">개척자</span></div></div></article></div></section>
+<section id="composition"><div class="section-head"><div><span class="section-no">03</span><h2>요원 편성</h2></div></div><div class="composition-panel"><div class="composition-topline"><div><span class="composition-label">공허상흔 해적단</span><h3>요원 목록</h3></div><div class="archetype-wrap"><span class="archetype-title">아키타입</span><span class="archetype-chip">침투</span><span class="archetype-chip">정찰</span></div></div><div class="composition-summary"><div class="summary-box"><span>분대장</span><strong>1</strong></div><span class="summary-plus">+</span><div class="summary-box"><span>요원 선택</span><strong>8</strong></div><span class="summary-equals">=</span><div class="summary-box total"><span>총 편성</span><strong>9</strong></div></div><div class="composition-columns"><article class="composition-block"><div class="composition-block-head"><span class="composition-number">1</span><div><h4>리더</h4><p>분대장 1명을 편성합니다.</p></div></div><div class="choice-card"><h5>공허상흔 분대장</h5><div class="option-group"><span class="option-label">무장 조합 · 하나 선택</span><ul><li>수리검 투척기; 수리검 권총; 역장 무기</li><li>신경 교란기; 역장 무기</li></ul></div></div></article><article class="composition-block"><div class="composition-block-head"><span class="composition-number">8</span><div><h4>공허상흔 해적단 요원</h4><p>다음 목록에서 8명을 선택합니다.</p></div></div><div class="choice-card"><h5>운명의 결정자</h5></div><div class="choice-card"><h5>사수 — 다음 옵션 중 하나 선택:</h5><div class="option-group"><span class="option-label">무장 조합 · 하나 선택</span><ul><li>블라스터; 수리검 권총; 주먹</li><li>슈레더; 수리검 권총; 주먹</li></ul></div></div><div class="choice-card"><h5>중화기 사수 — 다음 옵션 중 하나 선택:</h5><div class="option-group"><span class="option-label">무장 조합 · 하나 선택</span><ul><li>수리검 캐논; 수리검 권총; 주먹</li><li>수리검 권총; 레이스캐논; 주먹</li></ul></div></div><div class="choice-card"><h5>쿠르나티</h5></div><div class="choice-card"><h5>쿠르나이트 사냥꾼</h5></div><div class="choice-card"><h5>그림자 질주자</h5></div><div class="choice-card"><h5>영혼 직조자</h5></div><div class="choice-card"><h5>별폭풍 결투가</h5></div><div class="choice-card"><h5>전사 — 다음 옵션 중 하나 선택:</h5><div class="option-group"><span class="option-label">무장 조합 · 하나 선택</span><ul><li>수리검 권총; 역장 무기</li><li>수리검 투척기; 주먹</li></ul></div></div><div class="choice-card"><h5>개척자</h5></div></article></div><div class="composition-rule"><strong>편성 제한</strong><p>전사 요원을 제외하고, 자신의 킬팀은 이 목록의 각 요원을 한 번씩만 포함할 수 있습니다.</p><p>자신의 킬팀은 블라스터와 레이스캐논을 동시에 포함할 수 없습니다.</p></div></div></section>
+<section id="rules"><div class="section-head"><div><span class="section-no">04</span><h2>팩션 규칙</h2></div></div><div class="faction-rules-wrap"><article class="faction-rule-block"><div class="rule-block-head"><span class="rule-kicker">공허상흔 해적단 팩션 규칙</span><h3>소총</h3></div><div class="rule-intro simple-intro"><div class="lore-note">엘다리 추방자 모두가 전사의 길을 걸었던 것은 아니지만, 모두 소총 사용에 능숙하다.</div><div class="network-rules"><p>아군 공허상흔 해적단 요원이 돌격, 후퇴, 또는 기동 행동을 수행하지 않은 운용 중 수리검 투척기 또는 레인저 장총으로 사격할 때마다, 그 무기는 정확 1 무기 규칙을 가집니다. 그 요원은 사격 후에 이러한 행동을 수행하는 데 제한을 받지 않는다는 점에 유의합니다.</p></div></div></article><article class="faction-rule-block"><div class="rule-block-head"><span class="rule-kicker">공허상흔 해적단 팩션 규칙</span><h3>엘다리 약탈자</h3></div><div class="rule-intro simple-intro"><div class="lore-note">엘다리는 날렵하고 우아하며 빠르다. 공허상흔 해적단은 이러한 자질을 활용해 기동으로 적을 압도한다.</div><div class="network-rules"><p>각 아군 공허상흔 해적단 요원은 자신의 운용 중 무상 질주 행동 1회를 수행할 수 있습니다.</p></div></div></article></div></section>
+<section id="equipment"><div class="section-head"><div><span class="section-no">05</span><h2>팩션 장비</h2></div></div><div class="ploy-grid equipment-grid"><article class="ploy-card"><div class="ploy-head"><span class="ploy-faction">공허상흔 해적단</span><h3>영속의 망토</h3></div><div class="ploy-body"><div class="lore-note">공허상흔 해적단 요원이 입는 망토는 폭발과 온도 변화에 반응해 단단해지는 정신감응성 물질로 짜여 있다.</div><div class="ploy-rule"><p>아군 공허상흔 해적단 요원이 사격당할 때마다, 그 교전의 사격 무기가 폭발 또는 격류 무기 규칙을 가지고 있다면 자신의 방어 주사위 1개를 재굴림할 수 있습니다. 또한 아군 공허상흔 해적단 요원은 그 교전의 대상인 경우가 아니라면 x″ 궤멸 x 무기 규칙(즉, 거리가 있는 궤멸)에 영향을 받지 않습니다.</p></div></div></article><article class="ploy-card"><div class="ploy-head"><span class="ploy-faction">공허상흔 해적단</span><h3>안개장</h3></div><div class="ploy-body"><div class="lore-note">안개장은 착용자 주위에 짙은 수분의 장을 형성한다. 이는 착용자의 모습을 가릴 뿐 아니라 탄환을 느리게 만들어 살상력을 낮춘다.</div><div class="ploy-rule"><p>전환점당 1회, 아군 공허상흔 해적단 요원이 그 요원으로부터 3″보다 멀리 떨어진 요원에게 사격당할 때, 방어 주사위 굴림 단계가 시작될 때 이 규칙을 사용할 수 있습니다. 사용합니다면, 그 교전이 끝날 때까지 관통 무기 규칙의 x를 1만큼 악화시킨다(해당 규칙이 있다면). 따라서 관통 1은 무시된다는 점에 유의합니다.</p></div></div></article><article class="ploy-card"><div class="ploy-head"><span class="ploy-faction">공허상흔 해적단</span><h3>인도의 룬</h3></div><div class="ploy-body"><div class="lore-note">해적 사이커는 워프의 힘을 완벽한 정밀도로 다루며, 멀리 떨어진 아군에게 자신의 예지력을 빌려준다.</div><div class="ploy-rule"><p>전환점당 1회, 아군 공허상흔 해적단 개척자 또는 공허상흔 해적단 영혼 직조자 요원이 사이킥 고유 행동을 수행할 때(워프 접기 제외), 이 규칙을 사용할 수 있습니다. 사용합니다면, 그 행동이 끝날 때까지 그 행동의 거리 요구 조건에 3″를 더합니다. 이는 사이킥 무기에 영향을 주지 않는다는 점에 유의합니다(예: 번개 일격의 궤멸 거리 요구 조건).</p></div></div></article><article class="ploy-card"><div class="ploy-head"><span class="ploy-faction">공허상흔 해적단</span><h3>성도</h3></div><div class="ploy-body"><div class="lore-note">공허상흔 해적단은 공허에 대한 비할 데 없는 지식을 활용하여 기동으로 적을 압도한다.</div><div class="ploy-rule"><p>전략 포석. D3를 1개 굴립니다. 결과가 현재 전환점의 번호보다 높다면, 1CP를 얻으며 이번 전투의 남은 기간 동안 이 전략 포석을 사용할 수 없습니다.</p></div></div></article></div></section>
+<section id="strategic"><div class="section-head"><div><span class="section-no">06</span><h2>전략 플로이</h2></div></div><div class="ploy-grid"><article class="ploy-card"><div class="ploy-head"><span class="ploy-faction">공허상흔 해적단</span><h3>약탈자들</h3></div><div class="ploy-body"><div class="lore-note">엘다리 해적은 영광보다 이익을 우선한다. 적이 반응하기 전에 전리품을 차지하려는 기대를 품고 목표를 향해 빠르게 이동한다.</div><div class="ploy-rule"><p>아군 공허상흔 해적단 요원 최대 D3명이 자신이 선택한 순서대로 즉시 무상 질주 행동을 수행할 수 있습니다. 이번 전환점 동안 이렇게 질주한 각 요원은 자신의 운용 중 질주 행동을 수행할 수 없습니다. 첫 번째 전환점 동안에는 이 플로이를 사용할 수 없습니다.</p></div></div></article><article class="ploy-card"><div class="ploy-head"><span class="ploy-faction">공허상흔 해적단</span><h3>전리품을 노리는 해적들</h3></div><div class="ploy-body"><div class="lore-note">공허상흔 해적단이 차지한 전리품을 두고 다투려는 어리석은 자는 곧 슈리켄 사격과 칼날의 눈보라에 휩싸이게 된다.</div><div class="ploy-rule"><p>아군 공허상흔 해적단 요원이 사격, 근접전, 또는 반격을 할 때마다, 그 요원이나 그 교전의 적 요원이 목표 마커 또는 자신의 임무 마커 중 하나를 두고 경합하고 있다면, 그 아군 요원의 무기는 균형 무기 규칙을 가집니다.</p></div></div></article><article class="ploy-card"><div class="ploy-head"><span class="ploy-faction">공허상흔 해적단</span><h3>기동 교전</h3></div><div class="ploy-body"><div class="lore-note">엘다리 해적은 눈부신 속도에 의지해 거센 사격을 피한다.</div><div class="ploy-rule"><p>이번 전환점 동안 이동하는 행동을 수행한 아군 공허상흔 해적단 요원이 사격당할 때마다, 자신의 방어 주사위 1개를 재굴림할 수 있습니다.</p></div></div></article><article class="ploy-card"><div class="ploy-head"><span class="ploy-faction">공허상흔 해적단</span><h3>추방자들</h3></div><div class="ploy-body"><div class="lore-note">추방자의 길을 걷는 자들에게 고독은 낯설지 않다. 일부는 홀로 싸울 때 오히려 더 뛰어나다.</div><div class="ploy-rule"><p>아군 공허상흔 해적단 요원이 다른 아군 요원들로부터 5″보다 멀리 떨어져 있을 때마다, 그 요원의 무기는 맹공 무기 규칙을 가집니다.</p></div></div></article></div></section>
+<section id="firefight"><div class="section-head"><div><span class="section-no">07</span><h2>화력전 플로이</h2></div></div><div class="ploy-grid"><article class="ploy-card"><div class="ploy-head"><span class="ploy-faction">공허상흔 해적단</span><h3>기회를 노리는 전투원들</h3></div><div class="ploy-body"><div class="lore-note">적이 약점을 보이면 공허상흔 해적단은 공격을 더욱 거세게 몰아붙여, 적이 전열을 정비하기 전에 학살하려 한다.</div><div class="ploy-rule"><p>적 요원이 후퇴 행동을 수행할 때 이 화력전 플로이를 사용합니다. 그 요원이 이동하기 전에, 그 요원의 장악 범위 내에 있는 아군 공허상흔 해적단 요원 1명당 그 적 요원에게 2D3의 피해를 입힙니다.</p></div></div></article><article class="ploy-card"><div class="ploy-head"><span class="ploy-faction">공허상흔 해적단</span><h3>재빠른 손놀림</h3></div><div class="ploy-body"><div class="lore-note">부를 향한 추구는 모든 해적을 움직인다. 이 날렵한 약탈자들은 적의 코앞에서 전리품을 낚아채고, 반격이 닿기 전에 사라질 수 있다.</div><div class="ploy-rule"><p>아군 공허상흔 해적단 요원의 운용 중 이 화력전 플로이를 사용합니다. 그 운용이 끝날 때까지, 적 요원이 그 아군 요원의 장악 범위 내에 있다는 사실은 그 아군 요원이 마커 회수 또는 임무 행동을 수행하는 것을 막지 않습니다.</p></div></div></article><article class="ploy-card"><div class="ploy-head"><span class="ploy-faction">공허상흔 해적단</span><h3>변덕스러운 도주</h3></div><div class="ploy-body"><div class="lore-note">항상 수적으로 열세이고 화력에서도 밀리는 일이 잦은 공허상흔 해적단은, 눈속임과 기만으로 공격한 뒤 그림자 속으로 사라진다.</div><div class="ploy-rule"><p>아군 공허상흔 해적단 요원의 운용 중, 그 요원이 행동을 수행하기 전이나 후에 이 화력전 플로이를 사용합니다. 그 운용 중 그 요원은 후퇴 행동을 1AP 적은 비용으로 수행할 수 있습니다.</p></div></div></article><article class="ploy-card"><div class="ploy-head"><span class="ploy-faction">공허상흔 해적단</span><h3>오만한 모험가</h3></div><div class="ploy-body"><div class="lore-note">공허상흔 해적단의 두려움 없는 오만함은 그들의 뛰어난 무예로 정당화되는 경우가 많다.</div><div class="ploy-rule"><p>전환점 동안 처음으로 아군 공허상흔 해적단 요원이 운용될 때, 그 요원이 다른 아군 요원들로부터 5″보다 멀리 떨어져 있다면 이 화력전 플로이를 사용합니다. 그 운용 중 그 요원이 처음으로 사격 또는 근접전 행동을 수행할 때, 그 요원의 무기는 혹독 무기 규칙을 가집니다. 이 플로이는 운용당 1회를 초과하여 효과를 발휘할 수 없습니다는 점에 유의합니다(같은 운용에서 사격과 근접전 행동 양쪽에 모두 사용할 수 없습니다).</p></div></div></article></div></section>
+<section id="buying"><div class="section-head"><div><span class="section-no">08</span><h2>구매 가이드</h2></div></div><div class="panel corsairvoidscarred-buying-panel"><div class="buying-image-grid" aria-label="공허상흔 해적단 구매 참고 이미지" role="group"><figure class="buying-image-card"><img src="../../assets/corsairvoidscarred-buying-box.png" alt="공허상흔 해적단 킬팀 박스(정가 9만원)" loading="lazy"/><figcaption>공허상흔 해적단 킬팀 박스(정가 9만원)</figcaption></figure><figure class="buying-image-card"><img src="../../assets/corsairvoidscarred-buying-miniatures.png" alt="공허상흔 해적단 구성 미니어처" loading="lazy"/><figcaption>공허상흔 해적단 구성 미니어처</figcaption></figure></div><div class="guide-grid"><div><span>한 박스 게임</span><strong>가능</strong></div><div><span>권장 박스 수</span><strong>1박스</strong></div><div><span>구매 가격</span><strong>9만원</strong></div><div><span>자석질</span><strong>필요(리더·사수·중화기 사수)</strong></div></div><div class="buying-guide-note"><span class="buying-note-kicker">구매 안내</span><p><strong>공허상흔 해적단 킬팀 1박스(정가 9만원)</strong>만으로 게임이 가능합니다.</p><p>다만 <strong>전체 로스터의 요원 종류는 11종</strong>이므로, <strong>1박스로 모든 종류의 요원을 각각 별도 모델로 만들 수는 없습니다.</strong> 모든 요원 종류를 보유하고 싶다면 추가 모델이 필요합니다.</p><p>무장 선택지를 교체해 활용하려면 <strong>리더(분대장), 사수, 중화기 사수는 자석질이 필요</strong>합니다.</p></div></div></section>
+</main>
+<footer>Kill Team Core · Corsair Voidscarred</footer>
+
+<script id="detail-common-script-inline">
+document.querySelectorAll(".operative-summary").forEach(button => {
+  button.addEventListener("click", () => {
+    const card = button.closest(".operative-card");
+    const open = card.classList.toggle("open");
+    button.setAttribute("aria-expanded", String(open));
+    const toggle = button.querySelector(".toggle");
+    if (toggle) toggle.textContent = open ? "접기" : "상세 보기";
+  });
+});
+
+</script><script id="section-spy-v18">
+// 고정 바로가기 메뉴: 현재 화면에 보이는 섹션의 링크를 강조하고, 링크를 누르면 해당 섹션으로 이동합니다.
+// v18: 이동을 브라우저의 앵커 스크롤에 맡기지 않고 스크립트가 직접 수행합니다.
+//      부드러운 스크롤이 중간에 끊기면 남은 거리를 즉시 이동해 반드시 목적지에 도착합니다.
+(function () {
+  var toc = document.querySelector(".hero-toc");
+  if (!toc) return;
+  var pairs = [];
+  Array.prototype.forEach.call(toc.querySelectorAll('a[href^="#"]'), function (a) {
+    var sec = document.getElementById(a.getAttribute("href").slice(1));
+    if (sec) pairs.push({ a: a, sec: sec });
+  });
+  if (!pairs.length) return;
+  var current = null;
+  var navigating = false, navTarget = null, navTimer = null, settleTimer = null;
+
+  function referenceLine() {
+    var w = window.innerWidth;
+    var base = w > 1100 ? 92 : (w > 680 ? 132 : 124);
+    return base + Math.min(120, window.innerHeight * 0.15);
+  }
+
+  function moveBar(a, smooth) {
+    if (toc.scrollWidth <= toc.clientWidth + 4) return;
+    var left = Math.max(0, a.offsetLeft - (toc.clientWidth - a.offsetWidth) / 2);
+    if (smooth) toc.scrollTo({ left: left, behavior: "smooth" }); else toc.scrollLeft = left;
+  }
+
+  function setCurrent(active) {
+    if (active === current) return false;
+    current = active;
+    pairs.forEach(function (p) {
+      var on = p === active;
+      p.a.classList.toggle("is-current", on);
+      if (on) p.a.setAttribute("aria-current", "location"); else p.a.removeAttribute("aria-current");
+    });
+    return true;
+  }
+
+  function update() {
+    if (navigating) return;
+    var line = window.scrollY + referenceLine();
+    var active = pairs[0];
+    for (var i = 0; i < pairs.length; i++) {
+      var top = pairs[i].sec.getBoundingClientRect().top + window.scrollY;
+      if (top <= line + 1) active = pairs[i]; else break;
+    }
+    if (window.innerHeight + window.scrollY >= document.documentElement.scrollHeight - 2) {
+      active = pairs[pairs.length - 1];
+    }
+    if (setCurrent(active)) moveBar(active.a, true);
+  }
+
+  function targetTop(sec) {
+    var margin = parseFloat(window.getComputedStyle(sec).scrollMarginTop) || 0;
+    var top = sec.getBoundingClientRect().top + window.pageYOffset - margin;
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    return Math.max(0, Math.min(Math.round(top), Math.max(0, max)));
+  }
+
+  function endNavigation() {
+    if (!navigating) return;
+    window.clearTimeout(navTimer);
+    window.clearTimeout(settleTimer);
+    if (navTarget !== null && Math.abs(window.pageYOffset - navTarget) > 4) {
+      window.scrollTo(0, navTarget);
+    }
+    navigating = false;
+    navTarget = null;
+    update();
+  }
+
+  toc.addEventListener("click", function (e) {
+    var a = e.target && e.target.closest ? e.target.closest('a[href^="#"]') : null;
+    if (!a) return;
+    var hit = null;
+    for (var i = 0; i < pairs.length; i++) { if (pairs[i].a === a) hit = pairs[i]; }
+    if (!hit) return;
+    e.preventDefault();
+    var top = targetTop(hit.sec);
+    navigating = true;
+    navTarget = top;
+    setCurrent(hit);
+    moveBar(a, false);
+    try { window.history.pushState(null, "", "#" + hit.sec.id); } catch (err) {}
+    var reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    if (reduce) {
+      window.scrollTo(0, top);
+    } else {
+      try { window.scrollTo({ top: top, behavior: "smooth" }); } catch (err) { window.scrollTo(0, top); }
+    }
+    window.clearTimeout(navTimer);
+    navTimer = window.setTimeout(endNavigation, 1800);
+    window.clearTimeout(settleTimer);
+    settleTimer = window.setTimeout(endNavigation, 400);
+  });
+
+  var pending = false;
+  function onScroll() {
+    if (navigating) {
+      window.clearTimeout(settleTimer);
+      settleTimer = window.setTimeout(endNavigation, 200);
+    }
+    if (pending) return;
+    pending = true;
+    window.setTimeout(function () { pending = false; update(); }, 40);
+  }
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onScroll);
+  window.addEventListener("hashchange", onScroll);
+  window.addEventListener("load", update);
+  update();
+})();
+</script>
+<script id="weapon-rule-glossary-script-v1">
+(function () {
+  "use strict";
+  if (window.__wrGlossary) return;
+  window.__wrGlossary = true;
+  var RULES = {
+    accurate: { ko: "정확 {v}", en: "Accurate {v}",
+      sum: "공격 주사위를 굴리기 전에, 최대 {v}개를 굴리지 않고 일반 성공으로 보전할 수 있습니다.",
+      det: "명중 수치와 관계없이 성공을 확보하는 규칙입니다. 이렇게 보전한 주사위는 굴리지 않았으므로 결정적 성공이 될 수는 없습니다." },
+    balanced: { ko: "균형", en: "Balanced",
+      sum: "공격 주사위 하나를 다시 굴릴 수 있습니다.",
+      det: "보통 실패한 주사위 하나를 재굴림해 명중 기대치를 올립니다. 같은 주사위를 두 번 재굴림할 수는 없습니다." },
+    blast: { ko: "폭발 {v}", en: "Blast {v}",
+      sum: "유효 대상을 고르면, 그 1차 대상의 시야에 들어오고 {v} 이내에 있는 다른 모든 요원이 2차 대상이 되어 각각 별도의 사격을 받습니다.",
+      det: "2차 대상은 사격 요원이 아니라 1차 대상을 기준으로 정하며, 아군 요원도 휘말릴 수 있습니다. 대상마다 공격 주사위와 방어 주사위를 따로 굴려 처리합니다." },
+    brutal: { ko: "무자비", en: "Brutal",
+      sum: "상대는 결정적 성공으로만 이 무기의 공격을 막을 수 있습니다.",
+      det: "근접전에서 상대의 일반 성공은 막기에 쓸 수 없고 타격에만 쓸 수 있으므로, 방어적으로 싸우려는 상대를 강제로 맞교환하게 만듭니다." },
+    ceaseless: { ko: "집요", en: "Ceaseless",
+      sum: "공격 주사위 중 눈값 하나를 골라(예: 2가 나온 주사위 전부) 그 눈값이 나온 주사위를 모두 다시 굴릴 수 있습니다.",
+      det: "보통 가장 많이 나온 실패 눈값을 고릅니다. 균형보다 재굴림 개수가 많을 수 있지만, 서로 다른 눈값을 섞어 고를 수는 없습니다." },
+    devastating: { ko: "궤멸 {v}", en: "Devastating {v}",
+      sum: "보전한 결정적 성공 하나마다 대상에게 즉시 {v} 피해를 입힙니다. 이 피해는 방어 주사위로 막을 수 없습니다.",
+      sumd: "보전한 결정적 성공 하나마다 대상과, 대상의 시야에 들어오고 {d} 이내에 있는 다른 모든 요원에게 즉시 {v} 피해를 입힙니다. 이 피해는 방어 주사위로 막을 수 없습니다.",
+      det: "결정적 성공을 보전한 시점에 바로 적용되며, 그 결정적 성공은 이후 처리 단계에서도 평소처럼 타격이나 막기에 사용합니다. 규칙 앞에 거리가 붙어 있으면(예: 1″ 궤멸 3) 대상 주변의 요원에게도 같은 피해가 들어갑니다." },
+    heavy: { ko: "중화기", en: "Heavy",
+      sum: "이동한 운용(또는 대응)에서는 이 무기를 사용할 수 없고, 이 무기를 사용한 운용에서는 이동할 수 없습니다.",
+      det: "괄호로 이동 종류가 표시된 경우(예: 중화기(질주 한정))에는 그 이동 행동만 같은 운용에서 함께 수행할 수 있습니다." },
+    heavy_dash: { ko: "중화기(질주 한정)", en: "Heavy (Dash only)",
+      sum: "같은 운용에서 이동 행동은 질주만 함께 수행할 수 있습니다.",
+      det: "기동, 돌격, 후퇴 등 질주 외의 이동을 한 운용에서는 이 무기를 사용할 수 없고, 이 무기를 사용한 뒤에도 질주 외의 이동은 할 수 없습니다." },
+    heavy_repo: { ko: "중화기(기동 한정)", en: "Heavy (Reposition only)",
+      sum: "같은 운용에서 이동 행동은 기동만 함께 수행할 수 있습니다.",
+      det: "질주, 돌격, 후퇴 등 기동 외의 이동을 한 운용에서는 이 무기를 사용할 수 없고, 이 무기를 사용한 뒤에도 기동 외의 이동은 할 수 없습니다." },
+    hot: { ko: "과열", en: "Hot",
+      sum: "이 무기로 사격한 뒤 D6 하나를 굴립니다. 결과가 무기의 명중 수치보다 낮으면, 사격한 요원이 결과의 2배만큼 피해를 입습니다.",
+      det: "예를 들어 명중 4+ 무기로 3이 나오면 6 피해를 입습니다. 주로 플라스마 무기의 과충전 프로필에 붙으며, 강한 화력 대신 자해 위험을 감수하는 규칙입니다." },
+    lethal: { ko: "살상 {v}+", en: "Lethal {v}+",
+      sum: "공격 주사위 결과가 {v} 이상이면 결정적 성공으로 처리합니다. (기본은 6만 결정적 성공)",
+      det: "결정적 성공이 많아질수록 결정적 피해는 물론 궤멸, 파쇄, 혼미, 결정적 관통처럼 결정적 성공에 연동된 규칙도 자주 발동합니다." },
+    limited: { ko: "한도 {v}", en: "Limited {v}",
+      sum: "이 무기는 한 전투 동안 {v}번만 사용할 수 있습니다.",
+      det: "사용할 때마다 횟수를 기록해 두세요. 주로 수류탄이나 일회용 폭발물처럼 강력한 무기에 붙습니다." },
+    piercing: { ko: "관통 {v}", en: "Piercing {v}",
+      sum: "방어자가 굴리는 방어 주사위가 {v}개 줄어듭니다.",
+      det: "방어 주사위는 기본 3개이므로 관통 1이면 2개, 관통 2면 1개만 굴립니다. 방어자가 모으는 주사위 자체가 줄어들기 때문에 엄폐 방호도 줄어든 주사위 안에서만 보전할 수 있습니다." },
+    piercing_crits: { ko: "결정적 관통 {v}", en: "Piercing Crits {v}",
+      sum: "공격자가 결정적 성공을 하나라도 보전했을 때만 관통 {v}가 적용됩니다.",
+      det: "공격 주사위를 굴린 뒤에 방어 주사위를 모으므로, 결정적 성공 여부를 확인한 다음 방어 주사위 수를 정합니다. 살상, 중상, 파쇄 등으로 결정적 성공을 만들면 관통도 함께 발동합니다." },
+    punishing: { ko: "맹공", en: "Punishing",
+      sum: "결정적 성공을 하나라도 보전했다면, 실패한 공격 주사위 하나를 버리지 않고 일반 성공으로 보전할 수 있습니다.",
+      det: "결정적 성공이 나올수록 성공 수가 더 늘어나는 규칙입니다. 살상 규칙과 함께 있으면 발동 확률이 크게 올라갑니다." },
+    range: { ko: "사거리 {v}", en: "Range {v}",
+      sum: "사격 요원으로부터 {v} 이내에 있는 요원만 유효 대상으로 선택할 수 있습니다.",
+      det: "권총류는 보통 사거리 8″입니다. 거리는 두 요원의 베이스 사이 가장 가까운 지점을 기준으로 잽니다." },
+    relentless: { ko: "혹독", en: "Relentless",
+      sum: "공격 주사위를 원하는 만큼 다시 굴릴 수 있습니다.",
+      det: "균형(하나), 집요(같은 눈값 전부)보다 상위의 재굴림 규칙입니다. 각 주사위는 한 번만 재굴림할 수 있습니다." },
+    rending: { ko: "파쇄", en: "Rending",
+      sum: "결정적 성공을 하나라도 보전했다면, 일반 성공 하나를 결정적 성공으로 바꿔 보전할 수 있습니다.",
+      det: "결정적 성공이 하나도 없으면 발동하지 않는다는 점이 중상과의 차이입니다. 살상 규칙과 함께 있으면 결정적 성공을 만들기 쉬워 궁합이 좋습니다." },
+    saturate: { ko: "포화", en: "Saturate",
+      sum: "방어자는 엄폐 방호를 보전할 수 없습니다.",
+      det: "엄폐 중인 대상도 방어 주사위를 모두 굴려야 하므로 엄폐에 기대는 적을 몰아내기 좋습니다. 대상 선택 조건에는 영향이 없고 방어 단계에만 적용됩니다." },
+    seek: { ko: "색적", en: "Seek",
+      sum: "유효 대상을 고를 때 적 요원은 지형으로 엄폐를 받을 수 없습니다. 시야에 들어오기만 하면 은폐 명령 상태의 적도 대상으로 선택할 수 있습니다.",
+      det: "대상 선택에만 적용되므로 방어 단계의 엄폐 방호까지 없애지는 않습니다. 엄폐 방호를 없애는 것은 포화의 역할입니다." },
+    seek_light: { ko: "저밀도 색적", en: "Seek Light",
+      sum: "색적과 같지만 저밀도(Light) 지형에만 적용됩니다. 저밀도 지형 뒤에 은폐한 적은 시야에 들어오면 대상으로 선택할 수 있습니다.",
+      det: "고밀도(Heavy) 지형 뒤에 은폐한 적은 여전히 대상으로 선택할 수 없습니다. 방어 단계의 엄폐 방호는 없애지 않습니다." },
+    severe: { ko: "중상", en: "Severe",
+      sum: "결정적 성공을 하나도 보전하지 못했다면, 일반 성공 하나를 결정적 성공으로 바꿀 수 있습니다.",
+      det: "파쇄와 반대로 결정적 성공이 없을 때 발동합니다. 결정적 성공을 최소 하나 보장하므로 궤멸, 혼미, 결정적 관통처럼 결정적 성공이 필요한 규칙과 잘 맞습니다." },
+    shock: { ko: "충격", en: "Shock",
+      sum: "각 근접전 절차에서 처음으로 결정적 성공으로 타격할 때, 상대의 처리되지 않은 일반 성공 하나도 함께 버립니다. (일반 성공이 없으면 결정적 성공 하나)",
+      det: "상대의 주사위를 하나 지우므로 반격으로 받을 피해를 줄이거나 상대의 막기를 무력화합니다. 절차마다 한 번만 발동합니다." },
+    silent: { ko: "무성", en: "Silent",
+      sum: "은폐 명령을 받은 상태에서도 이 무기로 사격 행동을 수행할 수 있습니다.",
+      det: "보통 은폐 명령 상태에서는 사격할 수 없습니다. 무성 무기는 엄폐 뒤에 숨은 채 쏘고도 은폐 상태를 유지하므로 저격수에게 흔합니다." },
+    stun: { ko: "혼미", en: "Stun",
+      sum: "결정적 성공을 하나라도 보전하면 대상 요원의 APL이 1 감소합니다.",
+      det: "효과는 대상의 다음 운용이 끝날 때까지 지속됩니다. APL이 줄어든 요원은 행동을 하나 덜 하게 되므로 목표물 장악이나 후퇴를 방해하기 좋습니다." },
+    torrent: { ko: "격류 {v}", en: "Torrent {v}",
+      sum: "유효 대상을 하나 고른 뒤, 그 대상으로부터 {v} 이내에 있는 다른 유효 대상들을 원하는 만큼 추가로 골라 각각 별도의 사격을 수행합니다.",
+      det: "폭발과 달리 추가 대상은 사격 요원에게 유효 대상이어야 하고, 아군은 휘말리지 않으며, 원하지 않는 대상은 제외할 수 있습니다." },
+    guard: { ko: "엄호", en: "Guard",
+      sum: "1AP 행동입니다. 요원이 엄호 상태에 들어가, 적 요원이 행동을 마친 직후 그 운용을 방해해 무상 사격 또는 근접전 행동을 수행할 수 있습니다. 무상 행동을 수행하면(어떤 행동이든 하면) 엄호 상태가 끝나므로, 엄호 한 번으로 무상 사격·근접전은 한 번만 쓸 수 있습니다.",
+      det: "방해는 각 적 요원의 운용당 한 번, 그 적 요원이 행동을 수행한 뒤에 할 수 있으며, 엄호 상태인 아군 요원 하나를 지정해 사격 또는 근접전 행동(해치 통로전처럼 그런 행동으로 간주되는 행동 포함)을 무상으로 수행합니다. 엄호 상태는 요원이 어떤 행동이든 수행하거나, 요원의 장악 범위 내에서 적 요원이 행동을 마쳤는데 방해하지 않거나, 받은 명령이 바뀌거나, 다음 전환점이 시작되면 끝납니다. 엄호는 사격 행동으로 간주하며, 은폐 명령 상태이거나 적 요원의 장악 범위 내에 있을 때는 수행할 수 없습니다. 방해로 하는 사격은 적 요원의 장악 범위 내에서도 할 수 있는 영거리 사격으로, 일반 사격 요건에 우선합니다. 영거리 사격은 요원의 장악 범위 내에 있는 적 요원을 대상으로 지정하고(평소 유효 대상이 아닌 적도 가능), 무기의 명중 요구치가 1만큼 악화되며, 방해당한 적 요원의 운용이 끝날 때까지 반격할 수 없습니다." }
+  };
+  var KEYS = [
+    ["결정적 관통", "piercing_crits"], ["저밀도 색적", "seek_light"], ["중화기", "heavy"],
+    ["사거리", "range"], ["정확", "accurate"], ["균형", "balanced"], ["폭발", "blast"],
+    ["무자비", "brutal"], ["집요", "ceaseless"], ["궤멸", "devastating"], ["과열", "hot"],
+    ["살상", "lethal"], ["한도", "limited"], ["관통", "piercing"], ["맹공", "punishing"],
+    ["혹독", "relentless"], ["파쇄", "rending"], ["포화", "saturate"], ["색적", "seek"],
+    ["중상", "severe"], ["충격", "shock"], ["무성", "silent"], ["혼미", "stun"], ["격류", "torrent"],
+    ["엄호", "guard"]
+  ];
+  var ID = {};
+  KEYS.forEach(function (k) { ID[k[0]] = k[1]; });
+  var VALKW = "결정적 관통|사거리|정확|폭발|궤멸|살상|한도|관통|격류";
+  var NOVALKW = /저밀도 색적|중화기(?:\((?:질주|기동) 한정\))?|균형|무자비|집요|과열|맹공|혹독|파쇄|포화|색적|중상|충격|무성|혼미|엄호/.source;
+  var VAL = /(?:\d+″|\d+\+|\d+|[xX](?![가-힣A-Za-z0-9″]))/.source;
+  var DIST = /\d+″ 궤멸(?: ?\d+)?/.source;
+  var TOKEN = "(?:" + DIST + "|(?:" + VALKW + ")(?: ?" + VAL + ")?|(?:" + NOVALKW + "))";
+  var SCAN = new RegExp("(^|[^가-힣A-Za-z0-9])(" + TOKEN + ")", "g");
+  var TAIL = new RegExp("^(?: ?(?:,|과|와|이나|나|및|또는|·) ?" + TOKEN + ")*(?: 등의| 등)? (?:무기 )?규칙");
+  var LISTLINE = new RegExp("^(?:" + TOKEN + "|[^,]{1,18})(?:, ?(?:" + TOKEN + "|[^,]{1,18}))*$");
+  var PARSE = /^(?:(\d+″) )?(결정적 관통|저밀도 색적|중화기|사거리|정확|균형|폭발|무자비|집요|궤멸|과열|살상|한도|관통|맹공|혹독|파쇄|포화|색적|중상|충격|무성|혼미|격류|엄호)(\((질주|기동) 한정\))?(?: ?(\d+″|\d+\+|\d+|[xX]))?$/;
+  var ANYWHERE = { "결정적 관통": 1, "정확": 1, "폭발": 1, "궤멸": 1, "살상": 1, "한도": 1, "관통": 1, "격류": 1 };
+  var LIST_TAGS = { TD: 1, LI: 1, DD: 1, DT: 1, SPAN: 1, STRONG: 1, EM: 1, B: 1, P: 1, DIV: 1, H4: 1, H5: 1 };
+  var SKIP = "script,style,button,a,h1,h2,h3,.hero-toc,.breadcrumb,.wr-pop,[data-wr-skip]";
+
+  function parseToken(tok) {
+    var m = PARSE.exec(tok);
+    if (!m) return null;
+    var id = ID[m[2]];
+    if (m[2] === "중화기" && m[4]) id = m[4] === "질주" ? "heavy_dash" : "heavy_repo";
+    var v = m[5] || "";
+    if (id === "lethal") v = v.replace("+", "");
+    return { id: id, kw: m[2], dist: m[1] || "", val: v, numeric: /^\d/.test(m[5] || "") };
+  }
+  var COLON_LIST = new RegExp("무기 규칙[^:]{0,40}: ?(?:" + TOKEN + ", ?)*$");
+  var LIST_REST = /^(?:,|[.)]|$| 등| 중)/;
+  var GUARD_AFTER = /^(?: (?:행동|상태|제외|포함|이외)|는 )/;
+  function guardOk(before, rest, listMode) {
+    if (listMode) return true;
+    if (GUARD_AFTER.test(rest)) return true;
+    return /^,/.test(rest) && /[,(] ?$/.test(before);
+  }
+  function qualifies(info, before, rest, listMode) {
+    if (info.id === "guard") return guardOk(before, rest, listMode);
+    if (listMode) return true;
+    if (info.numeric && (ANYWHERE[info.kw] || info.dist)) return true;
+    if (TAIL.test(rest)) return true;
+    return COLON_LIST.test(before) && LIST_REST.test(rest);
+  }
+  function makeKw(tok, info) {
+    var b = document.createElement("button");
+    b.type = "button";
+    b.className = "wr-kw";
+    b.setAttribute("data-wr", info.id);
+    b.setAttribute("data-token", tok);
+    b.setAttribute("aria-expanded", "false");
+    b.textContent = tok;
+    return b;
+  }
+  function processText(node) {
+    var text = node.nodeValue;
+    if (!text || text.length < 2) return;
+    var parent = node.parentNode;
+    if (!parent || parent.nodeType !== 1) return;
+    if (parent.closest && parent.closest(SKIP)) return;
+    var trimmed = text.trim();
+    var listMode = parent.childNodes.length === 1 && LIST_TAGS[parent.tagName] && trimmed.length <= 90 && LISTLINE.test(trimmed);
+    var frag = null, last = 0, m;
+    SCAN.lastIndex = 0;
+    while ((m = SCAN.exec(text)) !== null) {
+      var pre = m[1], tok = m[2], start = m.index + pre.length, end = start + tok.length;
+      if (listMode) {
+        var before = text.slice(0, start).trim(), after = text.slice(end).trim();
+        if ((before && !/,$/.test(before)) || (after && !/^,/.test(after))) continue;
+      }
+      var info = parseToken(tok);
+      if (!info || !qualifies(info, text.slice(0, start), text.slice(end), listMode)) continue;
+      if (!frag) frag = document.createDocumentFragment();
+      if (start > last) frag.appendChild(document.createTextNode(text.slice(last, start)));
+      frag.appendChild(makeKw(tok, info));
+      last = end;
+    }
+    if (!frag) return;
+    if (last < text.length) frag.appendChild(document.createTextNode(text.slice(last)));
+    parent.replaceChild(frag, node);
+  }
+  function markup() {
+    var walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, null);
+    var nodes = [], n;
+    while ((n = walker.nextNode())) { if (/[가-힣]/.test(n.nodeValue)) nodes.push(n); }
+    nodes.forEach(processText);
+  }
+  /* popover */
+  var pop = document.createElement("div");
+  pop.className = "wr-pop";
+  pop.id = "wr-pop";
+  pop.setAttribute("role", "tooltip");
+  pop.hidden = true;
+  pop.innerHTML = '<div class="wr-pop-head"><span class="wr-pop-ko"></span><span class="wr-pop-en"></span></div><p class="wr-pop-sum"></p><p class="wr-pop-det"></p><span class="wr-pop-arrow" aria-hidden="true"></span>';
+  var elKo = pop.querySelector(".wr-pop-ko"), elEn = pop.querySelector(".wr-pop-en"), elSum = pop.querySelector(".wr-pop-sum"), elDet = pop.querySelector(".wr-pop-det"), arrow = pop.querySelector(".wr-pop-arrow");
+  var current = null, pinned = false, hoverTimer = null;
+  var HOVER = !!(window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches);
+
+  function fill(t, v, d) { return String(t).replace(/\{v\}/g, v).replace(/\{d\}/g, d); }
+  function render(btn) {
+    var info = parseToken(btn.getAttribute("data-token")) || { id: btn.getAttribute("data-wr"), dist: "", val: "" };
+    var rule = RULES[info.id];
+    if (!rule) return false;
+    var v = info.val || "X", d = info.dist || "X″";
+    elKo.textContent = (info.dist ? info.dist + " " : "") + fill(rule.ko, v, d);
+    elEn.textContent = (info.dist ? info.dist + " " : "") + fill(rule.en, v, d);
+    elSum.textContent = fill(info.dist && rule.sumd ? rule.sumd : rule.sum, v, d);
+    elDet.textContent = fill(rule.det, v, d);
+    return true;
+  }
+  function topBar() {
+    var w = window.innerWidth;
+    return w > 1100 ? 0 : (w > 680 ? 132 : 124);
+  }
+  function place(btn) {
+    var r = btn.getBoundingClientRect();
+    var vw = document.documentElement.clientWidth;
+    pop.style.visibility = "hidden";
+    pop.hidden = false;
+    pop.style.left = "0px";
+    pop.style.top = "0px";
+    var pw = pop.offsetWidth, ph = pop.offsetHeight, margin = 8;
+    var cx = r.left + r.width / 2;
+    var left = Math.min(Math.max(margin, cx - pw / 2), Math.max(margin, vw - pw - margin));
+    var above = (r.top - ph - 10) >= topBar();
+    var top = above ? r.top - ph - 10 : r.bottom + 10;
+    pop.classList.toggle("is-below", !above);
+    pop.style.left = Math.round(left + window.pageXOffset) + "px";
+    pop.style.top = Math.round(top + window.pageYOffset) + "px";
+    arrow.style.left = Math.round(Math.min(Math.max(14, cx - left), pw - 14)) + "px";
+    pop.style.visibility = "";
+  }
+  function open(btn, pin) {
+    if (!render(btn)) return;
+    if (current && current !== btn) { current.classList.remove("is-open"); current.setAttribute("aria-expanded", "false"); current.removeAttribute("aria-describedby"); }
+    current = btn;
+    pinned = !!pin;
+    btn.classList.add("is-open");
+    btn.setAttribute("aria-expanded", "true");
+    btn.setAttribute("aria-describedby", "wr-pop");
+    place(btn);
+  }
+  function close() {
+    if (!current) return;
+    current.classList.remove("is-open");
+    current.setAttribute("aria-expanded", "false");
+    current.removeAttribute("aria-describedby");
+    current = null;
+    pinned = false;
+    pop.hidden = true;
+  }
+  function kwOf(t) { return t && t.closest ? t.closest(".wr-kw") : null; }
+
+  document.addEventListener("click", function (e) {
+    var kw = kwOf(e.target);
+    if (kw) {
+      e.preventDefault();
+      if (current === kw && pinned) close(); else open(kw, true);
+      return;
+    }
+    if (pop.contains(e.target)) return;
+    close();
+  });
+  document.addEventListener("keydown", function (e) {
+    if ((e.key === "Escape" || e.key === "Esc") && current) { var b = current; close(); if (b.focus) b.focus(); }
+  });
+  document.addEventListener("mouseover", function (e) {
+    if (!HOVER) return;
+    var kw = kwOf(e.target);
+    if (kw) { clearTimeout(hoverTimer); if (current !== kw) open(kw, false); }
+    else if (pop.contains(e.target)) clearTimeout(hoverTimer);
+  });
+  document.addEventListener("mouseout", function (e) {
+    if (!HOVER || pinned) return;
+    if (kwOf(e.target) || pop.contains(e.target)) {
+      clearTimeout(hoverTimer);
+      hoverTimer = setTimeout(function () { if (!pinned) close(); }, 180);
+    }
+  });
+  document.addEventListener("scroll", function (e) { if (e.target !== document && current) close(); }, true);
+  window.addEventListener("resize", close);
+
+  function init() {
+    try { markup(); } catch (err) { if (window.console) console.error("weapon-rule glossary:", err); }
+    document.body.appendChild(pop);
+  }
+  if (document.readyState === "loading") document.addEventListener("DOMContentLoaded", init); else init();
+})();
+</script>
+</body>
+</html>

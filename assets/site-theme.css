@@ -156,3 +156,9 @@ html[data-theme="light"] .wr-pop{background:#fff;color:#20242b;border-color:#cbd
 html[data-theme="light"] .wr-pop-sum{color:#20242b}
 html[data-theme="light"] :is(.wr-pop-det,.wr-pop-en){color:#535d69}
 html[data-theme="light"] .wr-pop-arrow{background:#fff;border-color:#cbd1d9}
+
+/* Opaque glossary surfaces prevent underlying weapon tables showing through. */
+html:not([data-theme="light"]) .wr-pop{background:#161b20 !important;background-image:none !important;opacity:1;color:#f1f3f5;box-shadow:0 12px 36px rgba(0,0,0,.45)}
+html:not([data-theme="light"]) .wr-pop-arrow{background:#161b20 !important;background-image:none !important;opacity:1}
+html:not([data-theme="light"]) .wr-pop-sum{color:#f1f3f5}
+html:not([data-theme="light"]) .wr-pop-det{color:#b9c0c7}
