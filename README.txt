@@ -52,12 +52,3 @@ Kill Team Core - 최종 통합 오프라인 백업
 12. 이무기 칼날 / Wyrmblade (완료)
 13. 선도 요원 / Pathfinders (완료)
 14. 코만도스 / Kommandos (완료)
-
-
-2026-10-06 URL 구조 이전
-- 메인 카드 및 상세페이지: 48개
-- 상세페이지: factions/[slug]/index.html
-- 최종 URL: https://killteamcore.kr/factions/[slug]/
-- 공식 영문명 5건 수정 및 XV26 숫자 표기 유지
-- 기존 상세페이지 경로는 새 페이지로 이동하는 안내 페이지로 보존
-- 상대경로는 GitHub Pages 하위 경로와 로컬 파일 열기를 고려해 조정
